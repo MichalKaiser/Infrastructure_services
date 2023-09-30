@@ -1,2 +1,26 @@
-- name: Ansible ping module
-  ansible.builtin.ping:
+#- name: Ansible ping module
+#  ansible.builtin.ping:
+
+- name: Add the user 'johnd' with a specific uid and a primary group of 'admin' for Juri
+  ansible.builtin.user:
+    name: juri
+    comment: Juri Hudolejev
+    group: admin
+
+- name: Set authorized keys taken from url for Juri
+  ansible.posix.authorized_key:
+    user: juri
+    state: present
+    key: https://github.com/hudolejev.keys
+
+- name: Add the user 'johnd' with a specific uid and a primary group of 'admin' for Roman
+  ansible.builtin.user:
+    name: roman 
+    comment: Roman Kuchin
+    group: admin
+
+- name: Set authorized keys taken from url for Roman
+  ansible.posix.authorized_key:
+    user: roman
+    state: present
+    key: https://github.com/romankuchin.keys
