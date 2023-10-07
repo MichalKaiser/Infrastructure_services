@@ -1,0 +1,10 @@
+- name: Install the package sqlalchemy
+  ansible.builtin.apt:
+    name: uwsgi
+    state: present
+
+- name: Install the package sqlalchemy
+  ansible.builtin.apt:
+    name: uwsgi-plugin-python3
+    state: present
+
