@@ -13,3 +13,9 @@
     src: files/agama.ini
     dest: /etc/uwsgi/apps-enabled/agama.ini
     notify: "restart uwsgi service"
+
+name: start uWSGI service
+ansible.builtin.service:
+  name: uwsgi
+  state: started
+  enabled: true
