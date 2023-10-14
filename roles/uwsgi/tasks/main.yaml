@@ -1,9 +1,9 @@
-- name: Install the package sqlalchemy
+- name: Install the uwsgi
   ansible.builtin.apt:
     name: uwsgi
     state: present
 
-- name: Install the package sqlalchemy
+- name: Install the package uwsgi-plugin-python3
   ansible.builtin.apt:
     name: uwsgi-plugin-python3
     state: present
@@ -12,5 +12,4 @@
   ansible.builtin.copy:
     src: files/agama.ini
     dest: /etc/uwsgi/apps-enabled/agama.ini
-  notify: 
-    restart uwsgi service
+    notify: "restart uwsgi service"
