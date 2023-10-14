@@ -10,6 +10,6 @@
 
 - name: Copy file with owner and permissions
   ansible.builtin.copy:
-    src: ~/ica0002/config/agama.ini
+    src: files/agama.ini
     dest: /etc/uwsgi/apps-enabled/agama.ini
     notify: "restart uwsgi service"
