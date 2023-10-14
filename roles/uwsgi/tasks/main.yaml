@@ -8,3 +8,8 @@
     name: uwsgi-plugin-python3
     state: present
 
+- name: Copy file with owner and permissions
+  ansible.builtin.copy:
+    src: ~/ica0002/config/agama.ini
+    dest: /etc/uwsgi/apps-enabled/agama.ini
+    notify: "restart uwsgi service"
