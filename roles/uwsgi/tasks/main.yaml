@@ -12,4 +12,5 @@
   ansible.builtin.copy:
     src: files/agama.ini
     dest: /etc/uwsgi/apps-enabled/agama.ini
-    notify: "restart uwsgi service"
+  notify: 
+    restart uwsgi service
