@@ -9,3 +9,15 @@
   ansible.builtin.apt:
     name: nginx
     state: present
+
+- name: Copy files/default to /etc/nginx/sites-enabled/default on remote virtual machine
+  ansible.builtin.copy:
+    src: files/default
+    dest: /etc/nginx/sites-enabled/default
+  notify: "restart nginx service"
+
+- name: start nginx service
+  ansible.builtin.service:
+    name: nginx
+    state: started
+    enabled: true
