@@ -8,11 +8,11 @@
     name: uwsgi-plugin-python3
     state: present
 
-- name: Copy file with owner and permissions
+- name: Copy file with owner and permission of agama.ini
   ansible.builtin.copy:
     src: files/agama.ini
     dest: /etc/uwsgi/apps-enabled/agama.ini
-    notify: "restart uwsgi service"
+  notify: "restart uwsgi service"
 
 - name: start uWSGI service
   ansible.builtin.service:
