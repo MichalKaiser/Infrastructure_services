@@ -1,0 +1,16 @@
+- name: Install the newest version of package "mysql-server"
+  ansible.builtin.apt:
+    name: mysql-server
+    state: present
+
+- name: start nginx service
+  ansible.builtin.service:
+    name: mysql
+    state: started
+    enabled: true
+
+- name: Copy file override.cnf to /etc/mysql/mysql.conf.d/override.cnf
+  ansible.builtin.copy:
+    src: files/override.cnf
+    dest: /etc/mysql/mysql.conf.d/override.cnf
+  notify: "restart mysql service"
