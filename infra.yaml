@@ -9,6 +9,7 @@
     hosts: db_servers
     roles:
       - mysql
+      - prometheus
   
   - name: Web server
     hosts: web_servers

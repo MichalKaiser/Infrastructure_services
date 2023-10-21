@@ -1,0 +1,33 @@
+- name: Install the newest version of Prometheus
+  ansible.builtin.apt:
+    name: prometheus
+    state: present
+
+- name: Copy file prom.yml to /etc/prometheus/prometheus.yml
+  ansible.builtin.template:
+    src: prom.yml
+    dest: /etc/prometheus/prometheus.yml
+  notify: "prometheus service reload"
+
+- name: start Prometheus service
+  ansible.builtin.service:
+    name: prometheus
+    state: started
+    enabled: true
+
+- name: Install the newest version of package "nginx"
+  ansible.builtin.apt:
+    name: nginx
+    state: present
+
+- name: Copy files/default to /etc/nginx/sites-enabled/default on remote virtual machine
+  ansible.builtin.copy:
+    src: files/default
+    dest: /etc/nginx/sites-enabled/default
+  notify: "restart nginx service"
+
+- name: start nginx service
+  ansible.builtin.service:
+    name: nginx
+    state: started
+    enabled: true
