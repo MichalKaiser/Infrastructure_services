@@ -16,4 +16,8 @@
       - agama
       - uwsgi
       - nginx
-      - bind
+  
+  - name: DNS server
+    hosts: dns_servers
+    roles:
+      - bind  

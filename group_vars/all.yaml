@@ -1,4 +1,4 @@
-mysql_host: 192.168.42.83
+mysql_host: michalkaiser-2.cybera.mk
 mysql_database: agama
 mysql_user: agama
 mysql_password: !vault |

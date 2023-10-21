@@ -18,11 +18,11 @@
     state: started
     enabled: true
 
-- name: Copy file with owner and permission of cybera.mk for bind9 service
+- name: Copy file with o cybera.mk for bind9 service
   ansible.builtin.template:
     src: zone.j2
     dest: /var/lib/bind/db.cybera.mk
-  notify: "restart bind9 service"
+  notify: "rndc reload"
 
 - name: Copy file with owner and permission of resolv.conf for bind9 service
   ansible.builtin.template:

@@ -4,4 +4,8 @@
       state: restarted
     listen: "restart bind9 service"
 
+  - name: Restart rndc reload
+    ansible.builtin.command:
+      cmd: rndc reload
+    listen: "rndc reload"
 

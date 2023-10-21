@@ -6,3 +6,6 @@ MichalKaiser-1
 
 [db_servers]
 MichalKaiser-2
+
+[dns_servers]
+MichalKaiser-1
