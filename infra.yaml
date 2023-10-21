@@ -16,3 +16,4 @@
       - agama
       - uwsgi
       - nginx
+      - bind

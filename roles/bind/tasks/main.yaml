@@ -1,0 +1,10 @@
+- name: Install the newest version of package "bind9"
+  ansible.builtin.apt:
+    name: bind9
+    state: present
+
+- name: start nginx service
+  ansible.builtin.service:
+    name: bind9
+    state: started
+    enabled: true
