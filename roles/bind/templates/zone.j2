@@ -1,0 +1,12 @@
+$TTL	604800
+cybera.mk.	IN	SOA	vm1.cybera.mk. michal.cybera.mk. (
+			      2		; Serial
+			 604800		; Refresh
+			  86400		; Retry
+			2419200		; Expire
+			 604800 )	; Negative Cache TTL
+;
+cybera.mk.	IN	NS	vm1
+{% for vm in groups['all'] %}
+{{ vm }}	IN	A	{{ hostvars[vm]['ansible_default_ipv4']['address'] }}
+{% endfor %}
