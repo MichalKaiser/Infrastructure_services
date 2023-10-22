@@ -5,11 +5,11 @@
       - init
 
 
-  - name: Database server
-    hosts: db_servers
-    roles:
-      - mysql
-      - prometheus
+#  - name: Database server
+#    hosts: db_servers
+#    roles:
+#      - mysql
+#      - prometheus
   
   - name: Web server
     hosts: web_servers

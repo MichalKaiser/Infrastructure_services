@@ -3,3 +3,9 @@
       name: prometheus
       state: restarted
     listen: "prometheus service reload"
+
+  - name: Restart nginx
+    service:
+      name: nginx
+      state: restarted
+    listen: "restart nginx service"

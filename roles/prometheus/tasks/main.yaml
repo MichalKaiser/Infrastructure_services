@@ -21,8 +21,8 @@
     state: present
 
 - name: Copy files/default to /etc/nginx/sites-enabled/default on remote virtual machine
-  ansible.builtin.copy:
-    src: files/default
+  ansible.builtin.template:
+    src: templates/default.j2
     dest: /etc/nginx/sites-enabled/default
   notify: "restart nginx service"
 
