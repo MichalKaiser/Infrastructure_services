@@ -16,7 +16,7 @@
       - python3-pymysql
     state: present
 
-#- name: Download agama.py
-#  ansible.builtin.get_url:
-#    url: https://raw.githubusercontent.com/hudolejev/agama/master/agama.py
-#    dest: /opt/agama
+- name: Download agama.py
+  ansible.builtin.get_url:
+    url: https://raw.githubusercontent.com/hudolejev/agama/master/agama.py
+    dest: /opt/agama
