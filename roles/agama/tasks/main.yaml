@@ -8,6 +8,7 @@
     path: /opt/agama
     owner: agama
     state: directory
+    mode: '0777'
 
 - name: Install the package sqlalchemy
   ansible.builtin.apt:

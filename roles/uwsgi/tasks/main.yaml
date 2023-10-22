@@ -11,7 +11,7 @@
 
 - name: Copy file with owner and permission of agama.ini
   ansible.builtin.template:
-    src: templates/agama.ini.j2
+    src: agama.ini.j2
     dest: /etc/uwsgi/apps-enabled/agama.ini
     owner: agama
     mode: 0600
