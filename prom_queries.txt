@@ -1,0 +1,10 @@
+metrics
+count(http_requests_total)
+http_requests_in_progress
+rate(http_requests_total[5m])
+avg(cpu_usage[5m])
+max_over_time(memory_usage[1h])
+http_requests_total{status_code="200"}
+sum by (status_code) (http_requests_total)
+topk(5, sum by (endpoint) (rate(http_requests_total[5m])))
+
