@@ -34,11 +34,6 @@
     name: prometheus-node-exporter
     state: present
 
-- name: Copy file with owner and permission of resolv.conf for bind9 service
-  ansible.builtin.template:
-    src: resolv.conf.j2
-    dest: /etc/resolv.conf
-
 - name: start prometheus-node-exporter service
   ansible.builtin.service:
     name: prometheus-node-exporter

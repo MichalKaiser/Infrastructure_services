@@ -1,0 +1,4 @@
+- name: Copy file with owner and permission of resolv.conf
+  ansible.builtin.template:
+    src: resolv.conf.j2
+    dest: /etc/resolv.conf

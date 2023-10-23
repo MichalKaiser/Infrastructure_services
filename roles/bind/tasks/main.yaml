@@ -23,9 +23,3 @@
     src: zone.j2
     dest: /var/lib/bind/db.cybera.mk
   notify: "rndc reload"
-
-- name: Copy file with owner and permission of resolv.conf for bind9 service
-  ansible.builtin.template:
-    src: resolv.conf.j2
-    dest: /etc/resolv.conf
-  notify: "restart bind9 service" 

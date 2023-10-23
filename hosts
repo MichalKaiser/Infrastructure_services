@@ -1,5 +1,5 @@
-MichalKaiser-1 ansible_host=193.40.156.67 ansible_port=30822 ansible_user=ubuntu
-MichalKaiser-2 ansible_host=193.40.156.67 ansible_port=30022 ansible_user=ubuntu
+MichalKaiser-1 ansible_host=193.40.156.67 ansible_port=3322 ansible_user=ubuntu
+MichalKaiser-2 ansible_host=193.40.156.67 ansible_port=4122 ansible_user=ubuntu
 
 [web_servers]
 MichalKaiser-1
@@ -9,3 +9,4 @@ MichalKaiser-2
 
 [dns_servers]
 MichalKaiser-1
+

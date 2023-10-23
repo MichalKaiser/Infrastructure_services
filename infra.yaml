@@ -4,6 +4,16 @@
     roles:
       - init
 
+  - name: DNS server
+    hosts: dns_servers
+    roles:
+      - bind
+ 
+  - name: DNS resolver
+    hosts: all
+    roles:
+      - dnsresolver
+
   - name: Database server
     hosts: db_servers
     roles:
@@ -16,8 +26,5 @@
       - agama
       - uwsgi
       - nginx
+
   
-  - name: DNS server
-    hosts: dns_servers
-    roles:
-      - bind  
