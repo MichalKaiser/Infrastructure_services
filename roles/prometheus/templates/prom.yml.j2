@@ -27,3 +27,7 @@ scrape_configs:
           - {{ vm }}:9100
 {% endfor %}
    
+  - job_name: bind9
+    static_configs:
+      - targets:
+          - michalkaiser-1:9119
