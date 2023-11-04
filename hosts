@@ -1,5 +1,5 @@
-MichalKaiser-1 ansible_host=193.40.156.67 ansible_port={ssh_port_server1} ansible_user=ubuntu
-MichalKaiser-2 ansible_host=193.40.156.67 ansible_port={ssh_port_server2} ansible_user=ubuntu
+MichalKaiser-1 ansible_host=193.40.156.67 ansible_port=41922 ansible_user=ubuntu
+MichalKaiser-2 ansible_host=193.40.156.67 ansible_port=28522 ansible_user=ubuntu
 
 [web_servers]
 MichalKaiser-1
