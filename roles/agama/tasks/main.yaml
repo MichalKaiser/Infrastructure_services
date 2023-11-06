@@ -3,7 +3,7 @@
     name: agama
     comment: agama
 
-- name: Change file ownership, group and permissions
+- name: Change file ownership ß
   ansible.builtin.file:
     path: /opt/agama
     owner: agama

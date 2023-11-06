@@ -11,8 +11,6 @@ mysql_password: !vault |
 
 ssh_port_server1: 39522
 ssh_port_server2: 36422
-
-bind_resolver: 192.168.43.139 # host1
-
+bind_resolver: 192.168.43.82 # host1
 dns_servers: 1.1.1.1; 8.8.8.8; 9.9.9.9;
 dns_acl: 192.168.42.0/23; 127.0.0.0/8;

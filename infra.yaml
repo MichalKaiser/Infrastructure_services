@@ -1,23 +1,23 @@
 ---
-  - name: Initial setup
-    hosts: all
-    roles:
-      - init
+  # - name: Initial setup
+  #   hosts: all
+  #   roles:
+  #     - init
 
-  - name: DNS server
-    hosts: dns_servers
-    roles:
-      - bind
+  # - name: DNS server
+  #   hosts: dns_servers
+  #   roles:
+  #     - bind
  
-  - name: DNS resolver
-    hosts: all
-    roles:
-      - dnsresolver
+  # - name: DNS resolver
+  #   hosts: all
+  #   roles:
+  #     - dnsresolver
 
-  - name: Database server
-    hosts: db_servers
-    roles:
-      - mysql
+  # - name: Database server
+  #   hosts: db_servers
+  #   roles:
+  #     - mysql
   
   - name: Web server
     hosts: web_servers
