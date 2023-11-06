@@ -18,13 +18,19 @@
     hosts: db_servers
     roles:
       - mysql
-      - prometheus
   
   - name: Web server
     hosts: web_servers
     roles:
-      - agama
-      - uwsgi
       - nginx
 
+  - name: Agama server  
+    hosts: agama_servers
+    roles:
+      - agama
+      - uwsgi
   
+  - name: Prometheus server
+    hosts: prometheus_servers
+    roles:
+      - prometheus

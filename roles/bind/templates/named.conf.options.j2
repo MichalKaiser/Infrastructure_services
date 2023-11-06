@@ -1,12 +1,10 @@
-acl cybera { 192.168.42.0/23; 127.0.0.0/8; };
+acl cybera { {{ dns_acl }} };
 
 options {
 	directory "/var/lib/bind";
 	
 	forwarders {
-	  1.1.1.1;
-	  8.8.8.8;
-	  9.9.9.9;
+	  {{ dns_servers }}
 	};
 
 	allow-query {cybera;};
