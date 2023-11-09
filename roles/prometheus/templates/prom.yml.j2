@@ -31,3 +31,15 @@ scrape_configs:
     static_configs:
       - targets:
           - michalkaiser-1:9119
+
+  - job_name: Mysql
+    static_configs:
+      - targets:
+          - michalkaiser-2:9104
+
+  - job_name: Nginx
+    static_configs:
+      - targets:
+{% for vm in groups['all'] %}
+          - {{ vm }}:9113
+{% endfor %}

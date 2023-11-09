@@ -1,0 +1,31 @@
+- name: Give insecure permissions to an existing file
+  ansible.builtin.file:
+    path: /etc/apt/keyrings/
+    state: directory
+
+- name: Add Example GPG key
+  ansible.builtin.apt_key:
+    url: https://apt.grafana.com/gpg.key
+    state: present
+
+- name: Add grafana repository into sources list using specified filename
+  ansible.builtin.apt_repository:
+    repo: "deb https://packages.grafana.com/oss/deb stable main"
+    state: present
+
+- name: Install the newest version of package "grafana"
+  ansible.builtin.apt:
+    name: grafana
+    state: present
+
+- name: start grafana service
+  ansible.builtin.service:
+    name: grafana-server
+    state: started
+    enabled: true
+
+- name: Copy file grafana.ini.j2 to /etc/grafana/grafana.ini
+  ansible.builtin.template:
+    src: grafana.ini.j2
+    dest: /etc/grafana/grafana.ini
+  notify: "restart grafana"

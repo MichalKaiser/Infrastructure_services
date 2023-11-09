@@ -1,36 +1,49 @@
 ---
-  # - name: Initial setup
-  #   hosts: all
-  #   roles:
-  #     - init
+  - name: Initial setup
+    hosts: all
+    roles:
+      - init
+    tags: in
 
-  # - name: DNS server
-  #   hosts: dns_servers
-  #   roles:
-  #     - bind
+  - name: DNS server
+    hosts: dns_servers
+    roles:
+      - bind
+    tags: dns
  
-  # - name: DNS resolver
-  #   hosts: all
-  #   roles:
-  #     - dnsresolver
+  - name: DNS resolver
+    hosts: all
+    roles:
+      - dnsresolver
+    tags: rsv
 
-  # - name: Database server
-  #   hosts: db_servers
-  #   roles:
-  #     - mysql
+  - name: Database server
+    hosts: db_servers
+    roles:
+      - mysql
+    tags: db
   
   - name: Web server
     hosts: web_servers
     roles:
       - nginx
+    tags: wb
 
   - name: Agama server  
     hosts: agama_servers
     roles:
       - agama
       - uwsgi
+    tags: ag
   
   - name: Prometheus server
     hosts: prometheus_servers
     roles:
       - prometheus
+    tags: pm
+
+  - name: Grafana server
+    hosts: grafana_servers
+    roles:
+      - grafana
+    tags: gf

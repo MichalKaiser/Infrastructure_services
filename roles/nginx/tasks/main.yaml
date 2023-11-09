@@ -15,15 +15,18 @@
   ansible.builtin.copy:
     src: files/default
     dest: /etc/nginx/sites-enabled/default
-  notify: "restart nginx service"
-
+  notify:
+    - "restart nginx service"
+    - "restart nginx-exporter"
 
 - name: Copy files/default to /etc/nginx/sites-enabled/default on remote virtual machine
   when: inventory_hostname in groups['web_servers'][1]
   ansible.builtin.template:
     src: templates/default.j2
     dest: /etc/nginx/sites-enabled/default
-  notify: "restart nginx service"
+  notify: 
+    - "restart nginx service"
+    - "restart nginx-exporter"
 
 - name: start nginx service
   ansible.builtin.service:
@@ -31,7 +34,13 @@
     state: started
     enabled: true
 
-- name: Restart nginx
-  service:
-    name: nginx
-    state: restarted
+- name: Install Prometheus Nginx Exporters
+  ansible.builtin.apt:
+    name: prometheus-nginx-exporter
+    state: present
+
+- name: start prometheus-nginx-exporter service
+  ansible.builtin.service:
+    name: prometheus-nginx-exporter
+    state: started
+    enabled: true

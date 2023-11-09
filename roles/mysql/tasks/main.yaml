@@ -33,3 +33,19 @@
     host: "%"
     priv: "{{ mysql_database }}.*:ALL"
 
+- name: Install Prometheus Mysql Exporters
+  ansible.builtin.apt:
+    name: prometheus-mysqld-exporter
+    state: present
+
+- name: Copy file my.cnf.j2 to /var/lib/prometheus/.my.cnf
+  ansible.builtin.template:
+    src: my.cnf.j2
+    dest: /var/lib/prometheus/.my.cnf
+  no_log: true
+
+- name: start prometheus-mysqld-exporter service
+  ansible.builtin.service:
+    name: prometheus-mysqld-exporter
+    state: started
+    enabled: true

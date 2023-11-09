@@ -5,6 +5,11 @@
   ansible.builtin.apt:
     cache_valid_time: 86400
 
+- name: Install ca-certificates
+  ansible.builtin.apt:
+    name: ca-certificates=20230311ubuntu0.20.04.1
+    state: present
+
 #- name: Add the user 'johnd' with a specific uid and a primary group of 'admin' for Juri
 #  ansible.builtin.user:
 #    name: juri

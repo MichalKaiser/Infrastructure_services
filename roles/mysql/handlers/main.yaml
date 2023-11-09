@@ -3,3 +3,9 @@
       name: mysql
       state: restarted
     listen: "restart mysql service"
+
+  - name: Restart mysql-exporter
+    service:
+      name: prometheus-mysqld-exporter
+      state: restarted
+    listen: "restart mysql-exporter service"
