@@ -39,13 +39,41 @@
     host: "%"
     priv: "{{ mysql_database }}.*:ALL"
 
-- name: MySQL user Exporter
+# - name: MySQL user Exporter
+#   community.mysql.mysql_user:
+#     name: "{{ mysql_exporter_user }}"
+#     password: "{{ mysql_exporter_password }}"
+#     login_unix_socket: /var/run/mysqld/mysqld.sock
+#     host: "%"
+#     priv: "{{ mysql_database }}.*:SUPER"
+#     state: present
+
+- name: Check if MySQL user Exporter exists
+  community.mysql.mysql_user:
+    name: "{{ mysql_exporter_user }}"
+    login_unix_socket: /var/run/mysqld/mysqld.sock
+  register: check_user_result
+
+- name: Create MySQL user Exporter if it doesn't exist
   community.mysql.mysql_user:
     name: "{{ mysql_exporter_user }}"
     password: "{{ mysql_exporter_password }}"
     login_unix_socket: /var/run/mysqld/mysqld.sock
-    host: "%"
-    priv: "{{ mysql_database }}.*:ALL"
+    host: "localhost"
+    state: present
+  when: check_user_result == {}
+
+- name: Grant global privileges to MySQL user Exporter
+  community.mysql.mysql_query:
+    login_unix_socket: /var/run/mysqld/mysqld.sock
+    query: "GRANT PROCESS, REPLICATION CLIENT ON *.* TO '{{ mysql_exporter_user }}'@'localhost';"
+  when: check_user_result != {}
+
+- name: Grant SELECT privilege on specific database
+  community.mysql.mysql_query:
+    login_unix_socket: /var/run/mysqld/mysqld.sock
+    query: "GRANT SELECT ON {{ mysql_database }}.* TO '{{ mysql_exporter_user }}'@'localhost';"
+  when: check_user_result != {}
 
 - name: Install Prometheus Mysql Exporters
   ansible.builtin.apt:
