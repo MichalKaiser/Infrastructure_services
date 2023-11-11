@@ -11,10 +11,11 @@ mysql_password: !vault |
 
 ssh_port_server1: 39522
 ssh_port_server2: 36422
-bind_resolver: 192.168.42.33 # host1
+bind_resolver: 192.168.42.173 # host1
 dns_servers: 1.1.1.1; 8.8.8.8; 9.9.9.9;
 dns_acl: 192.168.42.0/23; 127.0.0.0/8;
 
+mysql_exporter_user: exporter
 mysql_exporter_password: !vault |
           $ANSIBLE_VAULT;1.1;AES256
           36336539626530383230363630373731393561646236386163333936313966356534636338393233
@@ -23,4 +24,4 @@ mysql_exporter_password: !vault |
           3337373138393034660a663532303330656230616132643563323537303535346562333035646234
           6238
 
-web_url_grafana: 193.40.156.67:3322 # public_ip:machine_one_port #have to be changed every time
+web_url_grafana: 193.40.156.67:17322 # public_ip:machine_one_port #have to be changed every time

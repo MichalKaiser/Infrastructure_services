@@ -15,6 +15,12 @@
     dest: /etc/mysql/mysql.conf.d/override.cnf
   notify: "restart mysql service"
 
+- name: Copy file my_mysql.cnf.j2 to /etc/mysql/my.cnf
+  ansible.builtin.template:
+    src: my_mysql.cnf.j2
+    dest: /etc/mysql/my.cnf
+  notify: "restart mysql service"
+
 - name: Install the newest version of package "python3-pymysql"
   ansible.builtin.apt:
     name: python3-pymysql
@@ -25,10 +31,18 @@
     name: "{{ mysql_database }}"
     login_unix_socket: /var/run/mysqld/mysqld.sock    
 
-- name: MySQL user
+- name: MySQL user Agama
   community.mysql.mysql_user:
     name: "{{ mysql_user }}"
     password: "{{ mysql_password }}"
+    login_unix_socket: /var/run/mysqld/mysqld.sock
+    host: "%"
+    priv: "{{ mysql_database }}.*:ALL"
+
+- name: MySQL user Exporter
+  community.mysql.mysql_user:
+    name: "{{ mysql_exporter_user }}"
+    password: "{{ mysql_exporter_password }}"
     login_unix_socket: /var/run/mysqld/mysqld.sock
     host: "%"
     priv: "{{ mysql_database }}.*:ALL"
@@ -42,6 +56,7 @@
   ansible.builtin.template:
     src: my.cnf.j2
     dest: /var/lib/prometheus/.my.cnf
+  notify: "restart mysql-exporter service"
   no_log: true
 
 - name: start prometheus-mysqld-exporter service

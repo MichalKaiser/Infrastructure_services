@@ -23,8 +23,3 @@
     name: uwsgi
     state: started
     enabled: true
-
-- name: Restart uwsgi
-  service:
-    name: uwsgi
-    state: restarted
