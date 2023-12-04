@@ -29,3 +29,20 @@
     src: grafana.ini.j2
     dest: /etc/grafana/grafana.ini
   notify: "restart grafana"
+
+- name: Copy main.json to /var/lib/grafana/dashboards
+  ansible.builtin.copy:
+    src: main.json
+    dest: /var/lib/grafana/main.json
+
+- name: Copy file datasource.yaml.j2 to datasources of grafana
+  ansible.builtin.template:
+    src: datasource.yaml.j2
+    dest: /etc/grafana/provisioning/datasources/datasource.yaml
+
+- name: Copy file dashboards.yaml.j2 to dasboards of grafana
+  ansible.builtin.template:
+    src: dashboards.yaml.j2
+    dest: /etc/grafana/provisioning/dashboards/main.yaml
+
+
