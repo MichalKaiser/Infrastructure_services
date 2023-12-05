@@ -1,3 +1,15 @@
+ssh_port_server1: 12022
+ssh_port_server2: 14422
+http_port_server1: 12080
+http_port_server2: 14480
+
+bind_resolver: "{{groups['dns_servers'][0]['ansible_default_ipv4']['address']}}"
+
+dns_servers: 1.1.1.1; 8.8.8.8; 9.9.9.9;
+dns_acl: 192.168.42.0/23; 127.0.0.0/8; 
+
+web_url_grafana: 193.40.156.67:{{ http_port_server1 }} # public_ip:machine_one_http_port - have to be changed every time
+
 mysql_host: michalkaiser-2.cybera.mk
 mysql_database: agama
 mysql_user: agama
@@ -9,12 +21,6 @@ mysql_password: !vault |
           3539366635636631390a396533623235323135363334303938663133323936393866363230333661
           3235
 
-ssh_port_server1: 39522
-ssh_port_server2: 36422
-bind_resolver: 192.168.42.173 # host1
-dns_servers: 1.1.1.1; 8.8.8.8; 9.9.9.9;
-dns_acl: 192.168.42.0/23; 127.0.0.0/8;
-
 mysql_exporter_user: exporter
 mysql_exporter_password: !vault |
           $ANSIBLE_VAULT;1.1;AES256
@@ -24,8 +30,7 @@ mysql_exporter_password: !vault |
           3337373138393034660a663532303330656230616132643563323537303535346562333035646234
           6238
 
-web_url_grafana: 193.40.156.67:17322 # public_ip:machine_one_port #have to be changed every time
-
+grafana_login: admin
 grafana_password: !vault |
           $ANSIBLE_VAULT;1.1;AES256
           66656565326635313930363339386238313663356634363131363364643461376138363562346437
@@ -33,4 +38,3 @@ grafana_password: !vault |
           64383665616435623433666331356166656136373831343132353564373763353763386562626333
           3733373934396662310a663431386132623965323436366231633436376262383934396363383566
           3635
-grafana_login: MichalKaiser

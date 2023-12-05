@@ -18,31 +18,37 @@
     name: grafana
     state: present
 
-- name: start grafana service
-  ansible.builtin.service:
-    name: grafana-server
-    state: started
-    enabled: true
-
 - name: Copy file grafana.ini.j2 to /etc/grafana/grafana.ini
   ansible.builtin.template:
     src: grafana.ini.j2
     dest: /etc/grafana/grafana.ini
   notify: "restart grafana"
 
+- name: Start Grafana
+  ansible.builtin.service:
+    name: grafana-server
+    state: started
+    enabled: yes
+
+- name: Create a directory for dashboards
+  ansible.builtin.file:
+    path: /var/lib/grafana/dashboards
+    state: directory
+
 - name: Copy main.json to /var/lib/grafana/dashboards
   ansible.builtin.copy:
     src: main.json
-    dest: /var/lib/grafana/main.json
+    dest: /var/lib/grafana/dashboards/main.json
 
 - name: Copy file datasource.yaml.j2 to datasources of grafana
-  ansible.builtin.template:
-    src: datasource.yaml.j2
+  ansible.builtin.copy:
+    src: datasource.yaml
     dest: /etc/grafana/provisioning/datasources/datasource.yaml
+  notify: "restart grafana"
 
 - name: Copy file dashboards.yaml.j2 to dasboards of grafana
-  ansible.builtin.template:
-    src: dashboards.yaml.j2
+  ansible.builtin.copy:
+    src: dashboards.yaml
     dest: /etc/grafana/provisioning/dashboards/main.yaml
-
+  notify: "restart grafana"
 

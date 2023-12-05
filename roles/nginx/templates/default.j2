@@ -1,20 +1,37 @@
 server {
- 	listen 80 default_server;
-         root /var/www/html;
- 	index index.html index.htm;
- 	server_name _;
- 	location / {
- 		try_files $uri $uri/ = 404;
- 	}
- 	location /prometheus {
- 		proxy_pass http://localhost:9090;
- 	}
+	listen 80 default_server;
+	server_name _;
+
+        client_max_body_size 1000M;
+{% if inventory_hostname in groups['agama_servers'] %}
+	location / {
+		uwsgi_pass localhost:5000;
+		include uwsgi_params;
+        }
+{% endif %}
+
+{% if inventory_hostname in groups['prometheus_servers'] %}
+        location /prometheus {
+                proxy_pass http://localhost:9090;               
+        }
+{% endif %}
+
+
+{% if inventory_hostname in groups['grafana_servers'] %}
+        location /grafana {
+                proxy_set_header Host $http_host;
+                proxy_pass http://localhost:3000;
+        }
+{% endif %}
+
 }
 
 server {
-	listen 8080 default_server;
+        listen 127.0.0.1:8080 default_server;
+        server_name _;
 
-	location = /stub_status {
-			stub_status;
-	}
+
+        location = /stub_status {
+                stub_status;
+        }
 }

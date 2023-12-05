@@ -3,7 +3,7 @@
     name: mysql-server
     state: present
 
-- name: start nginx service
+- name: start mysql service
   ansible.builtin.service:
     name: mysql
     state: started
@@ -47,48 +47,3 @@
 #     host: "%"
 #     priv: "{{ mysql_database }}.*:SUPER"
 #     state: present
-
-- name: Check if MySQL user Exporter exists
-  community.mysql.mysql_user:
-    name: "{{ mysql_exporter_user }}"
-    login_unix_socket: /var/run/mysqld/mysqld.sock
-  register: check_user_result
-
-- name: Create MySQL user Exporter if it doesn't exist
-  community.mysql.mysql_user:
-    name: "{{ mysql_exporter_user }}"
-    password: "{{ mysql_exporter_password }}"
-    login_unix_socket: /var/run/mysqld/mysqld.sock
-    host: "localhost"
-    state: present
-  when: check_user_result == {}
-
-- name: Grant global privileges to MySQL user Exporter
-  community.mysql.mysql_query:
-    login_unix_socket: /var/run/mysqld/mysqld.sock
-    query: "GRANT PROCESS, REPLICATION CLIENT ON *.* TO '{{ mysql_exporter_user }}'@'localhost';"
-  when: check_user_result != {}
-
-- name: Grant SELECT privilege on specific database
-  community.mysql.mysql_query:
-    login_unix_socket: /var/run/mysqld/mysqld.sock
-    query: "GRANT SELECT ON {{ mysql_database }}.* TO '{{ mysql_exporter_user }}'@'localhost';"
-  when: check_user_result != {}
-
-- name: Install Prometheus Mysql Exporters
-  ansible.builtin.apt:
-    name: prometheus-mysqld-exporter
-    state: present
-
-- name: Copy file my.cnf.j2 to /var/lib/prometheus/.my.cnf
-  ansible.builtin.template:
-    src: my.cnf.j2
-    dest: /var/lib/prometheus/.my.cnf
-  notify: "restart mysql-exporter service"
-  no_log: true
-
-- name: start prometheus-mysqld-exporter service
-  ansible.builtin.service:
-    name: prometheus-mysqld-exporter
-    state: started
-    enabled: true

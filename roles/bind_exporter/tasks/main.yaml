@@ -1,0 +1,10 @@
+- name: Install the newest version of prometheus-bind-exporter
+  ansible.builtin.apt:
+    name: prometheus-bind-exporter
+    state: present
+
+- name: start prometheus-bind-exporter
+  ansible.builtin.service:
+    name: prometheus-bind-exporter
+    state: started
+    enabled: true

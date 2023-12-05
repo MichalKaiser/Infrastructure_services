@@ -10,23 +10,12 @@
     name: nginx
     state: present
 
-- name: Copy files/default to /etc/nginx/sites-enabled/default on remote virtual machine
-  when: inventory_hostname in groups['web_servers'][0]
-  ansible.builtin.copy:
-    src: files/default
-    dest: /etc/nginx/sites-enabled/default
-  notify:
-    - "restart nginx service"
-    - "restart nginx-exporter"
-
-- name: Copy files/default to /etc/nginx/sites-enabled/default on remote virtual machine
-  when: inventory_hostname in groups['web_servers'][1]
+- name: Copy default template to /etc/nginx/sites-enabled/default
   ansible.builtin.template:
     src: templates/default.j2
     dest: /etc/nginx/sites-enabled/default
   notify: 
     - "restart nginx service"
-    - "restart nginx-exporter"
 
 - name: start nginx service
   ansible.builtin.service:
