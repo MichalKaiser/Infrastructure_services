@@ -1,9 +1,10 @@
-ssh_port_server1: 12022
-ssh_port_server2: 14422
-http_port_server1: 12080
-http_port_server2: 14480
+ssh_port_server1: 6322
+ssh_port_server2: 19922
+http_port_server1: 6380
+http_port_server2: 19980
 
-bind_resolver: "{{groups['dns_servers'][0]['ansible_default_ipv4']['address']}}"
+#bind_resolver: "{{groups['dns_servers'][0]['ansible_default_ipv4']['address']}}"
+bind_resolver: 192.168.42.63
 
 dns_servers: 1.1.1.1; 8.8.8.8; 9.9.9.9;
 dns_acl: 192.168.42.0/23; 127.0.0.0/8; 
