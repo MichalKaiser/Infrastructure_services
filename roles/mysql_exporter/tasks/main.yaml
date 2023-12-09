@@ -1,15 +1,15 @@
-- name: Copy .my.cnf template to /var/lib/prometheus/.my.cnf
-  ansible.builtin.template:
-    src: .my.cnf.j2
-    dest: /var/lib/prometheus/.my.cnf
-  notify:
-      - Daemon reload
-      - Restart prometheus-mysqld-exporter
-
 - name: Install MySQL Exporter
   ansible.builtin.apt:
     name: prometheus-mysqld-exporter
     state: present
+
+- name: Copy .my.cnf template to /var/lib/prometheus/.my.cnf
+  ansible.builtin.template:
+    src: my.cnf.j2
+    dest: /var/lib/prometheus/.my.cnf
+  notify:
+      - Daemon reload
+      - restart mysql-exporter service
 
 - name: Create MySQL Exporter user
   community.mysql.mysql_user:
@@ -23,7 +23,7 @@
   ansible.builtin.template:
     src: prometheus-mysqld-exporter.j2
     dest: /etc/default/prometheus-mysqld-exporter
-  notify: Restart prometheus-mysqld-exporter
+  notify: restart mysql-exporter service
 
 - name: Start MySQL exporter
   ansible.builtin.service:

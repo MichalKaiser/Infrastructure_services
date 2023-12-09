@@ -37,7 +37,7 @@
 
 - name: Copy main.json to /var/lib/grafana/dashboards
   ansible.builtin.copy:
-    src: main.json
+    src: main2.json
     dest: /var/lib/grafana/dashboards/main.json
 
 - name: Copy file datasource.yaml.j2 to datasources of grafana

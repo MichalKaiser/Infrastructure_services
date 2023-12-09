@@ -9,6 +9,7 @@
     hosts: dns_servers
     roles:
       - bind
+      - bind_exporter
     tags: dns
  
   - name: DNS resolver
@@ -17,16 +18,24 @@
       - dnsresolver
     tags: rsv
 
+  - name: Prometheus server
+    hosts: prometheus_servers
+    roles:
+      - prometheus
+    tags: pm
+
   - name: Database server
     hosts: db_servers
     roles:
       - mysql
+      - mysql_exporter
     tags: db
   
   - name: Web server
     hosts: web_servers
     roles:
       - nginx
+      - nginx_exporter
     tags: wb
 
   - name: Agama server  
@@ -35,12 +44,6 @@
       - agama
       - uwsgi
     tags: ag
-  
-  - name: Prometheus server
-    hosts: prometheus_servers
-    roles:
-      - prometheus
-    tags: pm
 
   - name: Grafana server
     hosts: grafana_servers

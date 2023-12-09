@@ -6,7 +6,5 @@ datasources:
     access: proxy
     # Access mode - proxy (server in the UI) or direct (browser in the UI).
     url: http://michalkaiser-2:9090/prometheus
-    orgId: 1
-    isDefault: true
-    version: 1
-    editable: false
+    basicAuth: false
+    editable: true
