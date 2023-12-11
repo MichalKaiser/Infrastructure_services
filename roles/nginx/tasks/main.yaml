@@ -16,10 +16,11 @@
     dest: /etc/nginx/sites-enabled/default
   notify: 
     - "restart nginx service"
+    - "restart nginx-exporter service"
 
 - name: start nginx service
   ansible.builtin.service:
+    enabled: true
     name: nginx
     state: started
-    enabled: true
 

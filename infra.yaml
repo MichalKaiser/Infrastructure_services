@@ -34,8 +34,8 @@
   - name: Web server
     hosts: web_servers
     roles:
-      - nginx
       - nginx_exporter
+      - nginx
     tags: wb
 
   - name: Agama server  
@@ -50,3 +50,18 @@
     roles:
       - grafana
     tags: gf
+
+  - name: InfluxDB server
+    hosts: influxdb_servers
+    roles:
+      - influxdb
+      - influxdb_exporter
+    tags: if
+
+  - name: Pinger server
+    hosts: pinger_servers
+    roles:
+      - pinger
+    tags: pg
+
+

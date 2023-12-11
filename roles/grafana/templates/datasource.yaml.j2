@@ -10,3 +10,10 @@ datasources:
     isDefault: true
     version: 1
     editable: false
+
+  - name: influx-latency
+    type: influxdb
+    url: http://michalkaiser-2:8086
+    access: proxy
+    basicAuth: false
+    database: latency

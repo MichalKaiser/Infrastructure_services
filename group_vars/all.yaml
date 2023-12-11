@@ -1,13 +1,16 @@
-ssh_port_server1: 6322
-ssh_port_server2: 19922
-http_port_server1: 6380
-http_port_server2: 19980
+ssh_port_server1: 9122
+ssh_port_server2: 12522
+http_port_server1: 9180
+http_port_server2: 12580
 
-#bind_resolver: "{{groups['dns_servers'][0]['ansible_default_ipv4']['address']}}"
-bind_resolver: 192.168.42.63
+bind_resolver: 192.168.42.91 # MichalKaiser-1 allways
+startup_name: cybera
+domain_name: "{{startup_name}}.mk"
 
 dns_servers: 1.1.1.1; 8.8.8.8; 9.9.9.9;
 dns_acl: 192.168.42.0/23; 127.0.0.0/8; 
+
+prom_mon_host: "{{ ansible_host }}:{{ ansible_port//100}}80"
 
 web_url_grafana: 193.40.156.67:{{ http_port_server1 }} # public_ip:machine_one_http_port - have to be changed every time
 

@@ -4,3 +4,8 @@
     state: restarted
   listen: "restart nginx service"
 
+- name: Restart nginx-exporter
+  service:
+    name: prometheus-nginx-exporter
+    state: restarted
+  listen: "restart nginx-exporter service"

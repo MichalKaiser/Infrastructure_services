@@ -1,5 +1,5 @@
-MichalKaiser-1 ansible_host=193.40.156.67 ansible_port=6322 ansible_user=ubuntu
-MichalKaiser-2 ansible_host=193.40.156.67 ansible_port=19922 ansible_user=ubuntu
+MichalKaiser-1 ansible_host=193.40.156.67 ansible_port=9122 ansible_user=ubuntu
+MichalKaiser-2 ansible_host=193.40.156.67 ansible_port=12522 ansible_user=ubuntu
 
 [web_servers]
 MichalKaiser-1
@@ -19,3 +19,10 @@ MichalKaiser-2
 
 [grafana_servers]
 MichalKaiser-1
+
+[influxdb_servers]
+MichalKaiser-2
+
+[pinger_servers]
+MichalKaiser-2
+

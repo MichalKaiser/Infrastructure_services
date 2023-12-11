@@ -8,3 +8,19 @@ datasources:
     url: http://michalkaiser-2:9090/prometheus
     basicAuth: false
     editable: true
+
+  - name: influx-latency
+    type: influxdb
+    url: http://michalkaiser-2:8086
+    access: proxy
+    basicAuth: false
+    database: latency
+
+    - name: influx-telegraf
+    type: influxdb
+    url: http://michalkaiser-2:8086
+    access: proxy
+    basicAuth: false
+    database: telegraf
+    jsonData:
+          httpMode: POST

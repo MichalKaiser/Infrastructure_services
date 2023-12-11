@@ -1,0 +1,41 @@
+---
+- name: ensure fping installed
+  apt:
+    name: fping
+    state: latest
+
+- name: Create user pinger
+  user:
+    name: pinger
+
+- name: Pinger config
+  file:
+    path: /etc/pinger
+    state: directory
+    mode: '0751'
+
+- name: Copy pinger conf
+  template:
+    src: pinger.conf.j2
+    dest: /etc/pinger/pinger.conf
+  notify: Restart pinger
+
+- name: Copy pinger script
+  template:
+    src: pinger.sh.j2
+    dest: /usr/local/bin/pinger
+    mode: '0777'
+
+- name: Copy pinger service
+  template:
+    src: pinger.service.j2
+    dest: /etc/systemd/system/pinger.service
+  notify:
+    - Daemon reload
+    - Restart pinger
+
+- name: Start and enable pinger
+  service:
+    name: pinger
+    state: started
+    enabled: yes
