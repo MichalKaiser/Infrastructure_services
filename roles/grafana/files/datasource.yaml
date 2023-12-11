@@ -16,7 +16,7 @@ datasources:
     basicAuth: false
     database: latency
 
-    - name: influx-telegraf
+  - name: influx-telegraf
     type: influxdb
     url: http://michalkaiser-2:8086
     access: proxy

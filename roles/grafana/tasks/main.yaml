@@ -35,11 +35,6 @@
     path: /var/lib/grafana/dashboards
     state: directory
 
-- name: Copy main.json to /var/lib/grafana/dashboards
-  ansible.builtin.copy:
-    src: main2.json
-    dest: /var/lib/grafana/dashboards/main.json
-
 - name: Copy file datasource.yaml.j2 to datasources of grafana
   ansible.builtin.copy:
     src: datasource.yaml
@@ -52,3 +47,13 @@
     dest: /etc/grafana/provisioning/dashboards/main.yaml
   notify: "restart grafana"
 
+
+- name: Copy main.json to /etc/grafana/provisioning/dashboards/
+  ansible.builtin.copy:
+    src: main2.json
+    dest: /etc/grafana/provisioning/dashboards/main.json
+
+- name: Copy main.json to /etc/grafana/provisioning/dashboards/
+  ansible.builtin.copy:
+    src: syslog.json
+    dest: /etc/grafana/provisioning/dashboards/yslog.json

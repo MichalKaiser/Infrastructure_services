@@ -26,6 +26,12 @@
     dest: /etc/telegraf/telegraf.conf
   notify: "restart telegraf"
 
+- name: Add tinfluxdb.conf.j2 to /etc/influxdb/influxdb.conf
+  ansible.builtin.template:
+    src: influxdb.conf.j2
+    dest: /etc/influxdb/influxdb.conf
+  notify: "restart influxdb"
+
 - name: influxdb started, enabled
   ansible.builtin.service:
     name: influxdb

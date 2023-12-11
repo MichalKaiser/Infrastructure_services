@@ -4,7 +4,7 @@
     name: influxdb
     state: restarted
     enabled: yes
-  listen: "restart telegraf"
+  listen: "restart influxdb"
 
 - name: restarted telegraf
   service:

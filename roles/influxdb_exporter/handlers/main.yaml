@@ -1,0 +1,7 @@
+- name: restart
+  service:
+    name: influxdb-stats-exporter
+    state: restarted
+
+- name: daemon-reload
+  shell: "systemctl daemon-reload"
