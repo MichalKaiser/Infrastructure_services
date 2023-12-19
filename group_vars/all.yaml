@@ -1,9 +1,11 @@
-ssh_port_server1: 9122
-ssh_port_server2: 12522
-http_port_server1: 9180
-http_port_server2: 12580
+ssh_port_server1: 14822
+ssh_port_server2: 16022
+http_port_server1: 14880
+http_port_server2: 16080
 
-bind_resolver: 192.168.42.91 # MichalKaiser-1 allways
+backup_server: 192.168.42.132
+
+bind_resolver: 192.168.42.148 # MichalKaiser-1 allways
 startup_name: cybera
 domain_name: "{{startup_name}}.mk"
 
@@ -42,3 +44,4 @@ grafana_password: !vault |
           64383665616435623433666331356166656136373831343132353564373763353763386562626333
           3733373934396662310a663431386132623965323436366231633436376262383934396363383566
           3635
+

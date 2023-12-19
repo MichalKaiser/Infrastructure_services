@@ -26,94 +26,91 @@
   "fiscalYearStartMonth": 0,
   "gnetId": 12433,
   "graphTooltip": 0,
-  "id": 3,
+  "id": 1,
   "links": [],
   "liveNow": false,
   "panels": [
     {
-      "aliasColors": {},
-      "bars": true,
-      "dashLength": 10,
-      "dashes": false,
       "datasource": {
         "type": "influxdb",
         "uid": "PA97311C316D0457A"
       },
-      "decimals": 0,
-      "fill": 1,
-      "fillGradient": 0,
+      "fieldConfig": {
+        "defaults": {
+          "color": {
+            "mode": "palette-classic"
+          },
+          "custom": {
+            "axisBorderShow": false,
+            "axisCenteredZero": false,
+            "axisColorMode": "text",
+            "axisLabel": "Logs count",
+            "axisPlacement": "auto",
+            "fillOpacity": 80,
+            "gradientMode": "opacity",
+            "hideFrom": {
+              "legend": false,
+              "tooltip": false,
+              "viz": false
+            },
+            "lineWidth": 1,
+            "scaleDistribution": {
+              "type": "linear"
+            },
+            "thresholdsStyle": {
+              "mode": "off"
+            }
+          },
+          "fieldMinMax": false,
+          "mappings": [],
+          "thresholds": {
+            "mode": "absolute",
+            "steps": [
+              {
+                "color": "green"
+              },
+              {
+                "color": "red",
+                "value": 80
+              }
+            ]
+          }
+        },
+        "overrides": []
+      },
       "gridPos": {
         "h": 7,
         "w": 24,
         "x": 0,
         "y": 0
       },
-      "hiddenSeries": false,
       "id": 10,
       "interval": "",
-      "legend": {
-        "alignAsTable": true,
-        "avg": true,
-        "current": false,
-        "max": true,
-        "min": false,
-        "rightSide": true,
-        "show": true,
-        "total": true,
-        "values": true
-      },
-      "lines": false,
-      "linewidth": 1,
       "links": [],
-      "nullPointMode": "connected",
       "options": {
-        "alertThreshold": true
+        "barRadius": 0,
+        "barWidth": 0.97,
+        "fullHighlight": false,
+        "groupWidth": 0.7,
+        "legend": {
+          "calcs": [],
+          "displayMode": "table",
+          "placement": "right",
+          "showLegend": true,
+          "sortBy": "Name",
+          "sortDesc": false
+        },
+        "orientation": "auto",
+        "showValue": "always",
+        "stacking": "normal",
+        "tooltip": {
+          "mode": "single",
+          "sort": "none"
+        },
+        "xTickLabelRotation": 0,
+        "xTickLabelSpacing": 100
       },
-      "percentage": false,
-      "pluginVersion": "9.3.1",
-      "pointradius": 2,
-      "points": false,
-      "renderer": "flot",
-      "seriesOverrides": [
-        {
-          "alias": "Info",
-          "color": "rgb(80, 80, 80)",
-          "stack": "A"
-        },
-        {
-          "alias": "Notice",
-          "color": "rgb(182, 182, 182)",
-          "stack": "A"
-        },
-        {
-          "alias": "Warning",
-          "color": "#E0B400",
-          "stack": "A"
-        },
-        {
-          "alias": "Error",
-          "color": "#FF780A",
-          "stack": "A"
-        },
-        {
-          "alias": "Critical",
-          "color": "#E02F44",
-          "stack": "A"
-        },
-        {
-          "alias": "Alert",
-          "color": "#8F3BB8",
-          "stack": "A"
-        },
-        {
-          "alias": "Emergency",
-          "color": "#8F3BB8",
-          "stack": "A"
-        }
-      ],
-      "spaceLength": 10,
-      "stack": false,
-      "steppedLine": false,
+      "pluginVersion": "10.2.2",
       "targets": [
         {
           "alias": "Info",
@@ -156,11 +153,6 @@
           ],
           "tags": [
             {
-              "key": "severity",
-              "operator": "=",
-              "value": "info"
-            },
-            {
               "condition": "AND",
               "key": "hostname",
               "operator": "=~",
@@ -169,8 +161,8 @@
             {
               "condition": "AND",
               "key": "severity",
-              "operator": "=~",
-              "value": "/^$severity$/"
+              "operator": "=",
+              "value": "info"
             },
             {
               "condition": "AND",
@@ -183,6 +175,12 @@
               "key": "message",
               "operator": "=~",
               "value": "/$Query/"
+            },
+            {
+              "condition": "AND",
+              "key": "severity::tag",
+              "operator": "=~",
+              "value": "/^$severity$/"
             }
           ]
         },
@@ -396,6 +394,12 @@
               "key": "message",
               "operator": "=~",
               "value": "/$Query/"
+            },
+            {
+              "condition": "AND",
+              "key": "severity::tag",
+              "operator": "=~",
+              "value": "/^$severity$/"
             }
           ]
         },
@@ -613,37 +617,8 @@
           ]
         }
       ],
-      "thresholds": [],
-      "timeRegions": [],
       "title": "syslog count",
-      "tooltip": {
-        "shared": true,
-        "sort": 0,
-        "value_type": "individual"
-      },
-      "type": "graph",
-      "xaxis": {
-        "mode": "time",
-        "show": true,
-        "values": []
-      },
-      "yaxes": [
-        {
-          "decimals": 0,
-          "format": "none",
-          "label": "Messages / min",
-          "logBase": 1,
-          "show": true
-        },
-        {
-          "format": "short",
-          "logBase": 1,
-          "show": false
-        }
-      ],
-      "yaxis": {
-        "align": false
-      }
+      "type": "barchart"
     },
     {
       "datasource": {
@@ -658,7 +633,9 @@
           },
           "custom": {
             "align": "left",
-            "displayMode": "auto",
+            "cellOptions": {
+              "type": "auto"
+            },
             "filterable": false,
             "inspect": false
           },
@@ -667,8 +644,7 @@
             "mode": "absolute",
             "steps": [
               {
-                "color": "dark-purple",
-                "value": null
+                "color": "dark-purple"
               },
               {
                 "color": "dark-red",
@@ -739,8 +715,11 @@
                 ]
               },
               {
-                "id": "custom.displayMode",
-                "value": "color-background"
+                "id": "custom.cellOptions",
+                "value": {
+                  "mode": "gradient",
+                  "type": "color-background"
+                }
               },
               {
                 "id": "custom.width",
@@ -794,7 +773,9 @@
       },
       "id": 12,
       "options": {
+        "cellHeight": "sm",
         "footer": {
+          "countRows": false,
           "fields": "",
           "reducer": [
             "sum"
@@ -809,7 +790,7 @@
           }
         ]
       },
-      "pluginVersion": "9.3.1",
+      "pluginVersion": "10.2.2",
       "targets": [
         {
           "datasource": {
@@ -885,8 +866,7 @@
     }
   ],
   "refresh": "5s",
-  "schemaVersion": 37,
-  "style": "dark",
+  "schemaVersion": 38,
   "tags": [],
   "templating": {
     "list": [
@@ -1024,6 +1004,6 @@
   "timezone": "",
   "title": "Syslogs",
   "uid": "TIYeHqRgE",
-  "version": 2,
+  "version": 5,
   "weekStart": ""
 }
