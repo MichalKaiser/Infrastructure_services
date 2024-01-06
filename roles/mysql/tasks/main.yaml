@@ -39,6 +39,39 @@
     host: "%"
     priv: "{{ mysql_database }}.*:ALL"
 
+- name: mysql directory
+  ansible.builtin.file:
+    path: /home/backup/mysql
+    state: directory
+    owner: backup
+    group: backup
+    mode: '0775'
+
+- name: MySql user for backup
+  mysql_user:
+    name: "{{mysql_user_backup}}"
+    password: "{{mysql_backup_password}}"
+    priv: '{{mysql_database}}.*:LOCK TABLES,SELECT'
+    login_unix_socket: /var/run/mysqld/mysqld.sock
+
+- name: cp my_mysql_backup.cnf.j2 to /home/backup/.my.cnf
+  template:
+    src: my_mysql_backup.cnf.j2
+    dest: /home/backup/.my.cnf
+    owner: backup
+    group: backup
+    force: yes
+    mode: '0600'
+  no_log: true
+
+- name: Cronjob cp
+  template:
+    src: mysql-backup.j2
+    dest: /etc/cron.d/mysql-backup
+    force: yes
+    mode: '0644'
+
+
 # - name: MySQL user Exporter
 #   community.mysql.mysql_user:
 #     name: "{{ mysql_exporter_user }}"

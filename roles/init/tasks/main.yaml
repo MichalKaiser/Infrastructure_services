@@ -66,14 +66,27 @@
   ansible.builtin.user:
     name: backup
     create_home: yes
+    move_home: yes
     home: /home/backup
     generate_ssh_key: yes
     ssh_key_file: /home/backup/.ssh/id_rsa
 
 - name: copy known hosts
-  template:
+  ansible.builtin.template:
     src: known_hosts.j2
     dest: /home/backup/.ssh/known_hosts
     owner: backup
     group: backup
     mode: '0774'
+
+- name: restore directory
+  ansible.builtin.file:
+    path: /home/backup/restore
+    state: directory
+    owner: backup
+    mode: '0774'
+
+- name: ensure duplicity is installed
+  apt:
+    name: duplicity
+    state: latest

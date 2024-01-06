@@ -14,4 +14,4 @@ cybera.mk.	IN	NS	{{ vm }}
 {{ vm }}	IN	A	{{ hostvars[vm]['ansible_default_ipv4']['address'] }}
 {% endfor %}
 
-backup    IN A {{backup_server}}
+backup.cybera.mk    IN A {{backup_server}}
