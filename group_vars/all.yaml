@@ -1,11 +1,13 @@
-ssh_port_server1: 14822
-ssh_port_server2: 16022
-http_port_server1: 14880
-http_port_server2: 16080
+ssh_port_server1: 42622
+ssh_port_server2: 27122
+http_port_server1: 42680
+http_port_server2: 27180
 
 backup_server: 192.168.42.132
+backup_server_sshkey: ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIEu6pFFWyuRrl4WGFPQGElYN9txwTGm2wSntcpVAaN90
 
-bind_resolver: 192.168.42.148 # MichalKaiser-1 allways
+
+bind_resolver: 192.168.43.170 # MichalKaiser-1 allways
 startup_name: cybera
 domain_name: "{{startup_name}}.mk"
 
