@@ -10,8 +10,8 @@
     enabled: true
 
 - name: Copy file override.cnf to /etc/mysql/mysql.conf.d/override.cnf
-  ansible.builtin.copy:
-    src: files/override.cnf
+  ansible.builtin.template:
+    src: override.cnf.j2
     dest: /etc/mysql/mysql.conf.d/override.cnf
   notify: "restart mysql service"
 
@@ -30,6 +30,9 @@
   community.mysql.mysql_db:
     name: "{{ mysql_database }}"
     login_unix_socket: /var/run/mysqld/mysqld.sock    
+  notify:
+    - Reset MySQL source
+    - Reset MySQL replica
 
 - name: MySQL user Agama
   community.mysql.mysql_user:
@@ -38,6 +41,15 @@
     login_unix_socket: /var/run/mysqld/mysqld.sock
     host: "%"
     priv: "{{ mysql_database }}.*:ALL"
+
+- name: MySql user for replication
+  community.mysql.mysql_user:
+    name: "{{mysql_user_replication}}"
+    password: "{{mysql_replication_password}}"
+    priv: '*.*:REPLICATION SLAVE'
+    login_unix_socket: /var/run/mysqld/mysqld.sock
+    host: "%"
+  no_log: true
 
 - name: mysql directory
   ansible.builtin.file:
@@ -71,6 +83,15 @@
     force: yes
     mode: '0644'
 
+- name: replica server read_only
+  community.mysql.mysql_variables:
+    variable: read_only
+    value: "{{ 'OFF' if inventory_hostname == mysql_hostname else 'ON' }}"
+    mode: persist
+    login_unix_socket: /var/run/mysqld/mysqld.sock
+  notify:
+    - reset source
+    - reset replica
 
 # - name: MySQL user Exporter
 #   community.mysql.mysql_user:

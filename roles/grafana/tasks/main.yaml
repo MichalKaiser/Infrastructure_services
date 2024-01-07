@@ -56,4 +56,9 @@
 - name: Copy main.json to /etc/grafana/provisioning/dashboards/
   ansible.builtin.copy:
     src: syslog.json
-    dest: /etc/grafana/provisioning/dashboards/yslog.json
+    dest: /etc/grafana/provisioning/dashboards/syslog.json
+
+- name: Copy main.json to /etc/grafana/provisioning/dashboards/
+  ansible.builtin.copy:
+    src: mysql.json
+    dest: /etc/grafana/provisioning/dashboards/mysql.json

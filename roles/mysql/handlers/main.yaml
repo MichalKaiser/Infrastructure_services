@@ -1,7 +1,29 @@
-  - name: Restart mysql
-    service:
-      name: mysql
-      state: restarted
-    listen: "restart mysql service"
+- name: Restart mysql
+  service:
+    name: mysql
+    state: restarted
+  listen: "restart mysql service"
 
+- name: reset source
+  community.mysql.mysql_replication:
+    mode: "{{ item }}"
+    login_unix_socket: /var/run/mysqld/mysqld.sock
+  loop:
+    - stopreplica
+    - resetprimary
+  when: inventory_hostname == mysql_host
 
+- name: reset replica
+  community.mysql.mysql_replication:
+    mode: "{{ item }}"
+    primary_host: "{{ mysql_host }}"
+    primary_user: "{{ mysql_user_replication }}"
+    primary_password: "{{ mysql_replication_password }}"
+    login_unix_socket: /var/run/mysqld/mysqld.sock
+  loop:
+    - stopreplica
+    - changeprimary
+    - resetreplica
+    - startreplica
+  when: inventory_hostname != mysql_host
+  no_log: True

@@ -1,13 +1,19 @@
-ssh_port_server1: 42622
-ssh_port_server2: 27122
-http_port_server1: 42680
-http_port_server2: 27180
+#ssh_port_server1: 42622
+#ssh_port_server2: 27122
+#http_port_server1: 42680
+#http_port_server2: 27180
+
+ssh_port_server1: "{{ hostvars['MichalKaiser-1'].ansible_port }}"
+http_port_server1: "{{ hostvars['MichalKaiser-1'].ansible_port | regex_replace('22$', '80') }}"
+ssh_port_server2: "{{ hostvars['MichalKaiser-2'].ansible_port }}"
+http_port_server2: "{{ hostvars['MichalKaiser-2'].ansible_port | regex_replace('22$', '80') }}"
 
 backup_server: 192.168.42.132
 backup_server_sshkey: ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIEu6pFFWyuRrl4WGFPQGElYN9txwTGm2wSntcpVAaN90
 
 
-bind_resolver: 192.168.43.170 # MichalKaiser-1 allways
+bind_resolver: 192.168.42.199 # MichalKaiser-1 allways
+#bind_resolver: "{{ hostvars['MichalKaiser-1'].ansible_host }}"
 startup_name: cybera
 domain_name: "{{startup_name}}.mk"
 
@@ -19,8 +25,11 @@ prom_mon_host: "{{ ansible_host }}:{{ ansible_port//100}}80"
 web_url_grafana: 193.40.156.67:{{ http_port_server1 }} # public_ip:machine_one_http_port - have to be changed every time
 
 mysql_host: michalkaiser-2.cybera.mk
+mysql_hostname: "{{mysql_host}}"
+mysql_backup_host: "{{ groups['db_servers'] | reject('eq', mysql_host) | first | default(mysql_host) }}"
 mysql_database: agama
 mysql_user: agama
+node_id: "{{ (ansible_port / 100) | int }}"
 mysql_password: !vault |
           $ANSIBLE_VAULT;1.1;AES256
           35356166366264393634613061653861383434633538303565643339613731643965643339333066
@@ -47,7 +56,16 @@ mysql_exporter_password: !vault |
           3337373138393034660a663532303330656230616132643563323537303535346562333035646234
           6238
 
-grafana_login: admin
+mysql_user_replication: replication
+mysql_replication_password: !vault |
+          $ANSIBLE_VAULT;1.1;AES256
+          63363739396265383764366235363534623961626133653864653563313834396331623334643635
+          3332393662393263306333356635353832393836346364620a663964356532333930326633633066
+          30393531303961343131363433643061623561653334363361353037393731393132343733636362
+          6166623036363063350a393639613734353138356631346331376439303665356231373339363465
+          6263
+
+grafana_login: MichalKaiser
 grafana_password: !vault |
           $ANSIBLE_VAULT;1.1;AES256
           66656565326635313930363339386238313663356634363131363364643461376138363562346437
