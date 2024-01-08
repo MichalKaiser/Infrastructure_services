@@ -1,26 +1,19 @@
-#- name: Update the repository cache and update package "nginx" to latest version using default release squeeze-backport
-#  ansible.builtin.apt:
-#    name: nginx
-#    state: latest
-#    default_release: squeeze-backports
-#    update_cache: yes
-
-- name: Install the newest version of package "nginx"
-  ansible.builtin.apt:
+- name: Ensure Nginx is installed
+  apt:
     name: nginx
-    state: present
+    state: latest
 
-- name: Copy default template to /etc/nginx/sites-enabled/default
-  ansible.builtin.template:
-    src: templates/default.j2
+- name: Copy template to server
+  template:
+    src: default.j2
     dest: /etc/nginx/sites-enabled/default
   notify: 
     - "restart nginx service"
     - "restart nginx-exporter service"
 
-- name: start nginx service
-  ansible.builtin.service:
-    enabled: true
+- name: start nginx
+  service:
     name: nginx
     state: started
-
+    enabled: yes
+  become: yes

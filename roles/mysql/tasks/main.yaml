@@ -30,9 +30,6 @@
   community.mysql.mysql_db:
     name: "{{ mysql_database }}"
     login_unix_socket: /var/run/mysqld/mysqld.sock    
-  notify:
-    - Reset MySQL source
-    - Reset MySQL replica
 
 - name: MySQL user Agama
   community.mysql.mysql_user:
@@ -92,12 +89,3 @@
   notify:
     - reset source
     - reset replica
-
-# - name: MySQL user Exporter
-#   community.mysql.mysql_user:
-#     name: "{{ mysql_exporter_user }}"
-#     password: "{{ mysql_exporter_password }}"
-#     login_unix_socket: /var/run/mysqld/mysqld.sock
-#     host: "%"
-#     priv: "{{ mysql_database }}.*:SUPER"
-#     state: present

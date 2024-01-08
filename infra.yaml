@@ -3,6 +3,7 @@
     hosts: all
     roles:
       - init
+      - docker
     tags: in
 
   - name: DNS server
@@ -30,19 +31,12 @@
       - mysql
       - mysql_exporter
     tags: db
-  
-  - name: Web server
-    hosts: web_servers
-    roles:
-      - nginx_exporter
-      - nginx
-    tags: wb
 
-  - name: Agama server  
+  - name: Agama server
     hosts: agama_servers
     roles:
       - agama
-      - uwsgi
+     # - uwsgi
     tags: ag
 
   - name: Grafana server
@@ -50,6 +44,13 @@
     roles:
       - grafana
     tags: gf
+  
+  - name: Web server
+    hosts: web_servers
+    roles:
+      - nginx_exporter
+      - nginx
+    tags: wb
 
   - name: InfluxDB server
     hosts: influxdb_servers

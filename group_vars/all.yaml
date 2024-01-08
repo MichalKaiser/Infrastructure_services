@@ -11,20 +11,25 @@ http_port_server2: "{{ hostvars['MichalKaiser-2'].ansible_port | regex_replace('
 backup_server: 192.168.42.132
 backup_server_sshkey: ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIEu6pFFWyuRrl4WGFPQGElYN9txwTGm2wSntcpVAaN90
 
+docker_grafana_port: 3001
+#agama_nginx: 5000 
+agama_starting_port: 8001
+agama_containers_per_host: 2
 
-bind_resolver: 192.168.42.199 # MichalKaiser-1 allways
+bind_resolver: 192.168.43.105 # MichalKaiser-1 allways
 #bind_resolver: "{{ hostvars['MichalKaiser-1'].ansible_host }}"
 startup_name: cybera
 domain_name: "{{startup_name}}.mk"
 
 dns_servers: 1.1.1.1; 8.8.8.8; 9.9.9.9;
-dns_acl: 192.168.42.0/23; 127.0.0.0/8; 
+dns_acl: 192.168.42.0/23; 127.0.0.0/8; 172.17.0.0/16;
 
 prom_mon_host: "{{ ansible_host }}:{{ ansible_port//100}}80"
 
 web_url_grafana: 193.40.156.67:{{ http_port_server1 }} # public_ip:machine_one_http_port - have to be changed every time
 
-mysql_host: michalkaiser-2.cybera.mk
+mysql_bind_address: 0.0.0.0
+mysql_host: "{{groups['db_master'][0]}}"
 mysql_hostname: "{{mysql_host}}"
 mysql_backup_host: "{{ groups['db_servers'] | reject('eq', mysql_host) | first | default(mysql_host) }}"
 mysql_database: agama

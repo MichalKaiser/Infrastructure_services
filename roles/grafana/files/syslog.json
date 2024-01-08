@@ -11,12 +11,6 @@
         "hide": true,
         "iconColor": "rgba(0, 211, 255, 1)",
         "name": "Annotations & Alerts",
-        "target": {
-          "limit": 100,
-          "matchAny": false,
-          "tags": [],
-          "type": "dashboard"
-        },
         "type": "dashboard"
       }
     ]
@@ -26,97 +20,100 @@
   "fiscalYearStartMonth": 0,
   "gnetId": 12433,
   "graphTooltip": 0,
-  "id": 1,
+  "id": 5,
   "links": [],
   "liveNow": false,
   "panels": [
     {
+      "aliasColors": {},
+      "bars": true,
+      "dashLength": 10,
+      "dashes": false,
       "datasource": {
         "type": "influxdb",
-        "uid": "PA97311C316D0457A"
+        "uid": "PF877F614BFD14DDB"
       },
-      "fieldConfig": {
-        "defaults": {
-          "color": {
-            "mode": "palette-classic"
-          },
-          "custom": {
-            "axisBorderShow": false,
-            "axisCenteredZero": false,
-            "axisColorMode": "text",
-            "axisLabel": "Logs count",
-            "axisPlacement": "auto",
-            "fillOpacity": 80,
-            "gradientMode": "opacity",
-            "hideFrom": {
-              "legend": false,
-              "tooltip": false,
-              "viz": false
-            },
-            "lineWidth": 1,
-            "scaleDistribution": {
-              "type": "linear"
-            },
-            "thresholdsStyle": {
-              "mode": "off"
-            }
-          },
-          "fieldMinMax": false,
-          "mappings": [],
-          "thresholds": {
-            "mode": "absolute",
-            "steps": [
-              {
-                "color": "green"
-              },
-              {
-                "color": "red",
-                "value": 80
-              }
-            ]
-          }
-        },
-        "overrides": []
-      },
+      "decimals": 0,
+      "fill": 1,
+      "fillGradient": 0,
       "gridPos": {
         "h": 7,
         "w": 24,
         "x": 0,
         "y": 0
       },
+      "hiddenSeries": false,
       "id": 10,
       "interval": "",
-      "links": [],
-      "options": {
-        "barRadius": 0,
-        "barWidth": 0.97,
-        "fullHighlight": false,
-        "groupWidth": 0.7,
-        "legend": {
-          "calcs": [],
-          "displayMode": "table",
-          "placement": "right",
-          "showLegend": true,
-          "sortBy": "Name",
-          "sortDesc": false
-        },
-        "orientation": "auto",
-        "showValue": "always",
-        "stacking": "normal",
-        "tooltip": {
-          "mode": "single",
-          "sort": "none"
-        },
-        "xTickLabelRotation": 0,
-        "xTickLabelSpacing": 100
+      "legend": {
+        "alignAsTable": true,
+        "avg": true,
+        "current": false,
+        "max": true,
+        "min": false,
+        "rightSide": true,
+        "show": true,
+        "total": true,
+        "values": true
       },
-      "pluginVersion": "10.2.2",
+      "lines": false,
+      "linewidth": 1,
+      "links": [],
+      "nullPointMode": "connected",
+      "options": {
+        "alertThreshold": true
+      },
+      "percentage": false,
+      "pluginVersion": "10.2.0",
+      "pointradius": 2,
+      "points": false,
+      "renderer": "flot",
+      "seriesOverrides": [
+        {
+          "alias": "Info",
+          "color": "rgb(80, 80, 80)",
+          "stack": "A"
+        },
+        {
+          "alias": "Notice",
+          "color": "rgb(182, 182, 182)",
+          "stack": "A"
+        },
+        {
+          "alias": "Warning",
+          "color": "#E0B400",
+          "stack": "A"
+        },
+        {
+          "alias": "Error",
+          "color": "#FF780A",
+          "stack": "A"
+        },
+        {
+          "alias": "Critical",
+          "color": "#E02F44",
+          "stack": "A"
+        },
+        {
+          "alias": "Alert",
+          "color": "#8F3BB8",
+          "stack": "A"
+        },
+        {
+          "alias": "Emergency",
+          "color": "#8F3BB8",
+          "stack": "A"
+        }
+      ],
+      "spaceLength": 10,
+      "stack": false,
+      "steppedLine": false,
       "targets": [
         {
           "alias": "Info",
           "datasource": {
             "type": "influxdb",
-            "uid": "PA97311C316D0457A"
+            "uid": "PF877F614BFD14DDB"
           },
           "groupBy": [
             {
@@ -153,6 +150,11 @@
           ],
           "tags": [
             {
+              "key": "severity",
+              "operator": "=",
+              "value": "info"
+            },
+            {
               "condition": "AND",
               "key": "hostname",
               "operator": "=~",
@@ -161,8 +163,8 @@
             {
               "condition": "AND",
               "key": "severity",
-              "operator": "=",
-              "value": "info"
+              "operator": "=~",
+              "value": "/^$severity$/"
             },
             {
               "condition": "AND",
@@ -175,12 +177,6 @@
               "key": "message",
               "operator": "=~",
               "value": "/$Query/"
-            },
-            {
-              "condition": "AND",
-              "key": "severity::tag",
-              "operator": "=~",
-              "value": "/^$severity$/"
             }
           ]
         },
@@ -188,7 +184,7 @@
           "alias": "Notice",
           "datasource": {
             "type": "influxdb",
-            "uid": "PA97311C316D0457A"
+            "uid": "PF877F614BFD14DDB"
           },
           "groupBy": [
             {
@@ -259,7 +255,7 @@
           "alias": "Warning",
           "datasource": {
             "type": "influxdb",
-            "uid": "PA97311C316D0457A"
+            "uid": "PF877F614BFD14DDB"
           },
           "groupBy": [
             {
@@ -330,7 +326,7 @@
           "alias": "Error",
           "datasource": {
             "type": "influxdb",
-            "uid": "PA97311C316D0457A"
+            "uid": "PF877F614BFD14DDB"
           },
           "groupBy": [
             {
@@ -394,12 +390,6 @@
               "key": "message",
               "operator": "=~",
               "value": "/$Query/"
-            },
-            {
-              "condition": "AND",
-              "key": "severity::tag",
-              "operator": "=~",
-              "value": "/^$severity$/"
             }
           ]
         },
@@ -407,7 +397,7 @@
           "alias": "Critical",
           "datasource": {
             "type": "influxdb",
-            "uid": "PA97311C316D0457A"
+            "uid": "PF877F614BFD14DDB"
           },
           "groupBy": [
             {
@@ -478,7 +468,7 @@
           "alias": "Alert",
           "datasource": {
             "type": "influxdb",
-            "uid": "PA97311C316D0457A"
+            "uid": "PF877F614BFD14DDB"
           },
           "groupBy": [
             {
@@ -549,7 +539,7 @@
           "alias": "Emergency",
           "datasource": {
             "type": "influxdb",
-            "uid": "PA97311C316D0457A"
+            "uid": "PF877F614BFD14DDB"
           },
           "groupBy": [
             {
@@ -617,13 +607,42 @@
           ]
         }
       ],
+      "thresholds": [],
+      "timeRegions": [],
       "title": "syslog count",
-      "type": "barchart"
+      "tooltip": {
+        "shared": true,
+        "sort": 0,
+        "value_type": "individual"
+      },
+      "type": "graph",
+      "xaxis": {
+        "mode": "time",
+        "show": true,
+        "values": []
+      },
+      "yaxes": [
+        {
+          "decimals": 0,
+          "format": "none",
+          "label": "Messages / min",
+          "logBase": 1,
+          "show": true
+        },
+        {
+          "format": "short",
+          "logBase": 1,
+          "show": false
+        }
+      ],
+      "yaxis": {
+        "align": false
+      }
     },
     {
       "datasource": {
         "type": "influxdb",
-        "uid": "PA97311C316D0457A"
+        "uid": "PF877F614BFD14DDB"
       },
       "description": "",
       "fieldConfig": {
@@ -644,7 +663,8 @@
             "mode": "absolute",
             "steps": [
               {
-                "color": "dark-purple"
+                "color": "dark-purple",
+                "value": null
               },
               {
                 "color": "dark-red",
@@ -790,12 +810,12 @@
           }
         ]
       },
-      "pluginVersion": "10.2.2",
+      "pluginVersion": "10.2.0",
       "targets": [
         {
           "datasource": {
             "type": "influxdb",
-            "uid": "PA97311C316D0457A"
+            "uid": "PF877F614BFD14DDB"
           },
           "groupBy": [
             {
@@ -879,7 +899,7 @@
         },
         "datasource": {
           "type": "influxdb",
-          "uid": "PA97311C316D0457A"
+          "uid": "PF877F614BFD14DDB"
         },
         "definition": "SHOW TAG VALUES FROM syslog WITH KEY=appname",
         "hide": 0,
@@ -907,7 +927,7 @@
         },
         "datasource": {
           "type": "influxdb",
-          "uid": "PA97311C316D0457A"
+          "uid": "PF877F614BFD14DDB"
         },
         "definition": "SHOW TAG VALUES FROM syslog WITH KEY=hostname",
         "hide": 0,
@@ -935,7 +955,7 @@
         },
         "datasource": {
           "type": "influxdb",
-          "uid": "PA97311C316D0457A"
+          "uid": "PF877F614BFD14DDB"
         },
         "definition": "SHOW TAG VALUES FROM syslog WITH KEY=severity",
         "hide": 0,
@@ -1002,8 +1022,8 @@
     ]
   },
   "timezone": "",
-  "title": "Syslogs",
-  "uid": "TIYeHqRgE",
-  "version": 5,
+  "title": "Syslog",
+  "uid": "TIYeHqRgZ",
+  "version": 2,
   "weekStart": ""
 }

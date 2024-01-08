@@ -1,64 +1,65 @@
-- name: Give insecure permissions to an existing file
-  ansible.builtin.file:
-    path: /etc/apt/keyrings/
-    state: directory
-
-- name: Add Example GPG key
-  ansible.builtin.apt_key:
-    url: https://apt.grafana.com/gpg.key
-    state: present
-
-- name: Add grafana repository into sources list using specified filename
-  ansible.builtin.apt_repository:
-    repo: "deb https://packages.grafana.com/oss/deb stable main"
-    state: present
-
-- name: Install the newest version of package "grafana"
-  ansible.builtin.apt:
+- name: Create the grafana user
+  ansible.builtin.user:
     name: grafana
+    uid: 472
     state: present
 
-- name: Copy file grafana.ini.j2 to /etc/grafana/grafana.ini
-  ansible.builtin.template:
-    src: grafana.ini.j2
-    dest: /etc/grafana/grafana.ini
-  notify: "restart grafana"
-
-- name: Start Grafana
-  ansible.builtin.service:
-    name: grafana-server
-    state: started
-    enabled: yes
-
-- name: Create a directory for dashboards
-  ansible.builtin.file:
-    path: /var/lib/grafana/dashboards
+- name: folder with correct permissions datasources
+  file:
+    name: /opt/grafana/provisioning/datasources
     state: directory
+    recurse: yes #gives permissions for subfolders also
 
-- name: Copy file datasource.yaml.j2 to datasources of grafana
-  ansible.builtin.copy:
-    src: datasource.yaml
-    dest: /etc/grafana/provisioning/datasources/datasource.yaml
-  notify: "restart grafana"
+- name: folder with correct permissions dashboards
+  file:
+    name: /opt/grafana/provisioning/dashboards
+    state: directory
+    recurse: yes #gives permissions for subfolders also
 
-- name: Copy file dashboards.yaml.j2 to dasboards of grafana
-  ansible.builtin.copy:
-    src: dashboards.yaml
-    dest: /etc/grafana/provisioning/dashboards/main.yaml
-  notify: "restart grafana"
+- name: Config
+  template:
+    src: grafana.ini.j2
+    dest: /opt/grafana/grafana.ini
+  notify:
+    - stop
+    - start
+  no_log: True
 
+- name: Datasources
+  template:
+    src: datasource.yaml.j2
+    dest: /opt/grafana/provisioning/datasources/default.yaml
+  notify:
+    - stop
+    - start
 
-- name: Copy main.json to /etc/grafana/provisioning/dashboards/
-  ansible.builtin.copy:
-    src: main2.json
-    dest: /etc/grafana/provisioning/dashboards/main.json
+- name: dashboards yaml
+  template:
+    src: dashboards.yaml.j2
+    dest: /opt/grafana/provisioning/dashboards/default.yaml
+  notify:
+    - stop
+    - start
 
-- name: Copy main.json to /etc/grafana/provisioning/dashboards/
-  ansible.builtin.copy:
-    src: syslog.json
-    dest: /etc/grafana/provisioning/dashboards/syslog.json
+- name: copy dashboards
+  copy:
+    src: "{{ item }}"
+    dest: /opt/grafana/provisioning/dashboards
+  with_fileglob:
+    - ../files/*.json
+  notify:
+    - stop
+    - start
 
-- name: Copy main.json to /etc/grafana/provisioning/dashboards/
-  ansible.builtin.copy:
-    src: mysql.json
-    dest: /etc/grafana/provisioning/dashboards/mysql.json
+- name: grafana container
+  docker_container:
+    name: grafana
+    image: grafana/grafana
+    env:
+      GF_SERVER_ROOT_URL: "http://{{ ansible_host }}:{{ ansible_port // 100 }}80/grafana"
+      GF_SERVER_SERVE_FROM_SUB_PATH: "true"
+    volumes:
+      - /opt/grafana:/etc/grafana #cp local:docker
+    ports:
+      - "{{docker_grafana_port}}:3000"
+    restart_policy: always
