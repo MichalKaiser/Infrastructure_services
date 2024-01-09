@@ -39,7 +39,7 @@
     state: directory
     owner: backup
     group: backup
-    mode: '0774'
+    mode: '0700'
 
 - name: influxdb backup cronjob
   template:

@@ -11,17 +11,350 @@
         "hide": true,
         "iconColor": "rgba(0, 211, 255, 1)",
         "name": "Annotations & Alerts",
+        "target": {
+          "limit": 100,
+          "matchAny": false,
+          "tags": [],
+          "type": "dashboard"
+        },
         "type": "dashboard"
       }
     ]
   },
-  "description": "hope you will work finally",
   "editable": true,
   "fiscalYearStartMonth": 0,
   "graphTooltip": 0,
   "links": [],
   "liveNow": false,
   "panels": [
+    {
+      "datasource": {
+        "type": "prometheus",
+        "uid": "PBFA97CFB590B2093"
+      },
+      "fieldConfig": {
+        "defaults": {
+          "color": {
+            "mode": "palette-classic"
+          },
+          "custom": {
+            "axisBorderShow": false,
+            "axisCenteredZero": false,
+            "axisColorMode": "text",
+            "axisLabel": "",
+            "axisPlacement": "auto",
+            "barAlignment": 0,
+            "drawStyle": "line",
+            "fillOpacity": 0,
+            "gradientMode": "none",
+            "hideFrom": {
+              "legend": false,
+              "tooltip": false,
+              "viz": false
+            },
+            "insertNulls": false,
+            "lineInterpolation": "linear",
+            "lineWidth": 1,
+            "pointSize": 5,
+            "scaleDistribution": {
+              "type": "linear"
+            },
+            "showPoints": "auto",
+            "spanNulls": false,
+            "stacking": {
+              "group": "A",
+              "mode": "none"
+            },
+            "thresholdsStyle": {
+              "mode": "off"
+            }
+          },
+          "mappings": [],
+          "thresholds": {
+            "mode": "absolute",
+            "steps": [
+              {
+                "color": "green",
+                "value": null
+              },
+              {
+                "color": "red",
+                "value": 80
+              }
+            ]
+          }
+        },
+        "overrides": []
+      },
+      "gridPos": {
+        "h": 4,
+        "w": 6,
+        "x": 0,
+        "y": 0
+      },
+      "id": 30,
+      "options": {
+        "legend": {
+          "calcs": [],
+          "displayMode": "list",
+          "placement": "bottom",
+          "showLegend": true
+        },
+        "tooltip": {
+          "mode": "single",
+          "sort": "none"
+        }
+      },
+      "pluginVersion": "10.2.0",
+      "targets": [
+        {
+          "datasource": {
+            "type": "prometheus",
+            "uid": "PBFA97CFB590B2093"
+          },
+          "editorMode": "code",
+          "expr": "rate(bind_resolver_queries_total[1m])",
+          "instant": false,
+          "legendFormat": "__auto",
+          "range": true,
+          "refId": "A"
+        }
+      ],
+      "title": "dns selects/minute",
+      "type": "timeseries"
+    },
+    {
+      "datasource": {
+        "type": "prometheus",
+        "uid": "PBFA97CFB590B2093"
+      },
+      "fieldConfig": {
+        "defaults": {
+          "color": {
+            "mode": "palette-classic"
+          },
+          "custom": {
+            "axisBorderShow": false,
+            "axisCenteredZero": false,
+            "axisColorMode": "text",
+            "axisLabel": "",
+            "axisPlacement": "auto",
+            "barAlignment": 0,
+            "drawStyle": "line",
+            "fillOpacity": 0,
+            "gradientMode": "none",
+            "hideFrom": {
+              "legend": false,
+              "tooltip": false,
+              "viz": false
+            },
+            "insertNulls": false,
+            "lineInterpolation": "linear",
+            "lineWidth": 1,
+            "pointSize": 5,
+            "scaleDistribution": {
+              "type": "linear"
+            },
+            "showPoints": "auto",
+            "spanNulls": false,
+            "stacking": {
+              "group": "A",
+              "mode": "none"
+            },
+            "thresholdsStyle": {
+              "mode": "off"
+            }
+          },
+          "mappings": [],
+          "thresholds": {
+            "mode": "absolute",
+            "steps": [
+              {
+                "color": "green",
+                "value": null
+              },
+              {
+                "color": "red",
+                "value": 80
+              }
+            ]
+          }
+        },
+        "overrides": []
+      },
+      "gridPos": {
+        "h": 4,
+        "w": 6,
+        "x": 6,
+        "y": 0
+      },
+      "id": 29,
+      "options": {
+        "legend": {
+          "calcs": [],
+          "displayMode": "list",
+          "placement": "bottom",
+          "showLegend": true
+        },
+        "tooltip": {
+          "mode": "single",
+          "sort": "none"
+        }
+      },
+      "pluginVersion": "10.2.0",
+      "targets": [
+        {
+          "datasource": {
+            "type": "prometheus",
+            "uid": "PBFA97CFB590B2093"
+          },
+          "disableTextWrap": false,
+          "editorMode": "code",
+          "expr": "rate(mysql_global_status_commands_total{command=\"select\"}[1m])",
+          "fullMetaSearch": false,
+          "includeNullMetadata": true,
+          "instant": false,
+          "legendFormat": "__auto",
+          "range": true,
+          "refId": "A",
+          "useBackend": false
+        }
+      ],
+      "title": "mysql selects/minute",
+      "type": "timeseries"
+    },
+    {
+      "datasource": {
+        "type": "prometheus",
+        "uid": "PBFA97CFB590B2093"
+      },
+      "fieldConfig": {
+        "defaults": {
+          "color": {
+            "mode": "palette-classic"
+          },
+          "mappings": [],
+          "thresholds": {
+            "mode": "absolute",
+            "steps": [
+              {
+                "color": "green",
+                "value": null
+              },
+              {
+                "color": "red",
+                "value": 80
+              }
+            ]
+          },
+          "unit": "decbytes"
+        },
+        "overrides": []
+      },
+      "gridPos": {
+        "h": 4,
+        "w": 5,
+        "x": 12,
+        "y": 0
+      },
+      "id": 4,
+      "options": {
+        "minVizHeight": 75,
+        "minVizWidth": 75,
+        "orientation": "auto",
+        "reduceOptions": {
+          "calcs": [
+            "lastNotNull"
+          ],
+          "fields": "",
+          "values": false
+        },
+        "showThresholdLabels": false,
+        "showThresholdMarkers": true
+      },
+      "pluginVersion": "10.2.2",
+      "targets": [
+        {
+          "datasource": {
+            "type": "prometheus",
+            "uid": "PBFA97CFB590B2093"
+          },
+          "editorMode": "code",
+          "expr": "node_memory_MemTotal_bytes - node_memory_MemAvailable_bytes{instance!=\"localhost:9100\"}",
+          "legendFormat": "__auto",
+          "range": true,
+          "refId": "A"
+        }
+      ],
+      "title": "Memory consumption",
+      "type": "gauge"
+    },
+    {
+      "datasource": {
+        "type": "prometheus",
+        "uid": "PBFA97CFB590B2093"
+      },
+      "fieldConfig": {
+        "defaults": {
+          "color": {
+            "mode": "thresholds"
+          },
+          "mappings": [],
+          "thresholds": {
+            "mode": "absolute",
+            "steps": [
+              {
+                "color": "green",
+                "value": null
+              },
+              {
+                "color": "red",
+                "value": 80
+              }
+            ]
+          }
+        },
+        "overrides": []
+      },
+      "gridPos": {
+        "h": 4,
+        "w": 5,
+        "x": 17,
+        "y": 0
+      },
+      "id": 2,
+      "options": {
+        "colorMode": "value",
+        "graphMode": "area",
+        "justifyMode": "auto",
+        "orientation": "auto",
+        "reduceOptions": {
+          "calcs": [
+            "lastNotNull"
+          ],
+          "fields": "",
+          "values": false
+        },
+        "textMode": "auto",
+        "wideLayout": true
+      },
+      "pluginVersion": "10.2.2",
+      "targets": [
+        {
+          "datasource": {
+            "type": "prometheus",
+            "uid": "PBFA97CFB590B2093"
+          },
+          "editorMode": "code",
+          "expr": "rate(node_cpu_seconds_total{mode=\"user\"}[1m])",
+          "legendFormat": "__auto",
+          "range": true,
+          "refId": "A"
+        }
+      ],
+      "title": "CPU load",
+      "type": "stat"
+    },
     {
       "datasource": {
         "type": "prometheus",
@@ -51,12 +384,12 @@
             "mode": "absolute",
             "steps": [
               {
-                "color": "red",
+                "color": "green",
                 "value": null
               },
               {
-                "color": "green",
-                "value": 1
+                "color": "red",
+                "value": 80
               }
             ]
           }
@@ -65,11 +398,11 @@
       },
       "gridPos": {
         "h": 4,
-        "w": 3,
+        "w": 6,
         "x": 0,
-        "y": 0
+        "y": 4
       },
-      "id": 4,
+      "id": 28,
       "options": {
         "colorMode": "value",
         "graphMode": "area",
@@ -85,7 +418,7 @@
         "textMode": "auto",
         "wideLayout": true
       },
-      "pluginVersion": "10.2.3",
+      "pluginVersion": "10.2.2",
       "targets": [
         {
           "datasource": {
@@ -93,8 +426,8 @@
             "uid": "PBFA97CFB590B2093"
           },
           "disableTextWrap": false,
-          "editorMode": "code",
-          "expr": "bind_up{instance=\"michalkaiser-1:9119\"}",
+          "editorMode": "builder",
+          "expr": "mysql_up{instance=\"stealandsell-2:9104\"}",
           "fullMetaSearch": false,
           "includeNullMetadata": true,
           "instant": false,
@@ -104,7 +437,157 @@
           "useBackend": false
         }
       ],
-      "title": "Bind status",
+      "title": "mysql status",
+      "type": "stat"
+    },
+    {
+      "datasource": {
+        "type": "prometheus",
+        "uid": "PBFA97CFB590B2093"
+      },
+      "fieldConfig": {
+        "defaults": {
+          "color": {
+            "mode": "palette-classic"
+          },
+          "mappings": [],
+          "thresholds": {
+            "mode": "absolute",
+            "steps": [
+              {
+                "color": "green",
+                "value": null
+              },
+              {
+                "color": "red",
+                "value": 80
+              }
+            ]
+          }
+        },
+        "overrides": []
+      },
+      "gridPos": {
+        "h": 4,
+        "w": 6,
+        "x": 6,
+        "y": 4
+      },
+      "id": 16,
+      "options": {
+        "minVizHeight": 75,
+        "minVizWidth": 75,
+        "orientation": "auto",
+        "reduceOptions": {
+          "calcs": [
+            "lastNotNull"
+          ],
+          "fields": "",
+          "values": false
+        },
+        "showThresholdLabels": false,
+        "showThresholdMarkers": true
+      },
+      "pluginVersion": "10.2.2",
+      "targets": [
+        {
+          "datasource": {
+            "type": "prometheus",
+            "uid": "PBFA97CFB590B2093"
+          },
+          "editorMode": "code",
+          "expr": "rate(nginx_http_requests_total[1m])",
+          "legendFormat": "__auto",
+          "range": true,
+          "refId": "A"
+        }
+      ],
+      "title": " http Requests/minute ",
+      "type": "gauge"
+    },
+    {
+      "datasource": {
+        "type": "prometheus",
+        "uid": "PBFA97CFB590B2093"
+      },
+      "fieldConfig": {
+        "defaults": {
+          "color": {
+            "mode": "thresholds"
+          },
+          "mappings": [
+            {
+              "options": {
+                "0": {
+                  "index": 1,
+                  "text": "DOWN"
+                },
+                "1": {
+                  "index": 0,
+                  "text": "UP"
+                }
+              },
+              "type": "value"
+            }
+          ],
+          "thresholds": {
+            "mode": "absolute",
+            "steps": [
+              {
+                "color": "green",
+                "value": null
+              },
+              {
+                "color": "red",
+                "value": 80
+              }
+            ]
+          }
+        },
+        "overrides": []
+      },
+      "gridPos": {
+        "h": 4,
+        "w": 5,
+        "x": 12,
+        "y": 4
+      },
+      "id": 27,
+      "options": {
+        "colorMode": "value",
+        "graphMode": "area",
+        "justifyMode": "auto",
+        "orientation": "auto",
+        "reduceOptions": {
+          "calcs": [
+            "lastNotNull"
+          ],
+          "fields": "",
+          "values": false
+        },
+        "textMode": "auto",
+        "wideLayout": true
+      },
+      "pluginVersion": "10.2.2",
+      "targets": [
+        {
+          "datasource": {
+            "type": "prometheus",
+            "uid": "PBFA97CFB590B2093"
+          },
+          "disableTextWrap": false,
+          "editorMode": "builder",
+          "expr": "bind_up{instance=\"stealandsell-2:9119\"}",
+          "fullMetaSearch": false,
+          "includeNullMetadata": true,
+          "instant": false,
+          "legendFormat": "__auto",
+          "range": true,
+          "refId": "A",
+          "useBackend": false
+        }
+      ],
+      "title": "Bind9 status",
       "type": "stat"
     },
     {
@@ -138,12 +621,12 @@
             "mode": "absolute",
             "steps": [
               {
-                "color": "red",
+                "color": "green",
                 "value": null
               },
               {
-                "color": "green",
-                "value": 1
+                "color": "red",
+                "value": 80
               }
             ]
           }
@@ -152,11 +635,11 @@
       },
       "gridPos": {
         "h": 4,
-        "w": 3,
-        "x": 3,
-        "y": 0
+        "w": 5,
+        "x": 17,
+        "y": 4
       },
-      "id": 2,
+      "id": 14,
       "options": {
         "colorMode": "value",
         "graphMode": "area",
@@ -172,63 +655,76 @@
         "textMode": "auto",
         "wideLayout": true
       },
-      "pluginVersion": "10.2.3",
+      "pluginVersion": "10.2.2",
       "targets": [
         {
           "datasource": {
             "type": "prometheus",
             "uid": "PBFA97CFB590B2093"
           },
-          "disableTextWrap": false,
-          "editorMode": "builder",
-          "expr": "nginx_up{instance=\"MichalKaiser-1:9113\"}",
-          "fullMetaSearch": false,
-          "includeNullMetadata": true,
-          "instant": false,
+          "editorMode": "code",
+          "expr": "nginx_up",
           "legendFormat": "__auto",
           "range": true,
-          "refId": "A",
-          "useBackend": false
+          "refId": "A"
         }
       ],
-      "title": "Nginx michalkaiser-1",
+      "title": "Nginx status",
       "type": "stat"
     },
     {
       "datasource": {
-        "type": "prometheus",
-        "uid": "PBFA97CFB590B2093"
+        "type": "influxdb",
+        "uid": "PDDB37A76957DD37E"
       },
       "fieldConfig": {
         "defaults": {
           "color": {
-            "mode": "thresholds"
+            "mode": "palette-classic"
           },
-          "mappings": [
-            {
-              "options": {
-                "0": {
-                  "index": 1,
-                  "text": "Down"
-                },
-                "1": {
-                  "index": 0,
-                  "text": "UP"
-                }
-              },
-              "type": "value"
+          "custom": {
+            "axisBorderShow": false,
+            "axisCenteredZero": false,
+            "axisColorMode": "text",
+            "axisLabel": "",
+            "axisPlacement": "auto",
+            "barAlignment": 0,
+            "drawStyle": "line",
+            "fillOpacity": 0,
+            "gradientMode": "none",
+            "hideFrom": {
+              "legend": false,
+              "tooltip": false,
+              "viz": false
+            },
+            "insertNulls": false,
+            "lineInterpolation": "linear",
+            "lineWidth": 1,
+            "pointSize": 5,
+            "scaleDistribution": {
+              "type": "linear"
+            },
+            "showPoints": "auto",
+            "spanNulls": false,
+            "stacking": {
+              "group": "A",
+              "mode": "none"
+            },
+            "thresholdsStyle": {
+              "mode": "off"
             }
-          ],
+          },
+          "mappings": [],
           "thresholds": {
             "mode": "absolute",
             "steps": [
               {
-                "color": "red",
+                "color": "green",
                 "value": null
               },
               {
-                "color": "green",
-                "value": 1
+                "color": "red",
+                "value": 80
               }
             ]
           }
@@ -236,28 +732,148 @@
         "overrides": []
       },
       "gridPos": {
-        "h": 4,
-        "w": 3,
-        "x": 6,
-        "y": 0
+        "h": 7,
+        "w": 6,
+        "x": 0,
+        "y": 8
       },
-      "id": 3,
+      "id": 33,
       "options": {
-        "colorMode": "value",
-        "graphMode": "area",
-        "justifyMode": "auto",
-        "orientation": "auto",
-        "reduceOptions": {
-          "calcs": [
-            "lastNotNull"
-          ],
-          "fields": "",
-          "values": false
+        "legend": {
+          "calcs": [],
+          "displayMode": "list",
+          "placement": "bottom",
+          "showLegend": true
         },
-        "textMode": "auto",
-        "wideLayout": true
+        "tooltip": {
+          "mode": "single",
+          "sort": "none"
+        }
       },
-      "pluginVersion": "10.2.3",
+      "targets": [
+        {
+          "datasource": {
+            "type": "influxdb",
+            "uid": "PDDB37A76957DD37E"
+          },
+          "groupBy": [
+            {
+              "params": [
+                "$__interval"
+              ],
+              "type": "time"
+            },
+            {
+              "params": [
+                "null"
+              ],
+              "type": "fill"
+            }
+          ],
+          "measurement": "latency",
+          "orderByTime": "ASC",
+          "policy": "default",
+          "refId": "A",
+          "resultFormat": "time_series",
+          "select": [
+            [
+              {
+                "params": [
+                  "rtt"
+                ],
+                "type": "field"
+              },
+              {
+                "params": [],
+                "type": "integral"
+              }
+            ]
+          ],
+          "tags": []
+        }
+      ],
+      "title": "latency",
+      "type": "timeseries"
+    },
+    {
+      "datasource": {
+        "type": "prometheus",
+        "uid": "PBFA97CFB590B2093"
+      },
+      "fieldConfig": {
+        "defaults": {
+          "color": {
+            "mode": "palette-classic"
+          },
+          "custom": {
+            "axisBorderShow": false,
+            "axisCenteredZero": false,
+            "axisColorMode": "text",
+            "axisLabel": "",
+            "axisPlacement": "auto",
+            "barAlignment": 0,
+            "drawStyle": "line",
+            "fillOpacity": 0,
+            "gradientMode": "none",
+            "hideFrom": {
+              "legend": false,
+              "tooltip": false,
+              "viz": false
+            },
+            "insertNulls": false,
+            "lineInterpolation": "linear",
+            "lineWidth": 1,
+            "pointSize": 5,
+            "scaleDistribution": {
+              "type": "linear"
+            },
+            "showPoints": "auto",
+            "spanNulls": false,
+            "stacking": {
+              "group": "A",
+              "mode": "none"
+            },
+            "thresholdsStyle": {
+              "mode": "off"
+            }
+          },
+          "mappings": [],
+          "thresholds": {
+            "mode": "absolute",
+            "steps": [
+              {
+                "color": "green",
+                "value": null
+              },
+              {
+                "color": "red",
+                "value": 80
+              }
+            ]
+          }
+        },
+        "overrides": []
+      },
+      "gridPos": {
+        "h": 7,
+        "w": 6,
+        "x": 6,
+        "y": 8
+      },
+      "id": 32,
+      "options": {
+        "legend": {
+          "calcs": [],
+          "displayMode": "list",
+          "placement": "bottom",
+          "showLegend": true
+        },
+        "tooltip": {
+          "mode": "single",
+          "sort": "none"
+        }
+      },
+      "pluginVersion": "10.2.0",
       "targets": [
         {
           "datasource": {
@@ -266,7 +882,7 @@
           },
           "disableTextWrap": false,
           "editorMode": "builder",
-          "expr": "nginx_up{instance=\"MichalKaiser-2:9113\"}",
+          "expr": "influxdb_write_write_ok{instance=\"stealandsell-2:9424\"}",
           "fullMetaSearch": false,
           "includeNullMetadata": true,
           "instant": false,
@@ -276,8 +892,8 @@
           "useBackend": false
         }
       ],
-      "title": "Nginx michalkaiser-2",
-      "type": "stat"
+      "title": "InfluxDB write rate",
+      "type": "timeseries"
     },
     {
       "datasource": {
@@ -293,7 +909,7 @@
             {
               "options": {
                 "0": {
-                  "color": "red",
+                  "color": "dark-red",
                   "index": 1,
                   "text": "DOWN"
                 },
@@ -310,12 +926,12 @@
             "mode": "absolute",
             "steps": [
               {
-                "color": "red",
+                "color": "green",
                 "value": null
               },
               {
-                "color": "blue",
-                "value": 1
+                "color": "red",
+                "value": 80
               }
             ]
           }
@@ -325,10 +941,10 @@
       "gridPos": {
         "h": 4,
         "w": 3,
-        "x": 9,
-        "y": 0
+        "x": 12,
+        "y": 8
       },
-      "id": 1,
+      "id": 34,
       "options": {
         "colorMode": "value",
         "graphMode": "area",
@@ -344,7 +960,7 @@
         "textMode": "auto",
         "wideLayout": true
       },
-      "pluginVersion": "10.2.3",
+      "pluginVersion": "10.2.2",
       "targets": [
         {
           "datasource": {
@@ -353,7 +969,7 @@
           },
           "disableTextWrap": false,
           "editorMode": "builder",
-          "expr": "mysql_up{instance=\"michalkaiser-2:9104\", job=\"Mysql\"}",
+          "expr": "haproxy_up{job=\"haproxy\"}",
           "fullMetaSearch": false,
           "includeNullMetadata": true,
           "instant": false,
@@ -363,7 +979,7 @@
           "useBackend": false
         }
       ],
-      "title": "Mysql status",
+      "title": "Haproxy status",
       "type": "stat"
     },
     {
@@ -376,555 +992,136 @@
           "color": {
             "mode": "thresholds"
           },
-          "mappings": [],
-          "thresholds": {
-            "mode": "absolute",
-            "steps": [
-              {
-                "color": "green",
-                "value": null
-              },
-              {
-                "color": "red",
-                "value": 80
-              }
-            ]
-          }
-        },
-        "overrides": []
-      },
-      "gridPos": {
-        "h": 8,
-        "w": 12,
-        "x": 12,
-        "y": 0
-      },
-      "id": 7,
-      "options": {
-        "displayMode": "lcd",
-        "maxVizHeight": 300,
-        "minVizHeight": 10,
-        "minVizWidth": 0,
-        "namePlacement": "auto",
-        "orientation": "horizontal",
-        "reduceOptions": {
-          "calcs": [
-            "lastNotNull"
-          ],
-          "fields": "",
-          "values": false
-        },
-        "showUnfilled": true,
-        "sizing": "auto",
-        "valueMode": "color"
-      },
-      "pluginVersion": "10.2.3",
-      "targets": [
-        {
-          "datasource": {
-            "type": "prometheus",
-            "uid": "PBFA97CFB590B2093"
-          },
-          "disableTextWrap": false,
-          "editorMode": "builder",
-          "expr": "bind_resolver_queries_total",
-          "fullMetaSearch": false,
-          "includeNullMetadata": true,
-          "instant": false,
-          "legendFormat": "__auto",
-          "range": true,
-          "refId": "A",
-          "useBackend": false
-        }
-      ],
-      "title": "Bind resolver total queries",
-      "type": "bargauge"
-    },
-    {
-      "datasource": {
-        "type": "prometheus",
-        "uid": "PBFA97CFB590B2093"
-      },
-      "fieldConfig": {
-        "defaults": {
-          "color": {
-            "mode": "palette-classic"
-          },
-          "custom": {
-            "axisBorderShow": false,
-            "axisCenteredZero": false,
-            "axisColorMode": "text",
-            "axisLabel": "",
-            "axisPlacement": "auto",
-            "barAlignment": 0,
-            "drawStyle": "line",
-            "fillOpacity": 0,
-            "gradientMode": "none",
-            "hideFrom": {
-              "legend": false,
-              "tooltip": false,
-              "viz": false
-            },
-            "insertNulls": false,
-            "lineInterpolation": "linear",
-            "lineWidth": 1,
-            "pointSize": 5,
-            "scaleDistribution": {
-              "type": "linear"
-            },
-            "showPoints": "auto",
-            "spanNulls": false,
-            "stacking": {
-              "group": "A",
-              "mode": "none"
-            },
-            "thresholdsStyle": {
-              "mode": "off"
-            }
-          },
-          "mappings": [],
-          "thresholds": {
-            "mode": "absolute",
-            "steps": [
-              {
-                "color": "green",
-                "value": null
-              },
-              {
-                "color": "red",
-                "value": 80
-              }
-            ]
-          }
-        },
-        "overrides": []
-      },
-      "gridPos": {
-        "h": 8,
-        "w": 12,
-        "x": 0,
-        "y": 4
-      },
-      "id": 5,
-      "options": {
-        "legend": {
-          "calcs": [],
-          "displayMode": "list",
-          "placement": "bottom",
-          "showLegend": true
-        },
-        "tooltip": {
-          "mode": "single",
-          "sort": "none"
-        }
-      },
-      "targets": [
-        {
-          "datasource": {
-            "type": "prometheus",
-            "uid": "PBFA97CFB590B2093"
-          },
-          "disableTextWrap": false,
-          "editorMode": "builder",
-          "expr": "nginx_connections_active",
-          "fullMetaSearch": false,
-          "includeNullMetadata": true,
-          "instant": false,
-          "legendFormat": "__auto",
-          "range": true,
-          "refId": "A",
-          "useBackend": false
-        }
-      ],
-      "title": "Nginx servers active connections",
-      "type": "timeseries"
-    },
-    {
-      "datasource": {
-        "type": "prometheus",
-        "uid": "PBFA97CFB590B2093"
-      },
-      "fieldConfig": {
-        "defaults": {
-          "color": {
-            "mode": "thresholds"
-          },
-          "mappings": [],
-          "thresholds": {
-            "mode": "absolute",
-            "steps": [
-              {
-                "color": "green",
-                "value": null
-              },
-              {
-                "color": "#EAB839",
-                "value": 0.5
-              },
-              {
-                "color": "red",
-                "value": 0.95
-              }
-            ]
-          },
-          "unit": "percentunit"
-        },
-        "overrides": []
-      },
-      "gridPos": {
-        "h": 6,
-        "w": 6,
-        "x": 12,
-        "y": 8
-      },
-      "id": 8,
-      "options": {
-        "minVizHeight": 75,
-        "minVizWidth": 75,
-        "orientation": "auto",
-        "reduceOptions": {
-          "calcs": [
-            "lastNotNull"
-          ],
-          "fields": "",
-          "values": false
-        },
-        "showThresholdLabels": false,
-        "showThresholdMarkers": true,
-        "sizing": "auto"
-      },
-      "pluginVersion": "10.2.3",
-      "targets": [
-        {
-          "datasource": {
-            "type": "prometheus",
-            "uid": "PBFA97CFB590B2093"
-          },
-          "disableTextWrap": false,
-          "editorMode": "builder",
-          "expr": "rate(node_cpu_seconds_total{mode=\"idle\", instance=\"MichalKaiser-1:9100\"}[1m])",
-          "fullMetaSearch": false,
-          "includeNullMetadata": true,
-          "instant": false,
-          "legendFormat": "__auto",
-          "range": true,
-          "refId": "A",
-          "useBackend": false
-        }
-      ],
-      "title": "CPU status michalkaiser-1",
-      "type": "gauge"
-    },
-    {
-      "datasource": {
-        "type": "prometheus",
-        "uid": "PBFA97CFB590B2093"
-      },
-      "fieldConfig": {
-        "defaults": {
-          "color": {
-            "mode": "thresholds"
-          },
-          "mappings": [],
-          "thresholds": {
-            "mode": "absolute",
-            "steps": [
-              {
-                "color": "green",
-                "value": null
-              },
-              {
-                "color": "#EAB839",
-                "value": 0.5
-              },
-              {
-                "color": "red",
-                "value": 0.95
-              }
-            ]
-          },
-          "unit": "percentunit"
-        },
-        "overrides": []
-      },
-      "gridPos": {
-        "h": 6,
-        "w": 6,
-        "x": 18,
-        "y": 8
-      },
-      "id": 9,
-      "options": {
-        "minVizHeight": 75,
-        "minVizWidth": 75,
-        "orientation": "auto",
-        "reduceOptions": {
-          "calcs": [
-            "lastNotNull"
-          ],
-          "fields": "",
-          "values": false
-        },
-        "showThresholdLabels": false,
-        "showThresholdMarkers": true,
-        "sizing": "auto"
-      },
-      "pluginVersion": "10.2.3",
-      "targets": [
-        {
-          "datasource": {
-            "type": "prometheus",
-            "uid": "PBFA97CFB590B2093"
-          },
-          "disableTextWrap": false,
-          "editorMode": "builder",
-          "expr": "rate(node_cpu_seconds_total{mode=\"idle\", instance=\"MichalKaiser-2:9100\"}[1m])",
-          "fullMetaSearch": false,
-          "includeNullMetadata": true,
-          "instant": false,
-          "legendFormat": "__auto",
-          "range": true,
-          "refId": "A",
-          "useBackend": false
-        }
-      ],
-      "title": "CPU status michalkaiser-2",
-      "type": "gauge"
-    },
-    {
-      "datasource": {
-        "type": "prometheus",
-        "uid": "PBFA97CFB590B2093"
-      },
-      "fieldConfig": {
-        "defaults": {
-          "color": {
-            "mode": "palette-classic"
-          },
-          "custom": {
-            "hideFrom": {
-              "legend": false,
-              "tooltip": false,
-              "viz": false
-            }
-          },
-          "fieldMinMax": false,
-          "mappings": [],
-          "min": 1
-        },
-        "overrides": [
-          {
-            "__systemRef": "hideSeriesFrom",
-            "matcher": {
-              "id": "byNames",
+          "mappings": [
+            {
               "options": {
-                "mode": "exclude",
-                "names": [
-                  "{__name__=\"mysql_global_status_commands_total\", command=\"admin_commands\", instance=\"michalkaiser-2:9104\", job=\"Mysql\"}",
-                  "{__name__=\"mysql_global_status_commands_total\", command=\"alter_db\", instance=\"michalkaiser-2:9104\", job=\"Mysql\"}",
-                  "{__name__=\"mysql_global_status_commands_total\", command=\"alter_event\", instance=\"michalkaiser-2:9104\", job=\"Mysql\"}",
-                  "{__name__=\"mysql_global_status_commands_total\", command=\"alter_function\", instance=\"michalkaiser-2:9104\", job=\"Mysql\"}",
-                  "{__name__=\"mysql_global_status_commands_total\", command=\"alter_instance\", instance=\"michalkaiser-2:9104\", job=\"Mysql\"}",
-                  "{__name__=\"mysql_global_status_commands_total\", command=\"alter_procedure\", instance=\"michalkaiser-2:9104\", job=\"Mysql\"}",
-                  "{__name__=\"mysql_global_status_commands_total\", command=\"alter_resource_group\", instance=\"michalkaiser-2:9104\", job=\"Mysql\"}",
-                  "{__name__=\"mysql_global_status_commands_total\", command=\"alter_server\", instance=\"michalkaiser-2:9104\", job=\"Mysql\"}",
-                  "{__name__=\"mysql_global_status_commands_total\", command=\"alter_table\", instance=\"michalkaiser-2:9104\", job=\"Mysql\"}",
-                  "{__name__=\"mysql_global_status_commands_total\", command=\"alter_tablespace\", instance=\"michalkaiser-2:9104\", job=\"Mysql\"}",
-                  "{__name__=\"mysql_global_status_commands_total\", command=\"alter_user\", instance=\"michalkaiser-2:9104\", job=\"Mysql\"}",
-                  "{__name__=\"mysql_global_status_commands_total\", command=\"alter_user_default_role\", instance=\"michalkaiser-2:9104\", job=\"Mysql\"}",
-                  "{__name__=\"mysql_global_status_commands_total\", command=\"analyze\", instance=\"michalkaiser-2:9104\", job=\"Mysql\"}",
-                  "{__name__=\"mysql_global_status_commands_total\", command=\"assign_to_keycache\", instance=\"michalkaiser-2:9104\", job=\"Mysql\"}",
-                  "{__name__=\"mysql_global_status_commands_total\", command=\"begin\", instance=\"michalkaiser-2:9104\", job=\"Mysql\"}",
-                  "{__name__=\"mysql_global_status_commands_total\", command=\"binlog\", instance=\"michalkaiser-2:9104\", job=\"Mysql\"}",
-                  "{__name__=\"mysql_global_status_commands_total\", command=\"call_procedure\", instance=\"michalkaiser-2:9104\", job=\"Mysql\"}",
-                  "{__name__=\"mysql_global_status_commands_total\", command=\"change_db\", instance=\"michalkaiser-2:9104\", job=\"Mysql\"}",
-                  "{__name__=\"mysql_global_status_commands_total\", command=\"change_master\", instance=\"michalkaiser-2:9104\", job=\"Mysql\"}",
-                  "{__name__=\"mysql_global_status_commands_total\", command=\"change_repl_filter\", instance=\"michalkaiser-2:9104\", job=\"Mysql\"}",
-                  "{__name__=\"mysql_global_status_commands_total\", command=\"change_replication_source\", instance=\"michalkaiser-2:9104\", job=\"Mysql\"}",
-                  "{__name__=\"mysql_global_status_commands_total\", command=\"check\", instance=\"michalkaiser-2:9104\", job=\"Mysql\"}",
-                  "{__name__=\"mysql_global_status_commands_total\", command=\"checksum\", instance=\"michalkaiser-2:9104\", job=\"Mysql\"}",
-                  "{__name__=\"mysql_global_status_commands_total\", command=\"clone\", instance=\"michalkaiser-2:9104\", job=\"Mysql\"}",
-                  "{__name__=\"mysql_global_status_commands_total\", command=\"commit\", instance=\"michalkaiser-2:9104\", job=\"Mysql\"}",
-                  "{__name__=\"mysql_global_status_commands_total\", command=\"create_db\", instance=\"michalkaiser-2:9104\", job=\"Mysql\"}",
-                  "{__name__=\"mysql_global_status_commands_total\", command=\"create_event\", instance=\"michalkaiser-2:9104\", job=\"Mysql\"}",
-                  "{__name__=\"mysql_global_status_commands_total\", command=\"create_function\", instance=\"michalkaiser-2:9104\", job=\"Mysql\"}",
-                  "{__name__=\"mysql_global_status_commands_total\", command=\"create_index\", instance=\"michalkaiser-2:9104\", job=\"Mysql\"}",
-                  "{__name__=\"mysql_global_status_commands_total\", command=\"create_procedure\", instance=\"michalkaiser-2:9104\", job=\"Mysql\"}",
-                  "{__name__=\"mysql_global_status_commands_total\", command=\"create_resource_group\", instance=\"michalkaiser-2:9104\", job=\"Mysql\"}",
-                  "{__name__=\"mysql_global_status_commands_total\", command=\"create_role\", instance=\"michalkaiser-2:9104\", job=\"Mysql\"}",
-                  "{__name__=\"mysql_global_status_commands_total\", command=\"create_server\", instance=\"michalkaiser-2:9104\", job=\"Mysql\"}",
-                  "{__name__=\"mysql_global_status_commands_total\", command=\"create_spatial_reference_system\", instance=\"michalkaiser-2:9104\", job=\"Mysql\"}",
-                  "{__name__=\"mysql_global_status_commands_total\", command=\"create_table\", instance=\"michalkaiser-2:9104\", job=\"Mysql\"}",
-                  "{__name__=\"mysql_global_status_commands_total\", command=\"create_trigger\", instance=\"michalkaiser-2:9104\", job=\"Mysql\"}",
-                  "{__name__=\"mysql_global_status_commands_total\", command=\"create_udf\", instance=\"michalkaiser-2:9104\", job=\"Mysql\"}",
-                  "{__name__=\"mysql_global_status_commands_total\", command=\"create_user\", instance=\"michalkaiser-2:9104\", job=\"Mysql\"}",
-                  "{__name__=\"mysql_global_status_commands_total\", command=\"create_view\", instance=\"michalkaiser-2:9104\", job=\"Mysql\"}",
-                  "{__name__=\"mysql_global_status_commands_total\", command=\"dealloc_sql\", instance=\"michalkaiser-2:9104\", job=\"Mysql\"}",
-                  "{__name__=\"mysql_global_status_commands_total\", command=\"delete\", instance=\"michalkaiser-2:9104\", job=\"Mysql\"}",
-                  "{__name__=\"mysql_global_status_commands_total\", command=\"delete_multi\", instance=\"michalkaiser-2:9104\", job=\"Mysql\"}",
-                  "{__name__=\"mysql_global_status_commands_total\", command=\"do\", instance=\"michalkaiser-2:9104\", job=\"Mysql\"}",
-                  "{__name__=\"mysql_global_status_commands_total\", command=\"drop_db\", instance=\"michalkaiser-2:9104\", job=\"Mysql\"}",
-                  "{__name__=\"mysql_global_status_commands_total\", command=\"drop_event\", instance=\"michalkaiser-2:9104\", job=\"Mysql\"}",
-                  "{__name__=\"mysql_global_status_commands_total\", command=\"drop_function\", instance=\"michalkaiser-2:9104\", job=\"Mysql\"}",
-                  "{__name__=\"mysql_global_status_commands_total\", command=\"drop_index\", instance=\"michalkaiser-2:9104\", job=\"Mysql\"}",
-                  "{__name__=\"mysql_global_status_commands_total\", command=\"drop_procedure\", instance=\"michalkaiser-2:9104\", job=\"Mysql\"}",
-                  "{__name__=\"mysql_global_status_commands_total\", command=\"drop_resource_group\", instance=\"michalkaiser-2:9104\", job=\"Mysql\"}",
-                  "{__name__=\"mysql_global_status_commands_total\", command=\"drop_role\", instance=\"michalkaiser-2:9104\", job=\"Mysql\"}",
-                  "{__name__=\"mysql_global_status_commands_total\", command=\"drop_server\", instance=\"michalkaiser-2:9104\", job=\"Mysql\"}",
-                  "{__name__=\"mysql_global_status_commands_total\", command=\"drop_spatial_reference_system\", instance=\"michalkaiser-2:9104\", job=\"Mysql\"}",
-                  "{__name__=\"mysql_global_status_commands_total\", command=\"drop_table\", instance=\"michalkaiser-2:9104\", job=\"Mysql\"}",
-                  "{__name__=\"mysql_global_status_commands_total\", command=\"drop_trigger\", instance=\"michalkaiser-2:9104\", job=\"Mysql\"}",
-                  "{__name__=\"mysql_global_status_commands_total\", command=\"drop_user\", instance=\"michalkaiser-2:9104\", job=\"Mysql\"}",
-                  "{__name__=\"mysql_global_status_commands_total\", command=\"drop_view\", instance=\"michalkaiser-2:9104\", job=\"Mysql\"}",
-                  "{__name__=\"mysql_global_status_commands_total\", command=\"empty_query\", instance=\"michalkaiser-2:9104\", job=\"Mysql\"}",
-                  "{__name__=\"mysql_global_status_commands_total\", command=\"execute_sql\", instance=\"michalkaiser-2:9104\", job=\"Mysql\"}",
-                  "{__name__=\"mysql_global_status_commands_total\", command=\"explain_other\", instance=\"michalkaiser-2:9104\", job=\"Mysql\"}",
-                  "{__name__=\"mysql_global_status_commands_total\", command=\"flush\", instance=\"michalkaiser-2:9104\", job=\"Mysql\"}",
-                  "{__name__=\"mysql_global_status_commands_total\", command=\"get_diagnostics\", instance=\"michalkaiser-2:9104\", job=\"Mysql\"}",
-                  "{__name__=\"mysql_global_status_commands_total\", command=\"grant\", instance=\"michalkaiser-2:9104\", job=\"Mysql\"}",
-                  "{__name__=\"mysql_global_status_commands_total\", command=\"grant_roles\", instance=\"michalkaiser-2:9104\", job=\"Mysql\"}",
-                  "{__name__=\"mysql_global_status_commands_total\", command=\"group_replication_start\", instance=\"michalkaiser-2:9104\", job=\"Mysql\"}",
-                  "{__name__=\"mysql_global_status_commands_total\", command=\"group_replication_stop\", instance=\"michalkaiser-2:9104\", job=\"Mysql\"}",
-                  "{__name__=\"mysql_global_status_commands_total\", command=\"ha_close\", instance=\"michalkaiser-2:9104\", job=\"Mysql\"}",
-                  "{__name__=\"mysql_global_status_commands_total\", command=\"ha_open\", instance=\"michalkaiser-2:9104\", job=\"Mysql\"}",
-                  "{__name__=\"mysql_global_status_commands_total\", command=\"ha_read\", instance=\"michalkaiser-2:9104\", job=\"Mysql\"}",
-                  "{__name__=\"mysql_global_status_commands_total\", command=\"help\", instance=\"michalkaiser-2:9104\", job=\"Mysql\"}",
-                  "{__name__=\"mysql_global_status_commands_total\", command=\"import\", instance=\"michalkaiser-2:9104\", job=\"Mysql\"}",
-                  "{__name__=\"mysql_global_status_commands_total\", command=\"insert\", instance=\"michalkaiser-2:9104\", job=\"Mysql\"}",
-                  "{__name__=\"mysql_global_status_commands_total\", command=\"insert_select\", instance=\"michalkaiser-2:9104\", job=\"Mysql\"}",
-                  "{__name__=\"mysql_global_status_commands_total\", command=\"install_component\", instance=\"michalkaiser-2:9104\", job=\"Mysql\"}",
-                  "{__name__=\"mysql_global_status_commands_total\", command=\"install_plugin\", instance=\"michalkaiser-2:9104\", job=\"Mysql\"}",
-                  "{__name__=\"mysql_global_status_commands_total\", command=\"kill\", instance=\"michalkaiser-2:9104\", job=\"Mysql\"}",
-                  "{__name__=\"mysql_global_status_commands_total\", command=\"load\", instance=\"michalkaiser-2:9104\", job=\"Mysql\"}",
-                  "{__name__=\"mysql_global_status_commands_total\", command=\"lock_instance\", instance=\"michalkaiser-2:9104\", job=\"Mysql\"}",
-                  "{__name__=\"mysql_global_status_commands_total\", command=\"lock_tables\", instance=\"michalkaiser-2:9104\", job=\"Mysql\"}",
-                  "{__name__=\"mysql_global_status_commands_total\", command=\"optimize\", instance=\"michalkaiser-2:9104\", job=\"Mysql\"}",
-                  "{__name__=\"mysql_global_status_commands_total\", command=\"preload_keys\", instance=\"michalkaiser-2:9104\", job=\"Mysql\"}",
-                  "{__name__=\"mysql_global_status_commands_total\", command=\"prepare_sql\", instance=\"michalkaiser-2:9104\", job=\"Mysql\"}",
-                  "{__name__=\"mysql_global_status_commands_total\", command=\"purge\", instance=\"michalkaiser-2:9104\", job=\"Mysql\"}",
-                  "{__name__=\"mysql_global_status_commands_total\", command=\"purge_before_date\", instance=\"michalkaiser-2:9104\", job=\"Mysql\"}",
-                  "{__name__=\"mysql_global_status_commands_total\", command=\"release_savepoint\", instance=\"michalkaiser-2:9104\", job=\"Mysql\"}",
-                  "{__name__=\"mysql_global_status_commands_total\", command=\"rename_table\", instance=\"michalkaiser-2:9104\", job=\"Mysql\"}",
-                  "{__name__=\"mysql_global_status_commands_total\", command=\"rename_user\", instance=\"michalkaiser-2:9104\", job=\"Mysql\"}",
-                  "{__name__=\"mysql_global_status_commands_total\", command=\"repair\", instance=\"michalkaiser-2:9104\", job=\"Mysql\"}",
-                  "{__name__=\"mysql_global_status_commands_total\", command=\"replace\", instance=\"michalkaiser-2:9104\", job=\"Mysql\"}",
-                  "{__name__=\"mysql_global_status_commands_total\", command=\"replace_select\", instance=\"michalkaiser-2:9104\", job=\"Mysql\"}",
-                  "{__name__=\"mysql_global_status_commands_total\", command=\"replica_start\", instance=\"michalkaiser-2:9104\", job=\"Mysql\"}",
-                  "{__name__=\"mysql_global_status_commands_total\", command=\"replica_stop\", instance=\"michalkaiser-2:9104\", job=\"Mysql\"}",
-                  "{__name__=\"mysql_global_status_commands_total\", command=\"reset\", instance=\"michalkaiser-2:9104\", job=\"Mysql\"}",
-                  "{__name__=\"mysql_global_status_commands_total\", command=\"resignal\", instance=\"michalkaiser-2:9104\", job=\"Mysql\"}",
-                  "{__name__=\"mysql_global_status_commands_total\", command=\"restart\", instance=\"michalkaiser-2:9104\", job=\"Mysql\"}",
-                  "{__name__=\"mysql_global_status_commands_total\", command=\"revoke\", instance=\"michalkaiser-2:9104\", job=\"Mysql\"}",
-                  "{__name__=\"mysql_global_status_commands_total\", command=\"revoke_all\", instance=\"michalkaiser-2:9104\", job=\"Mysql\"}",
-                  "{__name__=\"mysql_global_status_commands_total\", command=\"revoke_roles\", instance=\"michalkaiser-2:9104\", job=\"Mysql\"}",
-                  "{__name__=\"mysql_global_status_commands_total\", command=\"rollback\", instance=\"michalkaiser-2:9104\", job=\"Mysql\"}",
-                  "{__name__=\"mysql_global_status_commands_total\", command=\"rollback_to_savepoint\", instance=\"michalkaiser-2:9104\", job=\"Mysql\"}",
-                  "{__name__=\"mysql_global_status_commands_total\", command=\"savepoint\", instance=\"michalkaiser-2:9104\", job=\"Mysql\"}",
-                  "{__name__=\"mysql_global_status_commands_total\", command=\"select\", instance=\"michalkaiser-2:9104\", job=\"Mysql\"}",
-                  "{__name__=\"mysql_global_status_commands_total\", command=\"set_option\", instance=\"michalkaiser-2:9104\", job=\"Mysql\"}",
-                  "{__name__=\"mysql_global_status_commands_total\", command=\"set_password\", instance=\"michalkaiser-2:9104\", job=\"Mysql\"}",
-                  "{__name__=\"mysql_global_status_commands_total\", command=\"set_resource_group\", instance=\"michalkaiser-2:9104\", job=\"Mysql\"}",
-                  "{__name__=\"mysql_global_status_commands_total\", command=\"set_role\", instance=\"michalkaiser-2:9104\", job=\"Mysql\"}",
-                  "{__name__=\"mysql_global_status_commands_total\", command=\"show_binlog_events\", instance=\"michalkaiser-2:9104\", job=\"Mysql\"}",
-                  "{__name__=\"mysql_global_status_commands_total\", command=\"show_binlogs\", instance=\"michalkaiser-2:9104\", job=\"Mysql\"}",
-                  "{__name__=\"mysql_global_status_commands_total\", command=\"show_charsets\", instance=\"michalkaiser-2:9104\", job=\"Mysql\"}",
-                  "{__name__=\"mysql_global_status_commands_total\", command=\"show_collations\", instance=\"michalkaiser-2:9104\", job=\"Mysql\"}",
-                  "{__name__=\"mysql_global_status_commands_total\", command=\"show_create_db\", instance=\"michalkaiser-2:9104\", job=\"Mysql\"}",
-                  "{__name__=\"mysql_global_status_commands_total\", command=\"show_create_event\", instance=\"michalkaiser-2:9104\", job=\"Mysql\"}",
-                  "{__name__=\"mysql_global_status_commands_total\", command=\"show_create_func\", instance=\"michalkaiser-2:9104\", job=\"Mysql\"}",
-                  "{__name__=\"mysql_global_status_commands_total\", command=\"show_create_proc\", instance=\"michalkaiser-2:9104\", job=\"Mysql\"}",
-                  "{__name__=\"mysql_global_status_commands_total\", command=\"show_create_table\", instance=\"michalkaiser-2:9104\", job=\"Mysql\"}",
-                  "{__name__=\"mysql_global_status_commands_total\", command=\"show_create_trigger\", instance=\"michalkaiser-2:9104\", job=\"Mysql\"}",
-                  "{__name__=\"mysql_global_status_commands_total\", command=\"show_create_user\", instance=\"michalkaiser-2:9104\", job=\"Mysql\"}",
-                  "{__name__=\"mysql_global_status_commands_total\", command=\"show_databases\", instance=\"michalkaiser-2:9104\", job=\"Mysql\"}",
-                  "{__name__=\"mysql_global_status_commands_total\", command=\"show_engine_logs\", instance=\"michalkaiser-2:9104\", job=\"Mysql\"}",
-                  "{__name__=\"mysql_global_status_commands_total\", command=\"show_engine_mutex\", instance=\"michalkaiser-2:9104\", job=\"Mysql\"}",
-                  "{__name__=\"mysql_global_status_commands_total\", command=\"show_engine_status\", instance=\"michalkaiser-2:9104\", job=\"Mysql\"}",
-                  "{__name__=\"mysql_global_status_commands_total\", command=\"show_errors\", instance=\"michalkaiser-2:9104\", job=\"Mysql\"}",
-                  "{__name__=\"mysql_global_status_commands_total\", command=\"show_events\", instance=\"michalkaiser-2:9104\", job=\"Mysql\"}",
-                  "{__name__=\"mysql_global_status_commands_total\", command=\"show_fields\", instance=\"michalkaiser-2:9104\", job=\"Mysql\"}",
-                  "{__name__=\"mysql_global_status_commands_total\", command=\"show_function_code\", instance=\"michalkaiser-2:9104\", job=\"Mysql\"}",
-                  "{__name__=\"mysql_global_status_commands_total\", command=\"show_function_status\", instance=\"michalkaiser-2:9104\", job=\"Mysql\"}",
-                  "{__name__=\"mysql_global_status_commands_total\", command=\"show_grants\", instance=\"michalkaiser-2:9104\", job=\"Mysql\"}",
-                  "{__name__=\"mysql_global_status_commands_total\", command=\"show_keys\", instance=\"michalkaiser-2:9104\", job=\"Mysql\"}",
-                  "{__name__=\"mysql_global_status_commands_total\", command=\"show_master_status\", instance=\"michalkaiser-2:9104\", job=\"Mysql\"}",
-                  "{__name__=\"mysql_global_status_commands_total\", command=\"show_open_tables\", instance=\"michalkaiser-2:9104\", job=\"Mysql\"}",
-                  "{__name__=\"mysql_global_status_commands_total\", command=\"show_plugins\", instance=\"michalkaiser-2:9104\", job=\"Mysql\"}",
-                  "{__name__=\"mysql_global_status_commands_total\", command=\"show_privileges\", instance=\"michalkaiser-2:9104\", job=\"Mysql\"}",
-                  "{__name__=\"mysql_global_status_commands_total\", command=\"show_procedure_code\", instance=\"michalkaiser-2:9104\", job=\"Mysql\"}",
-                  "{__name__=\"mysql_global_status_commands_total\", command=\"show_procedure_status\", instance=\"michalkaiser-2:9104\", job=\"Mysql\"}",
-                  "{__name__=\"mysql_global_status_commands_total\", command=\"show_processlist\", instance=\"michalkaiser-2:9104\", job=\"Mysql\"}",
-                  "{__name__=\"mysql_global_status_commands_total\", command=\"show_profile\", instance=\"michalkaiser-2:9104\", job=\"Mysql\"}",
-                  "{__name__=\"mysql_global_status_commands_total\", command=\"show_profiles\", instance=\"michalkaiser-2:9104\", job=\"Mysql\"}",
-                  "{__name__=\"mysql_global_status_commands_total\", command=\"show_relaylog_events\", instance=\"michalkaiser-2:9104\", job=\"Mysql\"}",
-                  "{__name__=\"mysql_global_status_commands_total\", command=\"show_replica_status\", instance=\"michalkaiser-2:9104\", job=\"Mysql\"}",
-                  "{__name__=\"mysql_global_status_commands_total\", command=\"show_replicas\", instance=\"michalkaiser-2:9104\", job=\"Mysql\"}",
-                  "{__name__=\"mysql_global_status_commands_total\", command=\"show_slave_hosts\", instance=\"michalkaiser-2:9104\", job=\"Mysql\"}",
-                  "{__name__=\"mysql_global_status_commands_total\", command=\"show_slave_status\", instance=\"michalkaiser-2:9104\", job=\"Mysql\"}",
-                  "{__name__=\"mysql_global_status_commands_total\", command=\"show_status\", instance=\"michalkaiser-2:9104\", job=\"Mysql\"}",
-                  "{__name__=\"mysql_global_status_commands_total\", command=\"show_storage_engines\", instance=\"michalkaiser-2:9104\", job=\"Mysql\"}",
-                  "{__name__=\"mysql_global_status_commands_total\", command=\"show_table_status\", instance=\"michalkaiser-2:9104\", job=\"Mysql\"}",
-                  "{__name__=\"mysql_global_status_commands_total\", command=\"show_tables\", instance=\"michalkaiser-2:9104\", job=\"Mysql\"}",
-                  "{__name__=\"mysql_global_status_commands_total\", command=\"show_triggers\", instance=\"michalkaiser-2:9104\", job=\"Mysql\"}",
-                  "{__name__=\"mysql_global_status_commands_total\", command=\"show_variables\", instance=\"michalkaiser-2:9104\", job=\"Mysql\"}",
-                  "{__name__=\"mysql_global_status_commands_total\", command=\"show_warnings\", instance=\"michalkaiser-2:9104\", job=\"Mysql\"}",
-                  "{__name__=\"mysql_global_status_commands_total\", command=\"shutdown\", instance=\"michalkaiser-2:9104\", job=\"Mysql\"}",
-                  "{__name__=\"mysql_global_status_commands_total\", command=\"signal\", instance=\"michalkaiser-2:9104\", job=\"Mysql\"}",
-                  "{__name__=\"mysql_global_status_commands_total\", command=\"slave_start\", instance=\"michalkaiser-2:9104\", job=\"Mysql\"}",
-                  "{__name__=\"mysql_global_status_commands_total\", command=\"slave_stop\", instance=\"michalkaiser-2:9104\", job=\"Mysql\"}",
-                  "{__name__=\"mysql_global_status_commands_total\", command=\"stmt_close\", instance=\"michalkaiser-2:9104\", job=\"Mysql\"}",
-                  "{__name__=\"mysql_global_status_commands_total\", command=\"stmt_execute\", instance=\"michalkaiser-2:9104\", job=\"Mysql\"}",
-                  "{__name__=\"mysql_global_status_commands_total\", command=\"stmt_fetch\", instance=\"michalkaiser-2:9104\", job=\"Mysql\"}",
-                  "{__name__=\"mysql_global_status_commands_total\", command=\"stmt_prepare\", instance=\"michalkaiser-2:9104\", job=\"Mysql\"}",
-                  "{__name__=\"mysql_global_status_commands_total\", command=\"stmt_reprepare\", instance=\"michalkaiser-2:9104\", job=\"Mysql\"}",
-                  "{__name__=\"mysql_global_status_commands_total\", command=\"stmt_reset\", instance=\"michalkaiser-2:9104\", job=\"Mysql\"}",
-                  "{__name__=\"mysql_global_status_commands_total\", command=\"stmt_send_long_data\", instance=\"michalkaiser-2:9104\", job=\"Mysql\"}",
-                  "{__name__=\"mysql_global_status_commands_total\", command=\"truncate\", instance=\"michalkaiser-2:9104\", job=\"Mysql\"}",
-                  "{__name__=\"mysql_global_status_commands_total\", command=\"uninstall_component\", instance=\"michalkaiser-2:9104\", job=\"Mysql\"}",
-                  "{__name__=\"mysql_global_status_commands_total\", command=\"uninstall_plugin\", instance=\"michalkaiser-2:9104\", job=\"Mysql\"}",
-                  "{__name__=\"mysql_global_status_commands_total\", command=\"unlock_instance\", instance=\"michalkaiser-2:9104\", job=\"Mysql\"}",
-                  "{__name__=\"mysql_global_status_commands_total\", command=\"unlock_tables\", instance=\"michalkaiser-2:9104\", job=\"Mysql\"}",
-                  "{__name__=\"mysql_global_status_commands_total\", command=\"update\", instance=\"michalkaiser-2:9104\", job=\"Mysql\"}",
-                  "{__name__=\"mysql_global_status_commands_total\", command=\"update_multi\", instance=\"michalkaiser-2:9104\", job=\"Mysql\"}",
-                  "{__name__=\"mysql_global_status_commands_total\", command=\"xa_commit\", instance=\"michalkaiser-2:9104\", job=\"Mysql\"}",
-                  "{__name__=\"mysql_global_status_commands_total\", command=\"xa_prepare\", instance=\"michalkaiser-2:9104\", job=\"Mysql\"}",
-                  "{__name__=\"mysql_global_status_commands_total\", command=\"xa_start\", instance=\"michalkaiser-2:9104\", job=\"Mysql\"}",
-                  "{__name__=\"mysql_global_status_commands_total\", command=\"xa_recover\", instance=\"michalkaiser-2:9104\", job=\"Mysql\"}"
-                ],
-                "prefix": "All except:",
-                "readOnly": true
-              }
-            },
-            "properties": [
-              {
-                "id": "custom.hideFrom",
-                "value": {
-                  "legend": false,
-                  "tooltip": false,
-                  "viz": true
+                "0": {
+                  "color": "dark-red",
+                  "index": 1,
+                  "text": "DOWN"
+                },
+                "1": {
+                  "color": "green",
+                  "index": 0,
+                  "text": "UP"
                 }
+              },
+              "type": "value"
+            }
+          ],
+          "thresholds": {
+            "mode": "absolute",
+            "steps": [
+              {
+                "color": "green",
+                "value": null
+              },
+              {
+                "color": "red",
+                "value": 80
               }
             ]
           }
-        ]
+        },
+        "overrides": []
       },
       "gridPos": {
-        "h": 8,
-        "w": 12,
-        "x": 0,
+        "h": 4,
+        "w": 7,
+        "x": 15,
+        "y": 8
+      },
+      "id": 35,
+      "options": {
+        "colorMode": "value",
+        "graphMode": "area",
+        "justifyMode": "auto",
+        "orientation": "auto",
+        "reduceOptions": {
+          "calcs": [
+            "lastNotNull"
+          ],
+          "fields": "",
+          "values": false
+        },
+        "textMode": "auto",
+        "wideLayout": true
+      },
+      "pluginVersion": "10.2.2",
+      "targets": [
+        {
+          "datasource": {
+            "type": "prometheus",
+            "uid": "PBFA97CFB590B2093"
+          },
+          "disableTextWrap": false,
+          "editorMode": "builder",
+          "expr": "haproxy_server_up{job=\"haproxy\"}",
+          "fullMetaSearch": false,
+          "includeNullMetadata": true,
+          "instant": false,
+          "legendFormat": "__auto",
+          "range": true,
+          "refId": "A",
+          "useBackend": false
+        }
+      ],
+      "title": "Haproxy server status",
+      "type": "stat"
+    },
+    {
+      "datasource": {
+        "type": "prometheus",
+        "uid": "PBFA97CFB590B2093"
+      },
+      "fieldConfig": {
+        "defaults": {
+          "color": {
+            "mode": "thresholds"
+          },
+          "mappings": [
+            {
+              "options": {
+                "0": {
+                  "index": 1,
+                  "text": "DOWN"
+                },
+                "1": {
+                  "index": 0,
+                  "text": "UP"
+                }
+              },
+              "type": "value"
+            }
+          ],
+          "thresholds": {
+            "mode": "absolute",
+            "steps": [
+              {
+                "color": "green",
+                "value": null
+              },
+              {
+                "color": "red",
+                "value": 80
+              }
+            ]
+          }
+        },
+        "overrides": []
+      },
+      "gridPos": {
+        "h": 3,
+        "w": 3,
+        "x": 12,
         "y": 12
       },
-      "id": 6,
+      "id": 31,
       "options": {
-        "displayLabels": [
-          "value"
-        ],
-        "legend": {
-          "displayMode": "table",
-          "placement": "right",
-          "showLegend": true
-        },
-        "pieType": "pie",
+        "colorMode": "value",
+        "graphMode": "area",
+        "justifyMode": "auto",
+        "orientation": "auto",
         "reduceOptions": {
           "calcs": [
             "lastNotNull"
@@ -932,11 +1129,10 @@
           "fields": "",
           "values": false
         },
-        "tooltip": {
-          "mode": "single",
-          "sort": "none"
-        }
+        "textMode": "auto",
+        "wideLayout": true
       },
+      "pluginVersion": "10.2.2",
       "targets": [
         {
           "datasource": {
@@ -945,7 +1141,7 @@
           },
           "disableTextWrap": false,
           "editorMode": "builder",
-          "expr": "mysql_global_status_commands_total",
+          "expr": "influxdb_exporter_stats_query_success{instance=\"stealandsell-2:9424\"}",
           "fullMetaSearch": false,
           "includeNullMetadata": true,
           "instant": false,
@@ -955,8 +1151,8 @@
           "useBackend": false
         }
       ],
-      "title": "MySQL global status commands total",
-      "type": "piechart"
+      "title": "InfluxDB health",
+      "type": "stat"
     },
     {
       "datasource": {
@@ -966,42 +1162,25 @@
       "fieldConfig": {
         "defaults": {
           "color": {
-            "mode": "palette-classic"
+            "mode": "thresholds"
           },
-          "custom": {
-            "axisBorderShow": false,
-            "axisCenteredZero": false,
-            "axisColorMode": "text",
-            "axisLabel": "",
-            "axisPlacement": "auto",
-            "barAlignment": 0,
-            "drawStyle": "line",
-            "fillOpacity": 0,
-            "gradientMode": "none",
-            "hideFrom": {
-              "legend": false,
-              "tooltip": false,
-              "viz": false
-            },
-            "insertNulls": false,
-            "lineInterpolation": "linear",
-            "lineWidth": 1,
-            "pointSize": 5,
-            "scaleDistribution": {
-              "type": "linear"
-            },
-            "showPoints": "auto",
-            "spanNulls": false,
-            "stacking": {
-              "group": "A",
-              "mode": "none"
-            },
-            "thresholdsStyle": {
-              "mode": "off"
+          "mappings": [
+            {
+              "options": {
+                "1": {
+                  "color": "yellow",
+                  "index": 1,
+                  "text": "Backup"
+                },
+                "2": {
+                  "color": "green",
+                  "index": 0,
+                  "text": "Master"
+                }
+              },
+              "type": "value"
             }
-          },
-          "decimals": 2,
-          "mappings": [],
+          ],
           "thresholds": {
             "mode": "absolute",
             "steps": [
@@ -1014,32 +1193,33 @@
                 "value": 80
               }
             ]
-          },
-          "unit": "short"
+          }
         },
         "overrides": []
       },
       "gridPos": {
-        "h": 8,
-        "w": 12,
-        "x": 12,
-        "y": 14
+        "h": 3,
+        "w": 5,
+        "x": 15,
+        "y": 12
       },
-      "id": 13,
+      "id": 36,
       "options": {
-        "legend": {
+        "colorMode": "value",
+        "graphMode": "area",
+        "justifyMode": "auto",
+        "orientation": "auto",
+        "reduceOptions": {
           "calcs": [
             "lastNotNull"
           ],
-          "displayMode": "list",
-          "placement": "bottom",
-          "showLegend": true
+          "fields": "",
+          "values": false
         },
-        "tooltip": {
-          "mode": "single",
-          "sort": "none"
-        }
+        "textMode": "auto",
+        "wideLayout": true
       },
+      "pluginVersion": "10.2.2",
       "targets": [
         {
           "datasource": {
@@ -1048,7 +1228,7 @@
           },
           "disableTextWrap": false,
           "editorMode": "builder",
-          "expr": "node_memory_Active_bytes{instance=\"MichalKaiser-2:9100\"}",
+          "expr": "keepalived_vrrp_state{job=\"keepalived\"}",
           "fullMetaSearch": false,
           "includeNullMetadata": true,
           "instant": false,
@@ -1058,411 +1238,24 @@
           "useBackend": false
         }
       ],
-      "title": "Memory michalkaiser-2",
-      "type": "timeseries"
-    },
-    {
-      "datasource": {
-        "type": "influxdb",
-        "uid": "P0E6B6F82A46E86A5"
-      },
-      "fieldConfig": {
-        "defaults": {
-          "color": {
-            "mode": "palette-classic"
-          },
-          "custom": {
-            "axisBorderShow": false,
-            "axisCenteredZero": false,
-            "axisColorMode": "text",
-            "axisLabel": "",
-            "axisPlacement": "auto",
-            "barAlignment": 0,
-            "drawStyle": "line",
-            "fillOpacity": 0,
-            "gradientMode": "none",
-            "hideFrom": {
-              "legend": false,
-              "tooltip": false,
-              "viz": false
-            },
-            "insertNulls": false,
-            "lineInterpolation": "linear",
-            "lineWidth": 2,
-            "pointSize": 5,
-            "scaleDistribution": {
-              "type": "linear"
-            },
-            "showPoints": "auto",
-            "spanNulls": false,
-            "stacking": {
-              "group": "A",
-              "mode": "none"
-            },
-            "thresholdsStyle": {
-              "mode": "off"
-            }
-          },
-          "mappings": [],
-          "thresholds": {
-            "mode": "absolute",
-            "steps": [
-              {
-                "color": "green",
-                "value": null
-              },
-              {
-                "color": "red",
-                "value": 80
-              }
-            ]
-          }
-        },
-        "overrides": []
-      },
-      "gridPos": {
-        "h": 8,
-        "w": 12,
-        "x": 0,
-        "y": 20
-      },
-      "id": 12,
-      "options": {
-        "legend": {
-          "calcs": [],
-          "displayMode": "list",
-          "placement": "bottom",
-          "showLegend": true
-        },
-        "tooltip": {
-          "mode": "single",
-          "sort": "none"
-        }
-      },
-      "pluginVersion": "10.2.2",
-      "targets": [
-        {
-          "datasource": {
-            "type": "influxdb",
-            "uid": "P0E6B6F82A46E86A5"
-          },
-          "groupBy": [
-            {
-              "params": [
-                "10s"
-              ],
-              "type": "time"
-            },
-            {
-              "params": [
-                "dst::tag"
-              ],
-              "type": "tag"
-            },
-            {
-              "params": [
-                "null"
-              ],
-              "type": "fill"
-            }
-          ],
-          "measurement": "rtt",
-          "orderByTime": "ASC",
-          "policy": "autogen",
-          "query": "SELECT mean(\"value\") FROM \"rtt\" WHERE $timeFilter GROUP BY time(1s) fill(null)",
-          "rawQuery": false,
-          "refId": "A",
-          "resultFormat": "time_series",
-          "select": [
-            [
-              {
-                "params": [
-                  "rtt"
-                ],
-                "type": "field"
-              },
-              {
-                "params": [],
-                "type": "distinct"
-              }
-            ]
-          ],
-          "tags": [
-            {
-              "key": "dst::tag",
-              "operator": "=",
-              "value": "vutbr.cz"
-            },
-            {
-              "condition": "OR",
-              "key": "dst::tag",
-              "operator": "=",
-              "value": "google.com"
-            }
-          ]
-        }
-      ],
-      "title": "Pinger for google.com and vutbr.cz",
-      "type": "timeseries"
-    },
-    {
-      "datasource": {
-        "type": "prometheus",
-        "uid": "PBFA97CFB590B2093"
-      },
-      "fieldConfig": {
-        "defaults": {
-          "color": {
-            "mode": "palette-classic"
-          },
-          "custom": {
-            "axisBorderShow": false,
-            "axisCenteredZero": false,
-            "axisColorMode": "text",
-            "axisLabel": "",
-            "axisPlacement": "auto",
-            "barAlignment": 0,
-            "drawStyle": "line",
-            "fillOpacity": 0,
-            "gradientMode": "none",
-            "hideFrom": {
-              "legend": false,
-              "tooltip": false,
-              "viz": false
-            },
-            "insertNulls": false,
-            "lineInterpolation": "linear",
-            "lineWidth": 1,
-            "pointSize": 5,
-            "scaleDistribution": {
-              "type": "linear"
-            },
-            "showPoints": "auto",
-            "spanNulls": false,
-            "stacking": {
-              "group": "A",
-              "mode": "none"
-            },
-            "thresholdsStyle": {
-              "mode": "off"
-            }
-          },
-          "decimals": 2,
-          "mappings": [],
-          "thresholds": {
-            "mode": "absolute",
-            "steps": [
-              {
-                "color": "green"
-              },
-              {
-                "color": "red",
-                "value": 80
-              }
-            ]
-          },
-          "unit": "short"
-        },
-        "overrides": []
-      },
-      "gridPos": {
-        "h": 8,
-        "w": 12,
-        "x": 12,
-        "y": 22
-      },
-      "id": 14,
-      "options": {
-        "legend": {
-          "calcs": [],
-          "displayMode": "list",
-          "placement": "bottom",
-          "showLegend": true
-        },
-        "tooltip": {
-          "mode": "single",
-          "sort": "none"
-        }
-      },
-      "targets": [
-        {
-          "datasource": {
-            "type": "prometheus",
-            "uid": "PBFA97CFB590B2093"
-          },
-          "disableTextWrap": false,
-          "editorMode": "builder",
-          "expr": "node_memory_Active_bytes{instance=\"MichalKaiser-1:9100\"}",
-          "fullMetaSearch": false,
-          "includeNullMetadata": true,
-          "instant": false,
-          "legendFormat": "__auto",
-          "range": true,
-          "refId": "A",
-          "useBackend": false
-        }
-      ],
-      "title": "Memory MichalKaiser-1",
-      "type": "timeseries"
-    },
-    {
-      "datasource": {
-        "type": "influxdb",
-        "uid": "P0E6B6F82A46E86A5"
-      },
-      "fieldConfig": {
-        "defaults": {
-          "color": {
-            "mode": "palette-classic"
-          },
-          "custom": {
-            "axisBorderShow": false,
-            "axisCenteredZero": false,
-            "axisColorMode": "text",
-            "axisLabel": "",
-            "axisPlacement": "auto",
-            "barAlignment": 0,
-            "drawStyle": "line",
-            "fillOpacity": 0,
-            "gradientMode": "none",
-            "hideFrom": {
-              "legend": false,
-              "tooltip": false,
-              "viz": false
-            },
-            "insertNulls": false,
-            "lineInterpolation": "linear",
-            "lineWidth": 2,
-            "pointSize": 5,
-            "scaleDistribution": {
-              "type": "linear"
-            },
-            "showPoints": "auto",
-            "spanNulls": false,
-            "stacking": {
-              "group": "A",
-              "mode": "none"
-            },
-            "thresholdsStyle": {
-              "mode": "off"
-            }
-          },
-          "mappings": [],
-          "thresholds": {
-            "mode": "absolute",
-            "steps": [
-              {
-                "color": "green"
-              },
-              {
-                "color": "red",
-                "value": 80
-              }
-            ]
-          }
-        },
-        "overrides": []
-      },
-      "gridPos": {
-        "h": 8,
-        "w": 12,
-        "x": 0,
-        "y": 28
-      },
-      "id": 15,
-      "options": {
-        "legend": {
-          "calcs": [],
-          "displayMode": "list",
-          "placement": "bottom",
-          "showLegend": true
-        },
-        "tooltip": {
-          "mode": "single",
-          "sort": "none"
-        }
-      },
-      "pluginVersion": "10.2.2",
-      "targets": [
-        {
-          "datasource": {
-            "type": "influxdb",
-            "uid": "P0E6B6F82A46E86A5"
-          },
-          "groupBy": [
-            {
-              "params": [
-                "10s"
-              ],
-              "type": "time"
-            },
-            {
-              "params": [
-                "dst::tag"
-              ],
-              "type": "tag"
-            },
-            {
-              "params": [
-                "null"
-              ],
-              "type": "fill"
-            }
-          ],
-          "measurement": "rtt",
-          "orderByTime": "ASC",
-          "policy": "autogen",
-          "query": "SELECT mean(\"value\") FROM \"rtt\" WHERE $timeFilter GROUP BY time(1s) fill(null)",
-          "rawQuery": false,
-          "refId": "A",
-          "resultFormat": "time_series",
-          "select": [
-            [
-              {
-                "params": [
-                  "rtt"
-                ],
-                "type": "field"
-              },
-              {
-                "params": [],
-                "type": "distinct"
-              }
-            ]
-          ],
-          "tags": [
-            {
-              "key": "dst::tag",
-              "operator": "=",
-              "value": "cloudflare.com"
-            },
-            {
-              "condition": "OR",
-              "key": "dst::tag",
-              "operator": "=",
-              "value": "ttu.ee"
-            }
-          ]
-        }
-      ],
-      "title": "Pinger for ttu.ee and cloudfare.com",
-      "type": "timeseries"
+      "title": "Keepalived state",
+      "type": "stat"
     }
   ],
-  "refresh": "",
-  "schemaVersion": 39,
+  "refresh": "10s",
+  "schemaVersion": 38,
   "tags": [],
   "templating": {
     "list": []
   },
   "time": {
-    "from": "now-3h",
+    "from": "now-5m",
     "to": "now"
   },
   "timepicker": {},
   "timezone": "",
-  "title": "main",
-  "uid": "cc33ffbd-987f-4a0b-92c5-1c46d6231e51",
+  "title": "Main",
+  "uid": "JjQv_Bp4z",
   "version": 1,
   "weekStart": ""
 }
