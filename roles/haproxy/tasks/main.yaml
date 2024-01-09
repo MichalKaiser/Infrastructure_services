@@ -2,6 +2,8 @@
   apt: 
     name: 
       - haproxy
+      - prometheus-haproxy-exporter
+
 
 
 - name: Copy HAproxy conf file
@@ -13,6 +15,7 @@
     - { src: "haproxy.scrape-uri.j2", dest: "/etc/default/prometheus-haproxy-exporter" }
   notify:
     - restart haproxy
+    - restart haproxy exporter
 
 
 - name: Start HAproxy on boot
@@ -22,3 +25,5 @@
     enabled: yes
   loop:
     - haproxy
+    - prometheus-haproxy-exporter
+
