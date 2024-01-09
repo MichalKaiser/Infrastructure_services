@@ -1,9 +1,11 @@
 MichalKaiser-1 ansible_host=193.40.156.67 ansible_port=15622 ansible_user=ubuntu
 MichalKaiser-2 ansible_host=193.40.156.67 ansible_port=10822 ansible_user=ubuntu
+MichalKaiser-3 ansible_host=193.40.156.67 ansible_port=9822 ansible_user=ubuntu
 
 [web_servers]
 MichalKaiser-1
 MichalKaiser-2
+MichalKaiser-3
 
 [db_master]
 MichalKaiser-2
@@ -13,10 +15,11 @@ MichalKaiser-2
 MichalKaiser-1
 
 [dns_primary]
-MichalKaiser-2
+MichalKaiser-3
 
 [dns_secondary]
 MichalKaiser-1
+MichalKaiser-2
 
 [dns_servers:children]
 dns_primary
@@ -27,16 +30,16 @@ MichalKaiser-1
 MichalKaiser-2
 
 [prometheus_servers]
-MichalKaiser-2
+MichalKaiser-3
 
 [grafana_servers]
-MichalKaiser-1
+MichalKaiser-3
 
 [influxdb_servers]
-MichalKaiser-2
+MichalKaiser-3
 
 [pinger_servers]
-MichalKaiser-2
+MichalKaiser-3
 
 [keepalived_servers]
 MichalKaiser-1

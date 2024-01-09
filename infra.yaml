@@ -19,12 +19,6 @@
       - dnsresolver
     tags: rsv
 
-  - name: Prometheus server
-    hosts: prometheus_servers
-    roles:
-      - prometheus
-    tags: pm
-
   - name: Database server
     hosts: db_servers
     roles:
@@ -45,6 +39,12 @@
       - nginx_exporter
       - nginx
     tags: wb
+
+  - name: Prometheus server
+    hosts: prometheus_servers
+    roles:
+      - prometheus
+    tags: pm
 
   - name: Grafana server
     hosts: grafana_servers

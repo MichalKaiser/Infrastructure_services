@@ -129,7 +129,8 @@ dns_cname_records:
   mysql2: "{{ groups['db_servers'][1] }}"
   dns1: "{{ groups['dns_servers'][0] }}"
   dns2: "{{ groups['dns_servers'][1] }}"
+  dns3: "{{ groups['dns_servers'][2]}}"
   prometheus: "{{ groups['prometheus_servers'][0] }}"
   web1: "{{ groups['web_servers'][0] }}"
   web2: "{{ groups['web_servers'][1] }}"
-
+  web3: "{{ groups['web_servers'][2] }}"
