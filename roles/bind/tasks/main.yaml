@@ -21,6 +21,6 @@
 - name: Copy file with o cybera.mk for bind9 service
   ansible.builtin.template:
     src: zone.j2
-    dest: /var/lib/bind/db.cybera.mk
+    dest: /var/cache/bind/db.cybera.mk
   notify: "rndc reload"
 
