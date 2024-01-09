@@ -43,4 +43,17 @@ scrape_configs:
 {% for vm in groups['influxdb_servers'] %}
            - {{ vm }}:{{ prometheus_exporters['influxdb']['port'] }}
 {% endfor %}
+
+ - job_name: haproxy
+    static_configs:
+      - targets:
+{% for vm in groups['haproxy_servers'] %}
+           - {{ vm }}:{{ prometheus_exporters['haproxy']['port'] }}
+{% endfor %}
           
+  - job_name: keepalived
+    static_configs:
+      - targets:
+{% for vm in groups['keepalived_servers'] %}
+           - {{ vm }}:{{ prometheus_exporters['keepalived']['port'] }}
+{% endfor %}          
