@@ -65,4 +65,8 @@
       - pinger
     tags: pg
 
-
+  - name: Keepalived
+    hosts: keepalived_servers
+    roles:
+      - keepalived
+    tags: ka

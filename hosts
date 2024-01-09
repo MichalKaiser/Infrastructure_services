@@ -31,3 +31,6 @@ MichalKaiser-2
 [pinger_servers]
 MichalKaiser-2
 
+[keepalived_servers]
+MichalKaiser-1
+MichalKaiser-2

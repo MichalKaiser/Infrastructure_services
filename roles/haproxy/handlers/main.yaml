@@ -1,0 +1,10 @@
+- name: Daemon reload
+  ansible.builtin.systemd:
+    daemon_reload: yes
+  listen: "Daemon reload"
+
+- name: Restart mysql-exporter
+  service:
+    name: prometheus-mysqld-exporter
+    state: restarted
+  listen: "restart mysql-exporter service"
