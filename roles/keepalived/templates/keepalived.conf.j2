@@ -21,9 +21,9 @@ vrrp_instance my_ha_frontend {
     advert_int 1
     virtual_ipaddress {
        {% if MK1_ip_add.startswith('192.168.42.') %}
-		192.168.100.{{ vm1_ip.split('.')[-1] }}/24
+		192.168.100.{{ MK1_ip_add.split('.')[-1] }}/24
 	{% elif MK1_ip_add.startswith('192.168.43.') %}
-		192.168.101.{{ vm1_ip.split('.')[-1] }}/24
+		192.168.101.{{ MK1_ip_add.split('.')[-1] }}/24
 	{% endif %}
       }
     unicast_peer {
