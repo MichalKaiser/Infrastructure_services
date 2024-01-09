@@ -1,11 +1,14 @@
-  - name: Restart prometheus9
-    service:
-      name: prometheus
-      state: restarted
-    listen: "prometheus service reload"
+- name: reload daemon
+  shell: "systemctl daemon-reload"
 
-  - name: Restart nginx
-    service:
-      name: nginx
-      state: restarted
-    listen: "restart nginx service"
+- name: restart prometheus
+  service:
+    name: prometheus
+    state: restarted
+    enabled: yes
+
+- name: restart nginx
+  service:
+    name: nginx
+    state: restarted
+    enabled: yes

@@ -1,23 +1,26 @@
-- name: Install the newest version of Prometheus
-  ansible.builtin.apt:
-    name: prometheus
-    state: present
+- name: install prometheus
+  apt:
+    name: 
+      - prometheus
 
-- name: Copy file prom.yml to /etc/prometheus/prometheus.yml
-  ansible.builtin.template:
-    src: prom.yml.j2
-    dest: /etc/prometheus/prometheus.yml
-  notify: "prometheus service reload"
+- name: copy confs
+  template:
+    src: "{{ item.src }}"
+    dest: "{{ item.dest }}"
+  loop:
+    - { src: "prom.yml.j2", dest: "/etc/prometheus/prometheus.yml" }
+    - { src: "prometheus.j2", dest: "/etc/systemd/system/prometheus.service" }
+  notify: 
+    - reload daemon
+    - restart prometheus
+    - restart nginx
 
-- name: Copy file prometheus.j2 to /etc/default/prometheus
-  ansible.builtin.template:
-    src: prometheus.j2
-    dest: /etc/default/prometheus
-  notify: "prometheus service reload"
 
-- name: start Prometheus service
-  ansible.builtin.service:
+- name: execute handlers
+  meta: flush_handlers
+
+- name: start prometheus
+  service:
     name: prometheus
     state: started
-    enabled: true
-
+    enabled: yes

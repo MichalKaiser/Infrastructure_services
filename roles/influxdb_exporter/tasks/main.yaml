@@ -1,22 +1,19 @@
----
-- name: Download influxstats exporter
+- name: Prometheus influxdb exporter
   get_url:
     url: https://github.com/carlpett/influxdb_stats_exporter/releases/download/v0.1.1/influx_stats_exporter_linux_amd64
-    dest: /usr/local/bin/
-    mode: '0777'
-    owner: prometheus
+    dest: /usr/local/bin/influx_stats_exporter_linux_amd64
+    mode: 0555
 
-- name: CP Service
+- name: Copy service template
   template:
     src: influxdb-stats-exporter.service.j2
-    dest: /etc/systemd/system/influxdb-stats-exporter.service
-    owner: prometheus
+    dest: /etc/systemd/system/prometheus-influxdb-stats-exporter.service
   notify:
-    - daemon-reload
-    - restart
+    - reload daemon
+    - restart influxdb exporter
 
-- name: Enable exporter
+- name: Influxdb Exporter
   service:
-    name: influxdb-stats-exporter
+    name: prometheus-influxdb-stats-exporter
     state: started
     enabled: yes

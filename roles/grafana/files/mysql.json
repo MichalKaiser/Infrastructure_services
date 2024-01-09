@@ -90,9 +90,10 @@
           "fields": "",
           "values": false
         },
-        "textMode": "auto"
+        "textMode": "auto",
+        "wideLayout": true
       },
-      "pluginVersion": "9.2.6",
+      "pluginVersion": "10.2.3",
       "targets": [
         {
           "datasource": {
@@ -155,9 +156,10 @@
           "fields": "",
           "values": false
         },
-        "textMode": "auto"
+        "textMode": "auto",
+        "wideLayout": true
       },
-      "pluginVersion": "9.2.6",
+      "pluginVersion": "10.2.3",
       "targets": [
         {
           "datasource": {
@@ -236,9 +238,10 @@
           "fields": "",
           "values": false
         },
-        "textMode": "auto"
+        "textMode": "auto",
+        "wideLayout": true
       },
-      "pluginVersion": "9.2.6",
+      "pluginVersion": "10.2.3",
       "targets": [
         {
           "datasource": {
@@ -317,9 +320,10 @@
           "fields": "",
           "values": false
         },
-        "textMode": "auto"
+        "textMode": "auto",
+        "wideLayout": true
       },
-      "pluginVersion": "9.2.6",
+      "pluginVersion": "10.2.3",
       "targets": [
         {
           "datasource": {
@@ -398,9 +402,10 @@
           "fields": "",
           "values": false
         },
-        "textMode": "auto"
+        "textMode": "auto",
+        "wideLayout": true
       },
-      "pluginVersion": "9.2.6",
+      "pluginVersion": "10.2.3",
       "targets": [
         {
           "datasource": {
@@ -418,8 +423,7 @@
     }
   ],
   "refresh": "5s",
-  "schemaVersion": 37,
-  "style": "dark",
+  "schemaVersion": 39,
   "tags": [],
   "templating": {
     "list": []
@@ -432,6 +436,6 @@
   "timezone": "",
   "title": "MySQL",
   "uid": "9EnNv5DVk",
-  "version": 1,
+  "version": 2,
   "weekStart": ""
 }

@@ -1,9 +1,5 @@
-- name: stop
-  docker_container:
-    name: grafana
-    state: stopped
-
-- name: start
+- name: restart grafana
   docker_container:
     name: grafana
     state: started
+    restart: yes

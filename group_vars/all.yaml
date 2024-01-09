@@ -1,25 +1,25 @@
-#ssh_port_server1: 42622
-#ssh_port_server2: 27122
-#http_port_server1: 42680
-#http_port_server2: 27180
-
 ssh_port_server1: "{{ hostvars['MichalKaiser-1'].ansible_port }}"
 http_port_server1: "{{ hostvars['MichalKaiser-1'].ansible_port | regex_replace('22$', '80') }}"
 ssh_port_server2: "{{ hostvars['MichalKaiser-2'].ansible_port }}"
 http_port_server2: "{{ hostvars['MichalKaiser-2'].ansible_port | regex_replace('22$', '80') }}"
 
+vm1_ip: "{{ hostvars['MichalKaiser-1']['ansible_default_ipv4']['address'] }}"
+vm2_ip: "{{ hostvars['MichalKaiser-2']['ansible_default_ipv4']['address'] }}"
+
 backup_server: 192.168.42.132
 backup_server_sshkey: ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIEu6pFFWyuRrl4WGFPQGElYN9txwTGm2wSntcpVAaN90
 
+rsyslog_port: 6514
 docker_grafana_port: 3001
 #agama_nginx: 5000 
 agama_starting_port: 8001
 agama_containers_per_host: 2
 
-bind_resolver: 192.168.43.105 # MichalKaiser-1 allways
-#bind_resolver: "{{ hostvars['MichalKaiser-1'].ansible_host }}"
+bind_resolver: "{{ vm1_ip }}"
 startup_name: cybera
 domain_name: "{{startup_name}}.mk"
+
+localhost: 127.0.0.1
 
 dns_servers: 1.1.1.1; 8.8.8.8; 9.9.9.9;
 dns_acl: 192.168.42.0/23; 127.0.0.0/8; 172.17.0.0/16;
@@ -79,3 +79,19 @@ grafana_password: !vault |
           3733373934396662310a663431386132623965323436366231633436376262383934396363383566
           3635
 
+
+prometheus_exporters:
+  node:
+    port: 9100
+  nginx:
+    port: 9113
+  mysql:
+    port: 9104
+  bind:
+    port: 9119
+  influxdb:
+    port: 9424
+  haproxy:
+    port: 9101
+  keepalived:
+    port: 9165

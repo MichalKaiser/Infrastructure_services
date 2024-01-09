@@ -1,7 +1,7 @@
-- name: restart
-  service:
-    name: influxdb-stats-exporter
-    state: restarted
-
-- name: daemon-reload
+- name: reload daemon
   shell: "systemctl daemon-reload"
+
+- name: restart influxdb exporter
+  service:
+    name: prometheus-influxdb-stats-exporter
+    state: restarted

@@ -1,24 +1,13 @@
-# Sample config for Prometheus.
-
 global:
-  scrape_interval:     15s # Set the scrape interval to every 15 seconds. Default is every 1 
-  evaluation_interval: 15s # Evaluate rules every 15 seconds. The default is every 1 minute.
-  external_labels:
-      monitor: 'example'
+  scrape_interval:     15s
+  evaluation_interval: 15s
 
-alerting:
-  alertmanagers:
-  - static_configs:
-    - targets: ['localhost:9093']
-
-rule_files:
 scrape_configs:
-  - job_name: 'prometheus'
-    scrape_interval: 5s
-    scrape_timeout: 5s
-    metrics_path: /prometheus/metrics
+  - job_name: prometheus
+    metrics_path: '/prometheus/metrics'
     static_configs:
-      - targets: ['localhost:9090']
+      - targets: 
+          - {{localhost}}:9090
 
   - job_name: linux
     static_configs:
@@ -26,26 +15,32 @@ scrape_configs:
 {% for vm in groups['all'] %}
           - {{ vm }}:9100
 {% endfor %}
-   
-  - job_name: bind9
+          
+  - job_name: nginx_exporters
     static_configs:
       - targets:
-          - michalkaiser-1:9119
+{% for vm in groups['web_servers'] %}
+          - {{ vm }}:{{ prometheus_exporters['nginx']['port'] }}
+{% endfor %}
 
-  - job_name: Mysql
+  - job_name: mysql_exporter
     static_configs:
       - targets:
-          - michalkaiser-2:9104
-          - michalkaiser-1:9014
-  
+{% for vm in groups['db_servers'] %}
+          - {{ vm }}:{{ prometheus_exporters['mysql']['port']}}
+{% endfor %}
+
+  - job_name: bind_exporter
+    static_configs:
+      - targets:
+{% for vm in groups['dns_servers'] %}
+          - {{ vm }}:{{ prometheus_exporters['bind']['port']}}
+{% endfor %}
+
   - job_name: influxdb
     static_configs:
       - targets:
-          - michalkaiser-2:9424
-
-  - job_name: Nginx
-    static_configs:
-      - targets:
-{% for vm in groups['all'] %}
-          - {{ vm }}:9113
+{% for vm in groups['influxdb_servers'] %}
+           - {{ vm }}:{{ prometheus_exporters['influxdb']['port'] }}
 {% endfor %}
+          

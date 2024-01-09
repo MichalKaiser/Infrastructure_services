@@ -1,65 +1,37 @@
-- name: Create the grafana user
-  ansible.builtin.user:
-    name: grafana
-    uid: 472
-    state: present
-
-- name: folder with correct permissions datasources
-  file:
-    name: /opt/grafana/provisioning/datasources
+- name: create dirs
+  ansible.builtin.file:
+    path: "{{ item }}"
     state: directory
-    recurse: yes #gives permissions for subfolders also
-
-- name: folder with correct permissions dashboards
-  file:
-    name: /opt/grafana/provisioning/dashboards
-    state: directory
-    recurse: yes #gives permissions for subfolders also
-
-- name: Config
-  template:
-    src: grafana.ini.j2
-    dest: /opt/grafana/grafana.ini
-  notify:
-    - stop
-    - start
-  no_log: True
-
-- name: Datasources
-  template:
-    src: datasource.yaml.j2
-    dest: /opt/grafana/provisioning/datasources/default.yaml
-  notify:
-    - stop
-    - start
-
-- name: dashboards yaml
-  template:
-    src: dashboards.yaml.j2
-    dest: /opt/grafana/provisioning/dashboards/default.yaml
-  notify:
-    - stop
-    - start
-
-- name: copy dashboards
-  copy:
+    recurse: yes
+  loop:
+    - /opt/grafana/provisioning/dashboards
+    - /opt/grafana/provisioning/datasources
+    
+- name: copy confs
+  ansible.builtin.template:
+    src: "{{ item.src }}"
+    dest: "{{ item.dest }}"
+  loop:
+    - { src: "grafana.ini.j2", dest: "/opt/grafana/grafana.ini" }
+    - { src: "datasources.yaml.j2", dest: "/opt/grafana/provisioning/datasources/default.yaml" }
+    - { src: "dashboard.yaml.j2", dest: "/opt/grafana/provisioning/dashboards/default.yaml" }
+  no_log: true
+  notify: restart grafana
+  
+- name: Copy jsons
+  ansible.builtin.copy:
     src: "{{ item }}"
-    dest: /opt/grafana/provisioning/dashboards
-  with_fileglob:
-    - ../files/*.json
-  notify:
-    - stop
-    - start
+    dest: "/opt/grafana/provisioning/dashboards/{{ item }}"
+  loop:
+    - main.json
+    - mysql.json
+    - syslog.json
 
-- name: grafana container
-  docker_container:
+- name: run grafna in docker
+  community.docker.docker_container:
+    container_default_behavior: no_defaults
     name: grafana
     image: grafana/grafana
-    env:
-      GF_SERVER_ROOT_URL: "http://{{ ansible_host }}:{{ ansible_port // 100 }}80/grafana"
-      GF_SERVER_SERVE_FROM_SUB_PATH: "true"
-    volumes:
-      - /opt/grafana:/etc/grafana #cp local:docker
-    ports:
-      - "{{docker_grafana_port}}:3000"
+    published_ports: "{{ docker_grafana_port }}:3000"
+    volumes: /opt/grafana:/etc/grafana
     restart_policy: always
