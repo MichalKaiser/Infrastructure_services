@@ -13,10 +13,10 @@ MichalKaiser-2
 MichalKaiser-1
 
 [dns_primary]
-MichalKaiser-1
+MichalKaiser-2
 
 [dns_secondary]
-MichalKaiser-2
+MichalKaiser-1
 
 [dns_servers:children]
 dns_primary

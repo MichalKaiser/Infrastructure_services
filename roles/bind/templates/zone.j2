@@ -14,5 +14,3 @@ $TTL	604800
 {% for vm in hostvars %}
 {{ hostvars[vm]['inventory_hostname'] }}	IN	A	{{ hostvars[vm]['ansible_default_ipv4']['address'] }}
 {% endfor %}
-
-backup.cybera.mk    IN A {{backup_server}}

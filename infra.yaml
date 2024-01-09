@@ -39,18 +39,18 @@
      # - uwsgi
     tags: ag
 
-  - name: Grafana server
-    hosts: grafana_servers
-    roles:
-      - grafana
-    tags: gf
-  
   - name: Web server
     hosts: web_servers
     roles:
       - nginx_exporter
       - nginx
     tags: wb
+
+  - name: Grafana server
+    hosts: grafana_servers
+    roles:
+      - grafana
+    tags: gf
 
   - name: InfluxDB server
     hosts: influxdb_servers

@@ -1,7 +1,7 @@
 acl cybera { {{ dns_acl }} };
 
 options {
-	directory "/var/lib/bind";
+	directory "/var/cache/bind/";
 	
 	forwarders {
 	  {{ dns_servers }}
@@ -9,18 +9,20 @@ options {
 
 	allow-query {cybera;};
 	dnssec-validation no;
+	auth-nxdomain no;
+	listen-on-v6 { any; };
 };
 
 statistics-channels {
-  inet localhost port 8053 allow { localhost; };
+  inet {{ localhost }} port 8053 allow { {{ localhost }}; };
 };
 
-key "transfer.key" {
+key "{{dns_transfer_key_name}}" {
 	algorithm hmac-sha256;
 	secret "{{ dns_transfer_key }}";
 };
 
-key "update.key" {
+key "{{dns_update_key_name}}" {
 	algorithm hmac-sha256;
 	secret "{{ dns_update_key }}";
 };

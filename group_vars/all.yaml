@@ -22,8 +22,6 @@ bind_resolver: "{{ MK1_ip_add }}"
 startup_name: cybera
 domain_name: "{{startup_name}}.mk"
 
-localhost: 127.0.0.1
-
 dns_servers: 1.1.1.1; 8.8.8.8; 9.9.9.9;
 dns_acl: 192.168.42.0/23; 127.0.0.0/8; 172.17.0.0/16;
 
@@ -120,19 +118,18 @@ prometheus_exporters:
 
 
 dns_a_records:
-  backup: "{{backup_ip}}"
+  backup: "{{backup_server}}"
   
 dns_cname_records:
-  grafana: "{{ groups['grafana'][0] }}"
-  influxdb: "{{ groups['influxdb'][0] }}"
-  haproxy1: "{{ groups['haproxy'][0] }}"
-  haproxy2: "{{ groups['haproxy'][1] }}"
+  grafana: "{{ groups['grafana_servers'][0] }}"
+  influxdb: "{{ groups['influxdb_servers'][0] }}"
+  haproxy1: "{{ groups['haproxy_servers'][0] }}"
+  haproxy2: "{{ groups['haproxy_servers'][1] }}"
   mysql1: "{{ groups['db_servers'][0] }}"
   mysql2: "{{ groups['db_servers'][1] }}"
   dns1: "{{ groups['dns_servers'][0] }}"
   dns2: "{{ groups['dns_servers'][1] }}"
-  dns3: "{{ groups['dns_servers'][2] }}"
-  prometheus: "{{ groups['prometheus'][0] }}"
+  prometheus: "{{ groups['prometheus_servers'][0] }}"
   web1: "{{ groups['web_servers'][0] }}"
   web2: "{{ groups['web_servers'][1] }}"
 

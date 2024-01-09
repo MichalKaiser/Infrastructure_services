@@ -31,8 +31,8 @@
     dest: "{{ item.dest }}"
     force: no
   loop: 
-    - { src: "zone.j2", dest: "/var/cache/bind/db.gamblinggreats.io" }
-    - { src: "sec_zone.j2", dest: "/var/cache/bind/db.reverse" }
+    - { src: "zone.j2", dest: "/var/cache/bind/db.cybera.mk" }
+    - { src: "sec_zone.j2", dest: "/var/cache/bind/db.recursive" }
   when: inventory_hostname in groups['dns_primary']
   notify: reload rndc 
   no_log: true
@@ -52,7 +52,7 @@
     value: "{{ item.value }}"
   loop: "{{ dns_a_records | dict2items }}"
   when: inventory_hostname in groups['dns_primary']
-  no_log: true
+#  no_log: true
 
 - name: Set CNAME 
   nsupdate:
@@ -67,4 +67,4 @@
   loop: "{{ dns_cname_records | dict2items }}"
   when: inventory_hostname in groups['dns_primary']
   tags: cname
-  no_log: true
+#  no_log: true

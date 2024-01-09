@@ -7,7 +7,7 @@ zone "{{ domain_name }}" {
     type slave;
     masters { {{ hostvars[groups['dns_primary'][0]]['ansible_default_ipv4']['address'] }}; }; 
 {% endif %}
-    file "zone";
+    file "db.{{ domain_name }}";
 };
 
 {% if inventory_hostname not in groups ['dns_primary'] %}
@@ -25,5 +25,5 @@ zone "168.192.in-addr.arpa" {
     type slave;
     masters { {{ hostvars[groups['dns_primary'][0]]['ansible_default_ipv4']['address'] }}; }; 
 {% endif %}
-    file "sec_zone";
+    file "db.recursive";
 };
