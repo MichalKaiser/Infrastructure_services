@@ -1,4 +1,29 @@
-zone "cybera.mk" {
-  type primary;
-  file "db.cybera.mk";
+zone "{{ domain_name }}" {
+{% if inventory_hostname in groups ['dns_primary'] %}
+    type master;
+    allow-update {key {{dns_update_key_name}};};
+    allow-transfer { {{localhost}}; key {{dns_transfer_key_name}};};
+{% else %}
+    type slave;
+    masters { {{ hostvars[groups['dns_primary'][0]]['ansible_default_ipv4']['address'] }}; }; 
+{% endif %}
+    file "zone";
+};
+
+{% if inventory_hostname not in groups ['dns_primary'] %}
+server {{ hostvars[groups['dns_primary'][0]]['ansible_default_ipv4']['address'] }} {
+    keys { {{dns_transfer_key_name}};};
+};
+{% endif %}
+
+zone "168.192.in-addr.arpa" {
+{% if inventory_hostname in groups ['dns_primary'] %}
+    type master;
+    allow-update {key {{dns_update_key_name}};};
+    allow-transfer { {{localhost}}; key {{dns_transfer_key_name}};};
+{% else %}
+    type slave;
+    masters { {{ hostvars[groups['dns_primary'][0]]['ansible_default_ipv4']['address'] }}; }; 
+{% endif %}
+    file "sec_zone";
 };

@@ -1,17 +1,18 @@
 $TTL	604800
-cybera.mk.	IN	SOA	vm1.cybera.mk. michal.cybera.mk. (
+{{domain_name}}.	IN	SOA	{{domain_name}}. ubuntu.{{domain_name}}. (
 			      2		; Serial
 			 604800		; Refresh
 			  86400		; Retry
 			2419200		; Expire
 			 604800 )	; Negative Cache TTL
 ;
+
 {% for vm in groups['dns_servers'] %}
-cybera.mk.	IN	NS	{{ vm }}
+{{domain_name}}.	IN	NS	{{ vm }}.{{domain_name}}.
 {% endfor %}
 
-{% for vm in groups['all'] %}
-{{ vm }}	IN	A	{{ hostvars[vm]['ansible_default_ipv4']['address'] }}
+{% for vm in hostvars %}
+{{ hostvars[vm]['inventory_hostname'] }}	IN	A	{{ hostvars[vm]['ansible_default_ipv4']['address'] }}
 {% endfor %}
 
 backup.cybera.mk    IN A {{backup_server}}

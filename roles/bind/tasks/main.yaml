@@ -1,26 +1,70 @@
-- name: Install the newest version of package "bind9"
-  ansible.builtin.apt:
-    name: bind9
-    state: present
+- name: Install bind
+  apt:
+    name: 
+      - bind9
+      - python3-dnspython 
+    state: latest
 
-- name: Copy file with owner and permission of named.conf.options for bind9 service
-  ansible.builtin.template:
-    src: named.conf.{{ item }}.j2
-    dest: /etc/bind/named.conf.{{ item }}
-  loop:
-    - options
-    - local
-  notify: "restart bind9 service"
-
-- name: start bind9 service
-  ansible.builtin.service:
+- name: Enable Bind9
+  service:
     name: bind9
     state: started
-    enabled: true
+    enabled: yes
 
-- name: Copy file with o cybera.mk for bind9 service
-  ansible.builtin.template:
-    src: zone.j2
-    dest: /var/cache/bind/db.cybera.mk
-  notify: "rndc reload"
 
+- name: copy confs
+  template:
+    src: "{{ item.src }}"
+    dest: "{{ item.dest }}"
+  loop:
+    - { src: "named.conf.options.j2", dest: "/etc/bind/named.conf.options" }
+    - { src: "named.conf.local.j2", dest: "/etc/bind/named.conf.local" }
+  no_log: true
+  notify: 
+    - restart bind9
+    - reload rndc
+    
+
+- name: copy master zone file
+  template:
+    src: "{{ item.src }}"
+    dest: "{{ item.dest }}"
+    force: no
+  loop: 
+    - { src: "zone.j2", dest: "/var/cache/bind/db.gamblinggreats.io" }
+    - { src: "sec_zone.j2", dest: "/var/cache/bind/db.reverse" }
+  when: inventory_hostname in groups['dns_primary']
+  notify: reload rndc 
+  no_log: true
+
+- name: Execute handlers preemptively
+  meta: flush_handlers
+
+- name: Set A records
+  nsupdate:
+    key_name: "{{dns_update_key_name}}"
+    key_algorithm: "hmac-sha256"
+    key_secret: "{{ dns_update_key }}"
+    server: "localhost"
+    zone: "{{ domain_name }}."
+    record: "{{ item.key }}.{{ domain_name }}."
+    type: "A"
+    value: "{{ item.value }}"
+  loop: "{{ dns_a_records | dict2items }}"
+  when: inventory_hostname in groups['dns_primary']
+  no_log: true
+
+- name: Set CNAME 
+  nsupdate:
+    key_name: "{{dns_update_key_name}}"
+    key_algorithm: "hmac-sha256"
+    key_secret: "{{dns_update_key}}"
+    server: "localhost"
+    zone: "{{ domain_name }}."
+    record: "{{ item.key }}.{{ domain_name }}."
+    type: "CNAME"
+    value: "{{ item.value }}.{{ domain_name }}."
+  loop: "{{ dns_cname_records | dict2items }}"
+  when: inventory_hostname in groups['dns_primary']
+  tags: cname
+  no_log: true

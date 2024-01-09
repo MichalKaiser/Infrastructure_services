@@ -664,17 +664,11 @@
             "type": "prometheus",
             "uid": "PBFA97CFB590B2093"
           },
-          "disableTextWrap": false,
-          "editorMode": "builder",
-          "expr": "nginx_up{job=\"nginx_exporters\"}",
-          "fullMetaSearch": false,
-          "hide": false,
-          "includeNullMetadata": true,
-          "instant": false,
+          "editorMode": "code",
+          "expr": "nginx_up",
           "legendFormat": "__auto",
           "range": true,
-          "refId": "A",
-          "useBackend": false
+          "refId": "A"
         }
       ],
       "title": "Nginx status",
@@ -867,6 +861,7 @@
           ]
         }
       ],
+      "timeFrom": "2h",
       "title": "latency",
       "type": "timeseries"
     },
@@ -956,8 +951,8 @@
             "uid": "PBFA97CFB590B2093"
           },
           "disableTextWrap": false,
-          "editorMode": "code",
-          "expr": "rate(influxdb_write_write_ok{instance=\"influxdb:9424\"}[15m])",
+          "editorMode": "builder",
+          "expr": "influxdb_write_write_ok{instance=\"stealandsell-2:9424\"}",
           "fullMetaSearch": false,
           "includeNullMetadata": true,
           "instant": false,
@@ -1216,7 +1211,7 @@
           },
           "disableTextWrap": false,
           "editorMode": "builder",
-          "expr": "influxdb_exporter_stats_query_success{job=\"influxdb\"}",
+          "expr": "influxdb_exporter_stats_query_success{instance=\"stealandsell-2:9424\"}",
           "fullMetaSearch": false,
           "includeNullMetadata": true,
           "instant": false,
@@ -1331,6 +1326,6 @@
   "timezone": "",
   "title": "Main",
   "uid": "JjQv_Bp4z",
-  "version": 3,
+  "version": 1,
   "weekStart": ""
 }
