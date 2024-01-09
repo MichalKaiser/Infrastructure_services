@@ -65,8 +65,14 @@
       - pinger
     tags: pg
 
-  - name: Keepalived
+  - name: Keepalived server
     hosts: keepalived_servers
     roles:
       - keepalived
     tags: ka
+
+  - name: HaProxy server
+    hosts: haproxy_servers
+    roles:
+      - haproxy
+    tags: hp

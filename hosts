@@ -34,3 +34,7 @@ MichalKaiser-2
 [keepalived_servers]
 MichalKaiser-1
 MichalKaiser-2
+
+[haproxy_servers]
+MichalKaiser-1
+MichalKaiser-2

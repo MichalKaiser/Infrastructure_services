@@ -6,7 +6,7 @@
 
 
 - name: Install Keepalived
-  ansible.builtin. apt: 
+  ansible.builtin.apt: 
     name: keepalived
 
 - name: Copy keepalived script file
