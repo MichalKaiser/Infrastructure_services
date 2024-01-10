@@ -9,6 +9,12 @@
   ansible.builtin.apt: 
     name: keepalived
 
+- name: Start keepalived on boot
+  ansible.builtin.service:
+    name: keepalived
+    state: started
+    enabled: true
+    
 - name: Copy keepalived script file
   ansible.builtin.copy:
     src: vrrp_script.sh
@@ -40,11 +46,8 @@
 - name: execute handlers
   meta: flush_handlers
 
-- name: Start keepalived on boot
-  service:
-    name: "{{ item }}"
+- name: Start keepalived-exporter
+  ansible.builtin.service:
+    name: keepalived_exporter
     state: started
     enabled: yes
-  loop:
-    - keepalived
-    - keepalived_exporter
