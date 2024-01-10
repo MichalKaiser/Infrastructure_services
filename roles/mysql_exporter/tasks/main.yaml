@@ -3,6 +3,11 @@
     name: prometheus-mysqld-exporter
     state: present
 
+- name: Create directory
+  file:
+    path: /var/lib/prometheus
+    state: directory
+
 - name: Copy .my.cnf template to /var/lib/prometheus/.my.cnf
   ansible.builtin.template:
     src: my.cnf.j2
@@ -24,6 +29,9 @@
     src: prometheus-mysqld-exporter.j2
     dest: /etc/default/prometheus-mysqld-exporter
   notify: restart mysql-exporter service
+
+- name: Force all notified handlers to run at this point, not waiting for normal sync points
+  meta: flush_handlers
 
 - name: Start MySQL exporter
   ansible.builtin.service:
