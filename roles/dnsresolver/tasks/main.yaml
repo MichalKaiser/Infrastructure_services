@@ -1,3 +1,9 @@
+- name: Stop systemd-resolved
+  ansible.builtin.service:
+    name: systemd-resolved
+    state: stopped
+    enabled: false
+
 - name: Copy file with owner and permission of resolv.conf
   ansible.builtin.template:
     src: resolv.conf.j2
