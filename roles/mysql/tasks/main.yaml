@@ -29,7 +29,10 @@
 - name: MySQL database
   community.mysql.mysql_db:
     name: "{{ mysql_database }}"
-    login_unix_socket: /var/run/mysqld/mysqld.sock    
+    login_unix_socket: /var/run/mysqld/mysqld.sock
+  notify:
+    - source reset
+    - reset replica
 
 - name: MySQL user Agama
   community.mysql.mysql_user:
@@ -48,6 +51,16 @@
     host: "%"
   no_log: true
 
+- name: replica server read_only
+  community.mysql.mysql_variables:
+    variable: read_only
+    value: "{{ 'OFF' if inventory_hostname == mysql_hostname else 'ON' }}"
+    mode: persist
+    login_unix_socket: /var/run/mysqld/mysqld.sock
+  notify:
+    - reset source
+    - reset replica
+
 - name: mysql directory
   ansible.builtin.file:
     path: /home/backup/mysql
@@ -55,13 +68,6 @@
     owner: backup
     group: backup
     mode: '0775'
-
-- name: MySql user for backup
-  mysql_user:
-    name: "{{mysql_user_backup}}"
-    password: "{{mysql_backup_password}}"
-    priv: '{{mysql_database}}.*:LOCK TABLES,SELECT'
-    login_unix_socket: /var/run/mysqld/mysqld.sock
 
 - name: cp my_mysql_backup.cnf.j2 to /home/backup/.my.cnf
   template:
@@ -73,19 +79,15 @@
     mode: '0600'
   no_log: true
 
+- name: MySql user for backup
+  mysql_user:
+    name: "{{mysql_user_backup}}"
+    password: "{{mysql_backup_password}}"
+    priv: '{{mysql_database}}.*:LOCK TABLES,SELECT'
+    login_unix_socket: /var/run/mysqld/mysqld.sock
+  no_log: true
+
 - name: Cronjob cp
   template:
     src: mysql-backup.j2
     dest: /etc/cron.d/mysql-backup
-    force: yes
-    mode: '0644'
-
-- name: replica server read_only
-  community.mysql.mysql_variables:
-    variable: read_only
-    value: "{{ 'OFF' if inventory_hostname == mysql_hostname else 'ON' }}"
-    mode: persist
-    login_unix_socket: /var/run/mysqld/mysqld.sock
-  notify:
-    - reset source
-    - reset replica
