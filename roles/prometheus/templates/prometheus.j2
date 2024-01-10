@@ -7,8 +7,7 @@ After=network-online.target
 User=prometheus
 Group=prometheus
 Type=simple
-ExecStart=/usr/bin/prometheus $ARGS --web.external-url=http://{{ ansible_host }}:{{ ansible_port + 
-58 }}/prometheus
+ExecStart=/usr/bin/prometheus $ARGS --web.external-url=http://{{ ansible_host }}:{{ ansible_port + 58 }}/prometheus
 
 
 [Install]
