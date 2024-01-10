@@ -2,13 +2,13 @@
   service:
     name: nginx
     state: restarted
-  listen: "restart nginx service"
+  listen: "restart nginx"
 
 - name: Reload systemd
   shell: "systemctl daemon-reload"
 
-- name: Restart nginx-exporter
+- name: Restart Nginx exporter
   service:
     name: prometheus-nginx-exporter
     state: restarted
-  listen: "restart nginx-exporter service"
+  listen: "Restart Nginx exporter"
