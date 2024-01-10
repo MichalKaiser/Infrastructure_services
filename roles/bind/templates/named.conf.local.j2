@@ -25,5 +25,5 @@ zone "168.192.in-addr.arpa" {
     type slave;
     masters { {{ hostvars[groups['dns_primary'][0]]['ansible_default_ipv4']['address'] }}; }; 
 {% endif %}
-    file "db.recursive";
+    file "db.reverse";
 };

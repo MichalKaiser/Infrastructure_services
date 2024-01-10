@@ -32,7 +32,7 @@
     force: no
   loop: 
     - { src: "zone.j2", dest: "/var/cache/bind/db.cybera.mk" }
-    - { src: "sec_zone.j2", dest: "/var/cache/bind/db.recursive" }
+    - { src: "sec_zone.j2", dest: "/var/cache/bind/db.reverse" }
   when: inventory_hostname in groups['dns_primary']
   notify: reload rndc 
   no_log: true
