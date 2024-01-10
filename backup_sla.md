@@ -32,4 +32,4 @@ To not cause business damage - backups should be restored within 1 hour and 12 m
 ## Make a backup
 
 `sudo runuser -u backup -- mysqldump agama > /home/backup/mysql/agama.sql`
-`sudo runuser -u backup -- duplicity --no-encryption full /home/backup/mysql/ rsync://redubr@backup.infra.rd/mysql`
+`sudo runuser -u backup -- duplicity --no-encryption full /home/backup/mysql/ rsync://MichalKaiser@backup.cybera.mk/mysql`
