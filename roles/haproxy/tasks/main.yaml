@@ -4,15 +4,6 @@
       - haproxy
       - prometheus-haproxy-exporter
 
-- name: Start HAproxy on boot
-  ansible.builtin.service:
-    name: "{{ item }}"
-    state: started
-    enabled: yes
-  loop:
-    - haproxy
-    - prometheus-haproxy-exporter
-
 - name: Copy HAproxy conf file
   ansible.builtin.template:
     src: "{{ item.src }}"
@@ -25,5 +16,12 @@
     - restart haproxy exporter
 
 
-
+- name: Start HAproxy on boot
+  ansible.builtin.service:
+    name: "{{ item }}"
+    state: started
+    enabled: yes
+  loop:
+    - haproxy
+    - prometheus-haproxy-exporter
 
