@@ -18,7 +18,9 @@
   template:
     src: pinger.conf.j2
     dest: /etc/pinger/pinger.conf
-  notify: Restart pinger
+  notify: 
+    - reload systemd
+    - restart pinger
 
 - name: Copy pinger script
   template:
@@ -30,9 +32,9 @@
   template:
     src: pinger.service.j2
     dest: /etc/systemd/system/pinger.service
-  notify:
-    - Daemon reload
-    - Restart pinger
+  notify: 
+    - reload systemd
+    - restart pinger
 
 - name: Start and enable pinger
   service:
