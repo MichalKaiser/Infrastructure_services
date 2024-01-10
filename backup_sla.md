@@ -9,10 +9,10 @@ Maximum amount of data that can be lost is one day. Past this is unacceptable da
 ## Versioning and retention
 
 ### MySQL: 
-Full backups are done daily at 23:10 UTC and incremental backups are done at 23:10 UTC on every day-of-week from Monday through Saturday.
+Full backups are done daily at 01:30 UTC and incremental backups are done at 45th minute every 6 hours.
 
 ### InfluxDB: 
-Full backups are done daily at 22:10 UTC and incremental backups are done at 22:10 UTC on every day-of-week from Monday through Saturday.
+Full backups are done every sunday at 23:20 UTC and incremental backups are done at 23:35 UTC on every day-of-week from Monday through Saturday.
 
 
 ## Versioning and retention
