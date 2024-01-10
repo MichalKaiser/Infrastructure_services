@@ -3,6 +3,12 @@
     name: 
       - prometheus
 
+- name: start prometheus
+  service:
+    name: prometheus
+    state: started
+    enabled: yes
+
 - name: copy confs
   template:
     src: "{{ item.src }}"
@@ -18,9 +24,3 @@
 
 - name: execute handlers
   meta: flush_handlers
-
-- name: start prometheus
-  service:
-    name: prometheus
-    state: started
-    enabled: yes
