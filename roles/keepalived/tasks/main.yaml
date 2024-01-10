@@ -9,7 +9,7 @@
   ansible.builtin.apt: 
     name: keepalived
 
-- name: Start keepalived on boot
+- name: Start keepalived
   ansible.builtin.service:
     name: keepalived
     state: started
