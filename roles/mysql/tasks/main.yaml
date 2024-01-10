@@ -61,6 +61,9 @@
     - reset source
     - reset replica
 
+- name: Force all notified handlers to run at this point, not waiting for normal sync points
+  meta: flush_handlers
+
 - name: mysql directory
   ansible.builtin.file:
     path: /home/backup/mysql
