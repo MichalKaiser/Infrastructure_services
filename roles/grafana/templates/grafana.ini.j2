@@ -3,7 +3,7 @@ admin_user = {{ grafana_login }}
 admin_password = {{ grafana_password }}
 
 [server]
-root_url = http://{{ hostvars[inventory_hostname]['ansible_default_ipv4']['address'] }}:{{ hostvars[inventory_hostname].ansible_port + 58 }}/grafana
+root_url = http://{{ ansible_host }}:{{ ansible_port+58 }}/grafana/
 serve_from_sub_path = true
 
 [dashboards]

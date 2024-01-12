@@ -25,8 +25,8 @@
     - reload rndc
     
 
-- name: copy master zone file
-  template:
+- name: copy main zone and reverse zone in to the primary dns servers
+  ansible.builtin.template:
     src: "{{ item.src }}"
     dest: "{{ item.dest }}"
     force: no
@@ -41,13 +41,13 @@
   meta: flush_handlers
 
 - name: Set A records
-  nsupdate:
+  community.general.nsupdate:
     key_name: "{{dns_update_key_name}}"
     key_algorithm: "hmac-sha256"
     key_secret: "{{ dns_update_key }}"
     server: "localhost"
-    zone: "{{ domain_name }}."
-    record: "{{ item.key }}.{{ domain_name }}."
+    zone: "{{ domain_name }}"
+    record: "{{ item.key }}"
     type: "A"
     value: "{{ item.value }}"
   loop: "{{ dns_a_records | dict2items }}"
@@ -60,10 +60,10 @@
     key_algorithm: "hmac-sha256"
     key_secret: "{{dns_update_key}}"
     server: "localhost"
-    zone: "{{ domain_name }}."
-    record: "{{ item.key }}.{{ domain_name }}."
+    zone: "{{ domain_name }}"
+    record: "{{ item.key }}"
     type: "CNAME"
-    value: "{{ item.value }}.{{ domain_name }}."
+    value: "{{ item.value }}"
   loop: "{{ dns_cname_records | dict2items }}"
   when: inventory_hostname in groups['dns_primary']
   tags: cname

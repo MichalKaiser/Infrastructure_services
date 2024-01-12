@@ -5,12 +5,13 @@ After=network-online.target
 
 [Service]
 Type=simple
-ExecStart=/usr/bin/prometheus $ARGS --web.external-url=http://{{ ansible_host }}:{{ ansible_port + 58 }}/prometheus
+ExecStart=/usr/bin/prometheus $ARGS --web.external-url=http://{{ 
+ansible_host }}:{{ ansible_port + 58 }}/prometheus
 
 
 [Install]
 WantedBy=multi-user.target
-
+	
 # Prometheus supports the following options:
 #  --config.file="/etc/prometheus/prometheus.yml"
 #                             Prometheus configuration file path.

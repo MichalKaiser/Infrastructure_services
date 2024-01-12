@@ -6,7 +6,7 @@ datasources:
     access: proxy
     orgId: 1
 {% for vm in groups['prometheus_servers'] %}
-    url: http://prometheus.cybera.mk:9090/prometheus
+    url: http://prometheus:9090/prometheus
 {% endfor %}
     password:
     user:
@@ -21,7 +21,7 @@ datasources:
     access: proxy
     orgId: 1
 {% for vm in groups['influxdb_servers'] %}
-    url: http://influxdb.cybera.mk:8086
+    url: http://influxdb:8086
 {% endfor %}
     password:
     user:
@@ -34,7 +34,7 @@ datasources:
     access: proxy
     orgId: 1
 {% for vm in groups['influxdb_servers'] %}
-    url: http:///influxdb.cybera.mk:8086
+    url: http:///influxdb:8086
 {% endfor %}
     password:
     user:

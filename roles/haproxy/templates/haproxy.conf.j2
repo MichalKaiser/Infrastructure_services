@@ -31,6 +31,12 @@ listen my_ha_frontend
 	{% set port = 8000 %}
 	{%- for item in range(1,agama_containers_per_host+1) -%}
 	{% for vm in groups['agama_servers'] -%}
-	server {{vm}}_{{item}}  {{vm}}.{{domain_name}}:{{port+item}} check
+	server {{vm}}_{{item}}  {{vm}}:{{port+item}} check
 	{% endfor %}
 	{%- endfor -%}
+
+listen stats
+    bind *:9188
+    stats enable
+    stats uri /stats
+	stats refresh 5s

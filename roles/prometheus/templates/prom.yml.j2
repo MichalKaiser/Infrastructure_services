@@ -13,47 +13,47 @@ scrape_configs:
     static_configs:
       - targets:
 {% for vm in groups['dns_servers'] %}
-           - dns{{ groups['dns_servers'].index(vm) + 1 }}.{{ domain_name }}:9100
+           - dns{{ groups['dns_servers'].index(vm) + 1 }}:9100
 {% endfor %}
           
   - job_name: nginx_exporters
     static_configs:
       - targets:
 {% for vm in groups['web_servers'] %}
-           - web{{ groups['web_servers'].index(vm) + 1 }}.{{ domain_name }}:{{ prometheus_exporters['nginx']['port'] }}
+           - web{{ groups['web_servers'].index(vm) + 1 }}:{{ prometheus_exporters['nginx']['port'] }}
 {% endfor %}
 
   - job_name: mysql_exporter
     static_configs:
       - targets:
 {% for vm in groups['db_servers'] %}
-           - mysql{{ groups['db_servers'].index(vm) + 1 }}.{{ domain_name }}:{{ prometheus_exporters['mysql']['port'] }}
+           - mysql{{ groups['db_servers'].index(vm) + 1 }}:{{ prometheus_exporters['mysql']['port'] }}
 {% endfor %}
 
   - job_name: bind_exporter
     static_configs:
       - targets:
 {% for vm in groups['dns_servers'] %}
-           - dns{{ groups['dns_servers'].index(vm) + 1 }}.{{ domain_name }}:{{ prometheus_exporters['bind']['port'] }}
+           - dns{{ groups['dns_servers'].index(vm) + 1 }}:{{ prometheus_exporters['bind']['port'] }}
 {% endfor %}
 
   - job_name: influxdb
     static_configs:
       - targets:
 {% for vm in groups['influxdb_servers'] %}
-           - influxdb.{{ domain_name }}:{{ prometheus_exporters['influxdb']['port'] }}
+           - influxdb:{{ prometheus_exporters['influxdb']['port'] }}
 {% endfor %}
           
   - job_name: haproxy
     static_configs:
       - targets:
 {% for vm in groups['haproxy_servers'] %}
-           - haproxy{{ groups['haproxy_servers'].index(vm) + 1 }}.{{ domain_name }}:{{ prometheus_exporters['haproxy']['port'] }}
+           - haproxy{{ groups['haproxy_servers'].index(vm) + 1 }}:{{ prometheus_exporters['haproxy']['port'] }}
 {% endfor %}
           
   - job_name: keepalived
     static_configs:
       - targets:
 {% for vm in groups['keepalived_servers'] %}
-           - haproxy{{ groups['keepalived_servers'].index(vm) + 1 }}.{{ domain_name }}:{{ prometheus_exporters['keepalived']['port'] }}
+           - haproxy{{ groups['keepalived_servers'].index(vm) + 1 }}:{{ prometheus_exporters['keepalived']['port'] }}
 {% endfor %}

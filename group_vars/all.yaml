@@ -30,7 +30,7 @@ prom_mon_host: "{{ ansible_host }}:{{ ansible_port//100}}80"
 web_url_grafana: "{{ ansible_host }}:{{ ansible_port//100}}80" # public_ip:machine_one_http_port - have to be changed every time
 
 mysql_bind_address: 0.0.0.0
-mysql_host: "{{groups['db_master'][0]}}.{{domain_name}}"
+mysql_host: "{{groups['db_master'][0]}}"
 mysql_hostname: "{{mysql_host}}"
 mysql_backup_host: "{{ groups['db_servers'] | reject('eq', mysql_host) | first | default(mysql_host) }}"
 mysql_database: agama
