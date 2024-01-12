@@ -19,7 +19,7 @@
   loop:
     - { src: "named.conf.options.j2", dest: "/etc/bind/named.conf.options" }
     - { src: "named.conf.local.j2", dest: "/etc/bind/named.conf.local" }
-  no_log: true
+ # no_log: true
   notify: 
     - restart bind9
     - reload rndc
@@ -35,14 +35,14 @@
     - { src: "sec_zone.j2", dest: "/var/cache/bind/db.reverse" }
   when: inventory_hostname in groups['dns_primary']
   notify: reload rndc 
-  no_log: true
+#  no_log: true
 
 - name: Execute handlers preemptively
   meta: flush_handlers
 
 - name: Set A records
   community.general.nsupdate:
-    key_name: "{{dns_update_key_name}}"
+    key_name: "{{ dns_update_key_name }}"
     key_algorithm: "hmac-sha256"
     key_secret: "{{ dns_update_key }}"
     server: "localhost"
@@ -56,9 +56,9 @@
 
 - name: Set CNAME 
   nsupdate:
-    key_name: "{{dns_update_key_name}}"
+    key_name: "{{ dns_update_key_name }}"
     key_algorithm: "hmac-sha256"
-    key_secret: "{{dns_update_key}}"
+    key_secret: "{{ dns_update_key }}"
     server: "localhost"
     zone: "{{ domain_name }}"
     record: "{{ item.key }}"
@@ -66,5 +66,5 @@
     value: "{{ item.value }}"
   loop: "{{ dns_cname_records | dict2items }}"
   when: inventory_hostname in groups['dns_primary']
-  tags: cname
+#  tags: cname
 #  no_log: true

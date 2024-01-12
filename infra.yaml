@@ -3,7 +3,6 @@
     hosts: all
     roles:
       - init
-      - docker
     tags: in
 
   - name: DNS server
@@ -18,6 +17,15 @@
     roles:
       - dnsresolver
     tags: rsv
+  
+  - name: Docker file on all machines
+    hosts: all
+    roles:
+      - docker
+    tags:
+      - dc
+      - doc
+      - docker
 
   - name: Database server
     hosts: db_servers
