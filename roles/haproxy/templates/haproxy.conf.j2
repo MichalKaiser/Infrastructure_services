@@ -36,7 +36,7 @@ listen my_ha_frontend
 	{%- endfor -%}
 
 listen stats
-    bind *:9188
+    bind *:{{ haproxy_bind_port }}
     stats enable
     stats uri /stats
 	stats refresh 5s

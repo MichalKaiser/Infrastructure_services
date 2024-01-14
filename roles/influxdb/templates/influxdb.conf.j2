@@ -10,7 +10,7 @@
 [shard-precreation]
 [monitor]
 [http]
-  bind-address = ":8086"
+  bind-address = ":{{ influxdb_port }}"
   log-enabled = false
   write-tracing = false
 [logging]

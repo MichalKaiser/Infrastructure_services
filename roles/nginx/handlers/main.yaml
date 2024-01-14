@@ -1,5 +1,5 @@
 - name: Restart nginx
-  service:
+  asible.builtin.service:
     name: nginx
     state: restarted
   listen: "restart nginx"
@@ -8,7 +8,7 @@
   shell: "systemctl daemon-reload"
 
 - name: Restart Nginx exporter
-  service:
+  ansible.builtin.service:
     name: prometheus-nginx-exporter
     state: restarted
   listen: "Restart Nginx exporter"

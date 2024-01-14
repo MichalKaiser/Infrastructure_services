@@ -5,24 +5,25 @@
 
 - name: Create directory
   file:
-    path: /var/lib/prometheus
-    state: directory
+  path: /var/lib/prometheus
+  state: directory
 
 - name: Copy .my.cnf template to /var/lib/prometheus/.my.cnf
   ansible.builtin.template:
     src: my.cnf.j2
     dest: /var/lib/prometheus/.my.cnf
   notify:
-      - Daemon reload
-      - restart mysql-exporter service
+    - Daemon reload
+    - restart mysql-exporter service
 
 - name: Create MySQL Exporter user
   community.mysql.mysql_user:
-     name: "{{ mysql_exporter_user }}"
-     password: "{{ mysql_exporter_password }}"
-     host: "%"
-     login_unix_socket: /var/run/mysqld/mysqld.sock
-     priv: '*.*:PROCESS,REPLICATION CLIENT,SELECT'
+    name: "{{ mysql_exporter_user }}"
+    password: "{{ mysql_exporter_password }}"
+    host: "%"
+    login_unix_socket: /var/run/mysqld/mysqld.sock
+    priv: '*.*:PROCESS,REPLICATION CLIENT,SELECT'
+  no_log: true
 
 - name: Add prometheus-mysqld-exporter file to /etc/default/prometheus-mysqld-exporter
   ansible.builtin.template:

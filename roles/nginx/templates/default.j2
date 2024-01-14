@@ -1,5 +1,5 @@
 server {
-	listen 80 default_server;
+	listen {{ http_def_port }} default_server;
 	server_name _;
         client_max_body_size 1000M;
 
@@ -12,7 +12,7 @@ server {
 
 {% if inventory_hostname in groups['prometheus_servers'] %}
         location /prometheus {
-                proxy_pass http://localhost:9090;               
+                proxy_pass http://localhost:{{ prom_port }};               
         }
 {% endif %}
 
@@ -27,7 +27,7 @@ server {
 }
 
 server {
-    listen 8080 default_server;
+    listen {{ http_stup_status_port }} default_server;
     location = /stub_status {
         stub_status;
     }

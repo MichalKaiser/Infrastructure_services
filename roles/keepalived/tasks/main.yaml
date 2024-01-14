@@ -4,7 +4,6 @@
     home: /home/keepalived_script
     shell: /bin/bash
 
-
 - name: Install Keepalived
   ansible.builtin.apt: 
     name: keepalived

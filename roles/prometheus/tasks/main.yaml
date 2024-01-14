@@ -1,16 +1,15 @@
 - name: install prometheus
-  apt:
-    name: 
-      - prometheus
+  asible.builtin.apt:
+    name: prometheus
 
 - name: start prometheus
-  service:
+  ansible.builtin.service:
     name: prometheus
     state: started
     enabled: yes
 
 - name: copy confs
-  template:
+  ansible.builtin.template:
     src: "{{ item.src }}"
     dest: "{{ item.dest }}"
   loop:
@@ -20,7 +19,6 @@
     - reload daemon
     - restart prometheus
     - restart nginx
-
 
 - name: execute handlers
   meta: flush_handlers

@@ -1,5 +1,5 @@
 - name: Download packages
-  get_url:
+  ansible.builtin.get_url:
     url: "{{ item.url }}"
     dest: "{{ item.dest }}"
   loop:
@@ -42,6 +42,6 @@
     mode: 0700
 
 - name: influxdb backup cronjob
-  template:
+  ansible.builtin.template:
     src: influxdb_backup.j2
     dest: /etc/cron.d/influxdb-backup

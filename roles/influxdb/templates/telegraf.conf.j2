@@ -12,4 +12,4 @@
   omit_hostname = false
 [[outputs.influxdb]]
 [[inputs.syslog]]
-  server = "udp://influxdb:6514"
+  server = "udp://influxdb:{{ rsyslog_port }}"

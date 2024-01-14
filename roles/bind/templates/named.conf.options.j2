@@ -12,7 +12,7 @@ options {
 };
 
 statistics-channels {
-  inet {{ localhost }} port 8053 allow { {{ localhost }}; };
+  inet {{ localhost }} port {{ dns_stat_port }} allow { {{ localhost }}; };
 };
 
 key "{{dns_transfer_key_name}}" {

@@ -7,13 +7,13 @@ scrape_configs:
     metrics_path: '/prometheus/metrics'
     static_configs:
       - targets: 
-           - {{localhost}}:9090
+           - {{localhost}}:{{ prom_port }}
 
   - job_name: linux
     static_configs:
       - targets:
 {% for vm in groups['dns_servers'] %}
-           - dns{{ groups['dns_servers'].index(vm) + 1 }}:9100
+           - MichalKaiser-{{ groups['dns_servers'].index(vm) + 1 }}:{{ prometheus_exporters['node']['port'] }}
 {% endfor %}
           
   - job_name: nginx_exporters

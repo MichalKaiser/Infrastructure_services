@@ -41,6 +41,7 @@
     login_unix_socket: /var/run/mysqld/mysqld.sock
     host: "%"
     priv: "{{ mysql_database }}.*:ALL"
+  no_log: true
 
 - name: MySql user for replication
   community.mysql.mysql_user:
@@ -73,7 +74,7 @@
     mode: '0775'
 
 - name: cp my_mysql_backup.cnf.j2 to /home/backup/.my.cnf
-  template:
+  ansible.builtin.template:
     src: my_mysql_backup.cnf.j2
     dest: /home/backup/.my.cnf
     owner: backup
@@ -83,7 +84,7 @@
   no_log: true
 
 - name: MySql user for backup
-  mysql_user:
+  community.mysql.mysql_user:
     name: "{{mysql_user_backup}}"
     password: "{{mysql_backup_password}}"
     priv: '{{mysql_database}}.*:LOCK TABLES,SELECT'
@@ -91,6 +92,6 @@
   no_log: true
 
 - name: Cronjob cp
-  template:
+  community.mysql.template:
     src: mysql-backup.j2
     dest: /etc/cron.d/mysql-backup
