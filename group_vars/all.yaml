@@ -1,28 +1,104 @@
+#IP ADDRESSES
+#**********************************************************************************************
+
 MK1_ip_add: "{{ hostvars['MichalKaiser-1']['ansible_default_ipv4']['address'] }}"
 MK2_ip_add: "{{ hostvars['MichalKaiser-2']['ansible_default_ipv4']['address'] }}"
 
 localhost: 127.0.0.1
 
-backup_server: 192.168.42.132
-backup_server_sshkey: ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIEu6pFFWyuRrl4WGFPQGElYN9txwTGm2wSntcpVAaN90
+web_url_grafana: "{{ ansible_host }}:{{ ansible_port//100}}80"
+
+#PORTS
+#**********************************************************************************************
 
 rsyslog_port: 6514
 docker_grafana_port: 3001
-#agama_nginx: 5000 
+agama_out_port: 8000
 agama_starting_port: 8001
 agama_containers_per_host: 2
 haproxy_port: 88
 
-bind_resolver: "{{ MK1_ip_add }}"
+#BACKUP SERVER
+#**********************************************************************************************
+
+backup_server: 192.168.42.132
+backup_server_sshkey: ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIEu6pFFWyuRrl4WGFPQGElYN9txwTGm2wSntcpVAaN90
+
+#STARTUP NAME AND DOMAIN
+#**********************************************************************************************
+
 startup_name: cybera
 domain_name: "{{startup_name}}.mk"
+
+#BIND AND RESOLVER
+#**********************************************************************************************
 
 dns_servers: 1.1.1.1; 8.8.8.8; 9.9.9.9;
 dns_acl: 192.168.42.0/23; 127.0.0.0/8; 172.17.0.0/16;
 
+bind_resolver: "{{ MK1_ip_add }}"
+dns_a_records:
+  backup: "{{ backup_server }}"
+  
+dns_cname_records:
+  grafana: "{{ groups['grafana_servers'][0] }}"
+  influxdb: "{{ groups['influxdb_servers'][0] }}"
+  haproxy1: "{{ groups['haproxy_servers'][0] }}"
+  haproxy2: "{{ groups['haproxy_servers'][1] }}"
+  mysql1: "{{ groups['db_servers'][0] }}"
+  mysql2: "{{ groups['db_servers'][1] }}"
+  dns1: "{{ groups['dns_servers'][0] }}"
+  dns2: "{{ groups['dns_servers'][1] }}"
+  dns3: "{{ groups['dns_servers'][2]}}"
+  prometheus: "{{ groups['prometheus_servers'][0] }}"
+  web1: "{{ groups['web_servers'][0] }}"
+  web2: "{{ groups['web_servers'][1] }}"
+  web3: "{{ groups['web_servers'][2] }}"
+  rsyslog: "{{ groups['influxdb_servers'][0] }}"
+
+dns_transfer_key_name: transfer
+dns_transfer_key: !vault |
+          $ANSIBLE_VAULT;1.1;AES256
+          38313936653262646432393166343563646435616132386233326266383965626232333133313636
+          3239313539613265643032326164653435633130303439320a386538383461386363623633616238
+          32323737376635333036656639643435383632343661656362653736316336656261393166396332
+          3865653364666233640a616339333865656637623030303231663737383962323062366537306530
+          34363333326437633935333466623234656462323132663539316538353733653533373831326539
+          3632366533613731626439663537306261643665623736353961
+
+dns_update_key_name: update
+dns_update_key: !vault |
+          $ANSIBLE_VAULT;1.1;AES256
+          39343233643966383230356361303030666135373830616664323031303436653736656263333131
+          3563646664306637313363316561363131633666353531310a363838643162343136656363313438
+          39343636353665623730646332373333343432306631616439363664633066343332313939303336
+          3765616234323666350a633436323162346539303739353332656632303431656336306464643138
+          62623030333530386535333064316536333435313032616465613137633165363761643131346233
+          3566616665626566323932383432623737386163346466663463
+
+#PROMETHEUS
+#**********************************************************************************************
+
 prom_mon_host: "{{ ansible_host }}:{{ ansible_port//100}}80"
 
-web_url_grafana: "{{ ansible_host }}:{{ ansible_port//100}}80" # public_ip:machine_one_http_port - have to be changed every time
+prometheus_exporters:
+  node:
+    port: 9100
+  nginx:
+    port: 9113
+  mysql:
+    port: 9104
+  bind:
+    port: 9119
+  influxdb:
+    port: 9424
+  haproxy:
+    port: 9101
+  keepalived:
+    port: 9165
+
+#MYSQL SERVER
+#**********************************************************************************************
 
 mysql_bind_address: 0.0.0.0
 mysql_host: "{{groups['db_master'][0]}}"
@@ -74,58 +150,3 @@ grafana_password: !vault |
           64383665616435623433666331356166656136373831343132353564373763353763386562626333
           3733373934396662310a663431386132623965323436366231633436376262383934396363383566
           3635
-
-dns_transfer_key_name: transfer
-dns_transfer_key: !vault |
-          $ANSIBLE_VAULT;1.1;AES256
-          38313936653262646432393166343563646435616132386233326266383965626232333133313636
-          3239313539613265643032326164653435633130303439320a386538383461386363623633616238
-          32323737376635333036656639643435383632343661656362653736316336656261393166396332
-          3865653364666233640a616339333865656637623030303231663737383962323062366537306530
-          34363333326437633935333466623234656462323132663539316538353733653533373831326539
-          3632366533613731626439663537306261643665623736353961
-
-dns_update_key_name: update
-dns_update_key: !vault |
-          $ANSIBLE_VAULT;1.1;AES256
-          39343233643966383230356361303030666135373830616664323031303436653736656263333131
-          3563646664306637313363316561363131633666353531310a363838643162343136656363313438
-          39343636353665623730646332373333343432306631616439363664633066343332313939303336
-          3765616234323666350a633436323162346539303739353332656632303431656336306464643138
-          62623030333530386535333064316536333435313032616465613137633165363761643131346233
-          3566616665626566323932383432623737386163346466663463
-
-prometheus_exporters:
-  node:
-    port: 9100
-  nginx:
-    port: 9113
-  mysql:
-    port: 9104
-  bind:
-    port: 9119
-  influxdb:
-    port: 9424
-  haproxy:
-    port: 9101
-  keepalived:
-    port: 9165
-
-
-dns_a_records:
-  backup: "{{ backup_server }}"
-  
-dns_cname_records:
-  grafana: "{{ groups['grafana_servers'][0] }}"
-  influxdb: "{{ groups['influxdb_servers'][0] }}"
-  haproxy1: "{{ groups['haproxy_servers'][0] }}"
-  haproxy2: "{{ groups['haproxy_servers'][1] }}"
-  mysql1: "{{ groups['db_servers'][0] }}"
-  mysql2: "{{ groups['db_servers'][1] }}"
-  dns1: "{{ groups['dns_servers'][0] }}"
-  dns2: "{{ groups['dns_servers'][1] }}"
-  dns3: "{{ groups['dns_servers'][2]}}"
-  prometheus: "{{ groups['prometheus_servers'][0] }}"
-  web1: "{{ groups['web_servers'][0] }}"
-  web2: "{{ groups['web_servers'][1] }}"
-  web3: "{{ groups['web_servers'][2] }}"

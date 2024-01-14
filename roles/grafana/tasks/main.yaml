@@ -26,6 +26,10 @@
     - main.json
     - mysql.json
     - syslog.json
+    - bind.json
+    - nginx.json
+    - status.json
+    - basic_system.json
 
 - name: run grafna in docker
   community.docker.docker_container:

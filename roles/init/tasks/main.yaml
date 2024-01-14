@@ -45,23 +45,6 @@
     state: started
     enabled: true
 
-- name: Install rsyslog
-  ansible.builtin.apt:
-     name: rsyslog
-     state: latest
-
-- name: Start rsyslog
-  ansible.builtin.service:
-    name: rsyslog
-    state: started
-    enabled: yes
-
-- name: Add file with a target address for logs
-  ansible.builtin.template:
-     src: 50-telegraf.conf.j2
-     dest: /etc/rsyslog.d/50-telegraf.conf
-  notify: Restart rsyslog
-
 - name: backup user
   ansible.builtin.user:
     name: backup
@@ -87,6 +70,6 @@
     mode: '0774'
 
 - name: ensure duplicity is installed
-  apt:
+  ansible.builtin.apt:
     name: duplicity
     state: latest

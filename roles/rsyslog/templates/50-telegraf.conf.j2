@@ -5,4 +5,6 @@ $ActionQueueSaveOnShutdown on # save in-memory data if rsyslog shuts down
 
 
 # uncomment to use udp according to RFC 5424
-*.* @{{ localhost }}:{{ rsyslog_port }};RSYSLOG_SyslogProtocol23Format
+{% for vm in groups['rsyslog_servers'] %}
+*.* @rsyslog:{{ rsyslog_port }};RSYSLOG_SyslogProtocol23Format
+{% endfor %}

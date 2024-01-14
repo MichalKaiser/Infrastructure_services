@@ -15,7 +15,7 @@
 - name: Build Docker image
   community.docker.docker_image:
     name: agama
-    source: build   # from where the module retrieve the image
+    source: build
     build:
       path: /opt/agama
 
@@ -23,7 +23,7 @@
   community.docker.docker_container:
     name: agama-{{ item }}
     image: agama
-    published_ports: "{{ agama_starting_port + item }}:8000"
+    published_ports: "{{ agama_starting_port + item }}:{{ agama_out_port }}"
     env:
        AGAMA_DATABASE_URI=mysql+pymysql://{{ mysql_user }}:{{ mysql_password }}@{{ mysql_host }}/{{ mysql_database }}
     restart_policy: always

@@ -20,7 +20,7 @@
   "fiscalYearStartMonth": 0,
   "gnetId": 12433,
   "graphTooltip": 0,
-  "id": 5,
+  "id": 2,
   "links": [],
   "liveNow": false,
   "panels": [
@@ -64,7 +64,7 @@
         "alertThreshold": true
       },
       "percentage": false,
-      "pluginVersion": "10.2.0",
+      "pluginVersion": "10.2.3",
       "pointradius": 2,
       "points": false,
       "renderer": "flot",
@@ -810,7 +810,7 @@
           }
         ]
       },
-      "pluginVersion": "10.2.0",
+      "pluginVersion": "10.2.3",
       "targets": [
         {
           "datasource": {
@@ -886,7 +886,7 @@
     }
   ],
   "refresh": "5s",
-  "schemaVersion": 38,
+  "schemaVersion": 39,
   "tags": [],
   "templating": {
     "list": [
@@ -1024,6 +1024,6 @@
   "timezone": "",
   "title": "Syslog",
   "uid": "TIYeHqRgZ",
-  "version": 2,
+  "version": 1,
   "weekStart": ""
 }

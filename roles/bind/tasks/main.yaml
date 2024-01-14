@@ -19,6 +19,7 @@
   loop:
     - { src: "named.conf.options.j2", dest: "/etc/bind/named.conf.options" }
     - { src: "named.conf.local.j2", dest: "/etc/bind/named.conf.local" }
+    - { src: "named.conf.j2", dest: "/etc/bind/named.conf"}
  # no_log: true
   notify: 
     - restart bind9

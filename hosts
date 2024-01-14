@@ -1,6 +1,6 @@
-MichalKaiser-1 ansible_host=193.40.156.67 ansible_port=32422 ansible_user=ubuntu
-MichalKaiser-2 ansible_host=193.40.156.67 ansible_port=29022 ansible_user=ubuntu
-MichalKaiser-3 ansible_host=193.40.156.67 ansible_port=39122 ansible_user=ubuntu
+MichalKaiser-1 ansible_host=193.40.156.67 ansible_port=29022 ansible_user=ubuntu
+MichalKaiser-2 ansible_host=193.40.156.67 ansible_port=30722 ansible_user=ubuntu
+MichalKaiser-3 ansible_host=193.40.156.67 ansible_port=41422 ansible_user=ubuntu
 
 [web_servers]
 MichalKaiser-1
@@ -24,6 +24,9 @@ MichalKaiser-2
 [dns_servers:children]
 dns_primary
 dns_secondary
+
+[rsyslog_servers]
+MichalKaiser-3
 
 [agama_servers]
 MichalKaiser-1

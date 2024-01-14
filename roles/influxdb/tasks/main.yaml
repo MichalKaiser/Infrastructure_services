@@ -21,7 +21,7 @@
     dest: "{{ item.dest }}"
   loop:
     - { src: "telegraf.conf.j2", dest: "/etc/telegraf/telegraf.conf" }
-    - { src: "influxdb.conf.j2", dest: "/etc/telegraf/influxdb.conf" }
+    - { src: "influxdb.conf.j2", dest: "/etc/influxdb/influxdb.conf" }
   notify: "restart telegraf"
   
 - name: Start and enable services

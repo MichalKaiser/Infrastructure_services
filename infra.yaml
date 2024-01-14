@@ -8,8 +8,8 @@
   - name: DNS server
     hosts: dns_servers
     roles:
-      - bind
       - bind_exporter
+      - bind
     tags: dns
  
   - name: DNS resolver
@@ -17,8 +17,16 @@
     roles:
       - dnsresolver
     tags: rsv
+   
+  - name: Rsyslog
+    hosts: all
+    roles:
+      - rsyslog
+    tags:
+      - rs
+      - log
   
-  - name: Docker file on all machines
+  - name: Docker servers
     hosts: all
     roles:
       - docker
@@ -52,20 +60,26 @@
     hosts: prometheus_servers
     roles:
       - prometheus
-    tags: pm
+    tags: 
+      - pm
+      - prom
 
   - name: Grafana server
     hosts: grafana_servers
     roles:
       - grafana
-    tags: gf
+    tags: 
+      - gf
+      - graf
 
   - name: InfluxDB server
     hosts: influxdb_servers
     roles:
       - influxdb
       - influxdb_exporter
-    tags: if
+    tags: 
+      - if
+      - infdb
 
   - name: Pinger server
     hosts: pinger_servers
@@ -77,10 +91,15 @@
     hosts: keepalived_servers
     roles:
       - keepalived
-    tags: ka
+    tags: 
+      - ka
+      - kplvd
 
   - name: HaProxy server
     hosts: haproxy_servers
     roles:
       - haproxy
-    tags: hp
+    tags: 
+      - hp
+      - haprx
+      - hprx

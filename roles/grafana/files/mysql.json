@@ -24,7 +24,7 @@
   "editable": true,
   "fiscalYearStartMonth": 0,
   "graphTooltip": 0,
-  "id": 2,
+  "id": 1,
   "links": [],
   "liveNow": false,
   "panels": [
@@ -436,6 +436,6 @@
   "timezone": "",
   "title": "MySQL",
   "uid": "9EnNv5DVk",
-  "version": 2,
+  "version": 1,
   "weekStart": ""
 }
