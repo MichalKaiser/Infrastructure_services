@@ -1,5 +1,5 @@
   - name: Restart bind9
-    service:
+    ansible.builtin.service:
       name: bind9
       state: restarted
     listen: "restart bind9"
