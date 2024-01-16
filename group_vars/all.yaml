@@ -12,6 +12,7 @@ web_url_grafana: "{{ ansible_host }}:{{ ansible_port//100}}80"
 #**********************************************************************************************
 
 rsyslog_port: 6514
+grafana_out_port: 3000
 docker_grafana_port: 3001
 agama_out_port: 8000
 dns_stat_port: 8053
@@ -21,6 +22,8 @@ prom_port: 9090
 agama_starting_port: 8001
 agama_containers_per_host: 2
 haproxy_port: 88
+influxdb_port: 8086
+haproxy_bind_port: 9188
 
 #BACKUP SERVER
 #**********************************************************************************************
@@ -108,9 +111,9 @@ mysql_bind_address: 0.0.0.0
 mysql_host: "{{groups['db_master'][0]}}"
 mysql_hostname: "{{mysql_host}}"
 mysql_backup_host: "{{ groups['db_servers'] | reject('eq', mysql_host) | first | default(mysql_host) }}"
+node_id: "{{ (ansible_port / 100) | int }}"
 mysql_database: agama
 mysql_user: agama
-node_id: "{{ (ansible_port / 100) | int }}"
 mysql_password: !vault |
           $ANSIBLE_VAULT;1.1;AES256
           35356166366264393634613061653861383434633538303565643339613731643965643339333066

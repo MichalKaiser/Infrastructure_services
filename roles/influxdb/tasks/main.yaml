@@ -39,7 +39,7 @@
     state: directory
     owner: backup
     group: backup
-    mode: 0700
+    mode: 0750
 
 - name: influxdb backup cronjob
   ansible.builtin.template:

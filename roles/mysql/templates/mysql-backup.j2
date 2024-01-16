@@ -1,5 +1,5 @@
 {% if inventory_hostname == mysql_backup_host %}
 15 1 * * * backup mysqldump agama > /home/backup/mysql/agama.sql
-30 1 * * *  backup duplicity --no-encryption full /home/backup/mysql/ rsync://MichalKaiser@backup.cybera.mk/mysql
-45 */6 * * *  backup duplicity --no-encryption incremental /home/backup/mysql/ rsync://MichalKaiser@backup.cybera.mk/mysql
+30 1 * * * backup duplicity --no-encryption full /home/backup/mysql/ rsync://MichalKaiser@backup.cybera.mk/mysql
+45 */6 * * * backup duplicity --no-encryption incremental /home/backup/mysql/ rsync://MichalKaiser@backup.cybera.mk/mysql
 {% endif %}

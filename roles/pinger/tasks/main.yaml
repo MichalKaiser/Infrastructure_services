@@ -1,21 +1,21 @@
 ---
 - name: ensure fping installed
-  asible.builtin.apt:
+  ansible.builtin.apt:
     name: fping
     state: latest
 
 - name: Create user pinger
-  asible.builtin.user:
+  ansible.builtin.user:
     name: pinger
 
 - name: Pinger config
-  asible.builtin.file:
+  ansible.builtin.file:
     path: /etc/pinger
     state: directory
     mode: '0751'
 
 - name: Copy pinger conf
-  asible.builtin.template:
+  ansible.builtin.template:
     src: pinger.conf.j2
     dest: /etc/pinger/pinger.conf
   notify: 
@@ -23,13 +23,13 @@
     - restart pinger
 
 - name: Copy pinger script
-  asible.builtin.template:
+  ansible.builtin.template:
     src: pinger.sh.j2
     dest: /usr/local/bin/pinger
     mode: '0777'
 
 - name: Copy pinger service
-  asible.builtin.template:
+  ansible.builtin.template:
     src: pinger.service.j2
     dest: /etc/systemd/system/pinger.service
   notify: 
@@ -37,7 +37,7 @@
     - restart pinger
 
 - name: Start and enable pinger
-  asible.builtin.service:
+  ansible.builtin.service:
     name: pinger
     state: started
     enabled: yes

@@ -2,7 +2,7 @@
   shell: "systemctl daemon-reload"
 
 - name: restart prometheus
-  asible.builtin.service:
+  ansible.builtin.service:
     name: prometheus
     state: restarted
     enabled: yes

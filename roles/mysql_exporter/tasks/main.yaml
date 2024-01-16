@@ -4,9 +4,9 @@
     state: present
 
 - name: Create directory
-  file:
-  path: /var/lib/prometheus
-  state: directory
+  ansible.builtin.file:
+    path: /var/lib/prometheus
+    state: directory
 
 - name: Copy .my.cnf template to /var/lib/prometheus/.my.cnf
   ansible.builtin.template:
