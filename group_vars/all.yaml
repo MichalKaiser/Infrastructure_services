@@ -19,8 +19,10 @@ dns_stat_port: 8053
 http_def_port: 80
 http_stup_status_port: 8080
 prom_port: 9090
+
 agama_starting_port: 8001
-agama_containers_per_host: 2
+agama_containers_per_host: 3
+
 haproxy_port: 88
 influxdb_port: 8086
 haproxy_bind_port: 9188

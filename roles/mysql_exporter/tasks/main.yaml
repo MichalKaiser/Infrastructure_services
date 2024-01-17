@@ -15,6 +15,7 @@
   notify:
     - Daemon reload
     - restart mysql-exporter service
+  no_log: true
 
 - name: Create MySQL Exporter user
   community.mysql.mysql_user:
