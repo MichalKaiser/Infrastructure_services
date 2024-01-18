@@ -9,13 +9,3 @@
 include "/etc/bind/named.conf.options";
 include "/etc/bind/named.conf.local";
 include "/etc/bind/named.conf.default-zones";
-
-logging {
-    channel default_syslog {
-        syslog daemon;    // Log to the syslog daemon facility
-        severity info;    // Log messages at 'info' severity or higher
-    };
-    category default {
-        default_syslog;   // Use the syslog channel for default logging
-    };
-};

@@ -30,6 +30,7 @@
     - nginx.json
     - status.json
     - basic_system.json
+  no_log:true
 
 - name: run grafna in docker
   community.docker.docker_container:
@@ -39,3 +40,4 @@
     published_ports: "{{ docker_grafana_port }}:{{ grafana_out_port }}"
     volumes: /opt/grafana:/etc/grafana
     restart_policy: always
+  no_log: true

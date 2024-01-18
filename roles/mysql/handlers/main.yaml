@@ -12,6 +12,7 @@
     - stopreplica
     - resetprimary
   when: inventory_hostname == mysql_host
+  no_log: true
 
 - name: reset replica
   community.mysql.mysql_replication:

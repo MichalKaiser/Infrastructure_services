@@ -30,6 +30,7 @@
   ansible.builtin.template:
     src: prometheus-mysqld-exporter.j2
     dest: /etc/default/prometheus-mysqld-exporter
+  no_log: true
   notify: restart mysql-exporter service
 
 - name: Force all notified handlers to run at this point, not waiting for normal sync points

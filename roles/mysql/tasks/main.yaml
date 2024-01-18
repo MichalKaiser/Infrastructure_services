@@ -14,12 +14,14 @@
     src: override.cnf.j2
     dest: /etc/mysql/mysql.conf.d/override.cnf
   notify: "restart mysql service"
+  no_log: true
 
 - name: Copy file my_mysql.cnf.j2 to /etc/mysql/my.cnf
   ansible.builtin.template:
     src: my_mysql.cnf.j2
     dest: /etc/mysql/my.cnf
   notify: "restart mysql service"
+  no_log: true
 
 - name: Install the newest version of package "python3-pymysql"
   ansible.builtin.apt:
@@ -33,6 +35,7 @@
   notify:
     - reset source
     - reset replica
+  no_log: true
 
 - name: MySQL user Agama
   community.mysql.mysql_user:
@@ -61,6 +64,7 @@
   notify:
     - reset source
     - reset replica
+  no_log: true
 
 - name: Force all notified handlers to run at this point, not waiting for normal sync points
   meta: flush_handlers
@@ -95,3 +99,4 @@
   ansible.builtin.template:
     src: mysql-backup.j2
     dest: /etc/cron.d/mysql-backup
+  no_log: true

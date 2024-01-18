@@ -40,25 +40,28 @@
     src: datasource.yaml
     dest: /etc/grafana/provisioning/datasources/datasource.yaml
   notify: "restart grafana"
+  no_log: true
 
 - name: Copy file dashboards.yaml.j2 to dasboards of grafana
   ansible.builtin.copy:
     src: dashboards.yaml
     dest: /etc/grafana/provisioning/dashboards/main.yaml
   notify: "restart grafana"
-
+  no_log: true
 
 - name: Copy main.json to /etc/grafana/provisioning/dashboards/
   ansible.builtin.copy:
     src: main2.json
     dest: /etc/grafana/provisioning/dashboards/main.json
+  no_log: true
 
 - name: Copy main.json to /etc/grafana/provisioning/dashboards/
   ansible.builtin.copy:
     src: syslog.json
     dest: /etc/grafana/provisioning/dashboards/syslog.json
-
+  no_log: true
 - name: Copy main.json to /etc/grafana/provisioning/dashboards/
   ansible.builtin.copy:
     src: mysql.json
     dest: /etc/grafana/provisioning/dashboards/mysql.json
+  no_log: true

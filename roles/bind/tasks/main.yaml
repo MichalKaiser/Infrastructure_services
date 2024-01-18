@@ -1,17 +1,17 @@
-- name: Install bind
+- name: Install bind and python3-dnspython
   ansible.builtin.apt:
     name: 
       - bind9
       - python3-dnspython 
     state: latest
 
-- name: Enable Bind9
+- name: Enable Bind9 service
   ansible.builtin.service:
     name: bind9
     state: started
     enabled: yes
 
-- name: copy confs
+- name: copy configuration file 
   ansible.builtin.template:
     src: "{{ item.src }}"
     dest: "{{ item.dest }}"

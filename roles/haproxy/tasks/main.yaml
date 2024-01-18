@@ -11,10 +11,10 @@
   loop:
     - { src: "haproxy.conf.j2", dest: "/etc/haproxy/haproxy.cfg" }
     - { src: "haproxy.scrape-uri.j2", dest: "/etc/default/prometheus-haproxy-exporter" }
+  no_log: true
   notify:
     - restart haproxy
     - restart haproxy exporter
-
 
 - name: Start HAproxy on boot
   ansible.builtin.service:

@@ -23,6 +23,7 @@
     - { src: "telegraf.conf.j2", dest: "/etc/telegraf/telegraf.conf" }
     - { src: "influxdb.conf.j2", dest: "/etc/influxdb/influxdb.conf" }
   notify: "restart telegraf"
+  no_log: true
   
 - name: Start and enable services
   ansible.builtin.service:
@@ -45,3 +46,4 @@
   ansible.builtin.template:
     src: influxdb_backup.j2
     dest: /etc/cron.d/influxdb-backup
+  no_log: true

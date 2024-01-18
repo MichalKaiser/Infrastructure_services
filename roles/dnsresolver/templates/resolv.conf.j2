@@ -14,7 +14,7 @@
 # See man:systemd-resolved.service(8) for details about the supported modes of
 # operation for /etc/resolv.conf.
 
-search {{ domain_name }}
 {% for vm in groups['dns_secondary'] %}
 nameserver {{ hostvars[vm]['ansible_default_ipv4']['address'] }}
 {% endfor %}
+search {{ domain_name }}

@@ -1,4 +1,4 @@
-- name: Create directory for app installation
+- name: Create directory in opt for agama installation
   ansible.builtin.file:
     path: /opt/agama
     state: directory

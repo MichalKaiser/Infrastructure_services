@@ -35,6 +35,7 @@
   notify: 
     - restart daemon
     - restart keepalived
+  no_log: true
 
 - name: Extract exporter into folder
   unarchive:
