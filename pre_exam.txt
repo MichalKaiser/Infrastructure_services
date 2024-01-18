@@ -1,0 +1,3046 @@
+Thu Jan 18 16:22:09 EET 2024
++ hostname
+Michals-MacBook-Pro.local
++ ansible-playbook infra.yaml --diff
+
+PLAY [Initial setup] ***********************************************************
+
+TASK [Gathering Facts] *********************************************************
+ok: [MichalKaiser-3]
+ok: [MichalKaiser-1]
+ok: [MichalKaiser-2]
+
+TASK [init : Update APT cache] *************************************************
+changed: [MichalKaiser-1]
+changed: [MichalKaiser-3]
+changed: [MichalKaiser-2]
+
+TASK [init : Install ca-certificates] ******************************************
+changed: [MichalKaiser-1]
+changed: [MichalKaiser-2]
+changed: [MichalKaiser-3]
+
+TASK [init : Install Prometheus Node Exporters] ********************************
+The following additional packages will be installed:
+  libio-pty-perl libipc-run-perl libtime-duration-perl libtimedate-perl
+  moreutils prometheus-node-exporter-collectors smartmontools
+Suggested packages:
+  gsmartcontrol smart-notifier mailx | mailutils
+The following NEW packages will be installed:
+  libio-pty-perl libipc-run-perl libtime-duration-perl libtimedate-perl
+  moreutils prometheus-node-exporter prometheus-node-exporter-collectors
+  smartmontools
+0 upgraded, 8 newly installed, 0 to remove and 266 not upgraded.
+changed: [MichalKaiser-1]
+The following additional packages will be installed:
+  libio-pty-perl libipc-run-perl libtime-duration-perl libtimedate-perl
+  moreutils prometheus-node-exporter-collectors smartmontools
+Suggested packages:
+  gsmartcontrol smart-notifier mailx | mailutils
+The following NEW packages will be installed:
+  libio-pty-perl libipc-run-perl libtime-duration-perl libtimedate-perl
+  moreutils prometheus-node-exporter prometheus-node-exporter-collectors
+  smartmontools
+0 upgraded, 8 newly installed, 0 to remove and 266 not upgraded.
+changed: [MichalKaiser-3]
+The following additional packages will be installed:
+  libio-pty-perl libipc-run-perl libtime-duration-perl libtimedate-perl
+  moreutils prometheus-node-exporter-collectors smartmontools
+Suggested packages:
+  gsmartcontrol smart-notifier mailx | mailutils
+The following NEW packages will be installed:
+  libio-pty-perl libipc-run-perl libtime-duration-perl libtimedate-perl
+  moreutils prometheus-node-exporter prometheus-node-exporter-collectors
+  smartmontools
+0 upgraded, 8 newly installed, 0 to remove and 266 not upgraded.
+changed: [MichalKaiser-2]
+
+TASK [init : start prometheus-node-exporter service] ***************************
+ok: [MichalKaiser-2]
+ok: [MichalKaiser-3]
+ok: [MichalKaiser-1]
+
+TASK [init : Create user Backup] ***********************************************
+changed: [MichalKaiser-3]
+changed: [MichalKaiser-2]
+changed: [MichalKaiser-1]
+
+TASK [init : Add backup server SSH key to the list of known hosts] *************
+changed: [MichalKaiser-2]
+changed: [MichalKaiser-1]
+changed: [MichalKaiser-3]
+
+TASK [init : Create /home/backup/restore directory] ****************************
+--- before
++++ after
+@@ -1,7 +1,7 @@
+ {
+-    "group": 0,
+-    "mode": "0755",
+-    "owner": 0,
++    "group": 34,
++    "mode": "0750",
++    "owner": 34,
+     "path": "/home/backup/restore",
+-    "state": "absent"
++    "state": "directory"
+ }
+
+changed: [MichalKaiser-1]
+--- before
++++ after
+@@ -1,7 +1,7 @@
+ {
+-    "group": 0,
+-    "mode": "0755",
+-    "owner": 0,
++    "group": 34,
++    "mode": "0750",
++    "owner": 34,
+     "path": "/home/backup/restore",
+-    "state": "absent"
++    "state": "directory"
+ }
+
+changed: [MichalKaiser-2]
+--- before
++++ after
+@@ -1,7 +1,7 @@
+ {
+-    "group": 0,
+-    "mode": "0755",
+-    "owner": 0,
++    "group": 34,
++    "mode": "0750",
++    "owner": 34,
+     "path": "/home/backup/restore",
+-    "state": "absent"
++    "state": "directory"
+ }
+
+changed: [MichalKaiser-3]
+
+TASK [init : Install Duplicity] ************************************************
+The following additional packages will be installed:
+  librsync2 python3-bcrypt python3-fasteners python3-future python3-lockfile
+  python3-monotonic python3-paramiko
+Suggested packages:
+  python3-boto ncftp lftp tahoe-lafs python3-swiftclient python3-pip par2
+  python-future-doc python-lockfile-doc python3-gssapi
+The following NEW packages will be installed:
+  duplicity librsync2 python3-bcrypt python3-fasteners python3-future
+  python3-lockfile python3-monotonic python3-paramiko
+0 upgraded, 8 newly installed, 0 to remove and 266 not upgraded.
+changed: [MichalKaiser-1]
+The following additional packages will be installed:
+  librsync2 python3-bcrypt python3-fasteners python3-future python3-lockfile
+  python3-monotonic python3-paramiko
+Suggested packages:
+  python3-boto ncftp lftp tahoe-lafs python3-swiftclient python3-pip par2
+  python-future-doc python-lockfile-doc python3-gssapi
+The following NEW packages will be installed:
+  duplicity librsync2 python3-bcrypt python3-fasteners python3-future
+  python3-lockfile python3-monotonic python3-paramiko
+0 upgraded, 8 newly installed, 0 to remove and 266 not upgraded.
+changed: [MichalKaiser-3]
+The following additional packages will be installed:
+  librsync2 python3-bcrypt python3-fasteners python3-future python3-lockfile
+  python3-monotonic python3-paramiko
+Suggested packages:
+  python3-boto ncftp lftp tahoe-lafs python3-swiftclient python3-pip par2
+  python-future-doc python-lockfile-doc python3-gssapi
+The following NEW packages will be installed:
+  duplicity librsync2 python3-bcrypt python3-fasteners python3-future
+  python3-lockfile python3-monotonic python3-paramiko
+0 upgraded, 8 newly installed, 0 to remove and 266 not upgraded.
+changed: [MichalKaiser-2]
+
+PLAY [DNS server] **************************************************************
+
+TASK [Gathering Facts] *********************************************************
+ok: [MichalKaiser-2]
+ok: [MichalKaiser-3]
+ok: [MichalKaiser-1]
+
+TASK [bind_exporter : Install the newest version of prometheus-bind-exporter] ***
+The following NEW packages will be installed:
+  prometheus-bind-exporter
+0 upgraded, 1 newly installed, 0 to remove and 266 not upgraded.
+changed: [MichalKaiser-3]
+The following NEW packages will be installed:
+  prometheus-bind-exporter
+0 upgraded, 1 newly installed, 0 to remove and 266 not upgraded.
+changed: [MichalKaiser-1]
+The following NEW packages will be installed:
+  prometheus-bind-exporter
+0 upgraded, 1 newly installed, 0 to remove and 266 not upgraded.
+changed: [MichalKaiser-2]
+
+TASK [bind_exporter : start prometheus-bind-exporter] **************************
+ok: [MichalKaiser-1]
+ok: [MichalKaiser-3]
+ok: [MichalKaiser-2]
+
+TASK [bind : Install bind and python3-dnspython] *******************************
+The following additional packages will be installed:
+  bind9-dnsutils bind9-libs bind9-utils dns-root-data python3-ply
+Suggested packages:
+  bind-doc resolvconf python-ply-doc
+The following NEW packages will be installed:
+  bind9 bind9-utils dns-root-data python3-dnspython python3-ply
+The following packages will be upgraded:
+  bind9-dnsutils bind9-libs
+2 upgraded, 5 newly installed, 0 to remove and 264 not upgraded.
+changed: [MichalKaiser-2]
+The following additional packages will be installed:
+  bind9-dnsutils bind9-libs bind9-utils dns-root-data python3-ply
+Suggested packages:
+  bind-doc resolvconf python-ply-doc
+The following NEW packages will be installed:
+  bind9 bind9-utils dns-root-data python3-dnspython python3-ply
+The following packages will be upgraded:
+  bind9-dnsutils bind9-libs
+2 upgraded, 5 newly installed, 0 to remove and 264 not upgraded.
+changed: [MichalKaiser-1]
+The following additional packages will be installed:
+  bind9-dnsutils bind9-libs bind9-utils dns-root-data python3-ply
+Suggested packages:
+  bind-doc resolvconf python-ply-doc
+The following NEW packages will be installed:
+  bind9 bind9-utils dns-root-data python3-dnspython python3-ply
+The following packages will be upgraded:
+  bind9-dnsutils bind9-libs
+2 upgraded, 5 newly installed, 0 to remove and 264 not upgraded.
+changed: [MichalKaiser-3]
+
+TASK [bind : Enable Bind9 service] *********************************************
+ok: [MichalKaiser-1]
+ok: [MichalKaiser-2]
+ok: [MichalKaiser-3]
+
+TASK [bind : copy configuration file] ******************************************
+changed: [MichalKaiser-1] => (item=None)
+changed: [MichalKaiser-2] => (item=None)
+changed: [MichalKaiser-3] => (item=None)
+changed: [MichalKaiser-3] => (item=None)
+changed: [MichalKaiser-2] => (item=None)
+changed: [MichalKaiser-1] => (item=None)
+changed: [MichalKaiser-3] => (item=None)
+changed: [MichalKaiser-1] => (item=None)
+changed: [MichalKaiser-2] => (item=None)
+changed: [MichalKaiser-3]
+changed: [MichalKaiser-1]
+changed: [MichalKaiser-2]
+
+TASK [bind : copy main zone and reverse zone in to the primary dns servers] ****
+skipping: [MichalKaiser-1] => (item=None) 
+skipping: [MichalKaiser-1] => (item=None) 
+skipping: [MichalKaiser-1]
+skipping: [MichalKaiser-2] => (item=None) 
+skipping: [MichalKaiser-2] => (item=None) 
+skipping: [MichalKaiser-2]
+changed: [MichalKaiser-3] => (item=None)
+changed: [MichalKaiser-3] => (item=None)
+changed: [MichalKaiser-3]
+
+TASK [bind : Execute handlers preemptively] ************************************
+
+RUNNING HANDLER [bind : Restart bind9] *****************************************
+changed: [MichalKaiser-2]
+changed: [MichalKaiser-1]
+changed: [MichalKaiser-3]
+
+RUNNING HANDLER [bind : reload rndc] *******************************************
+changed: [MichalKaiser-1]
+changed: [MichalKaiser-2]
+changed: [MichalKaiser-3]
+
+TASK [bind : Set A records] ****************************************************
+skipping: [MichalKaiser-1] => (item=None) 
+skipping: [MichalKaiser-1]
+skipping: [MichalKaiser-2] => (item=None) 
+skipping: [MichalKaiser-2]
+changed: [MichalKaiser-3] => (item=None)
+changed: [MichalKaiser-3]
+
+TASK [bind : Set CNAME] ********************************************************
+skipping: [MichalKaiser-1] => (item=None) 
+skipping: [MichalKaiser-1] => (item=None) 
+skipping: [MichalKaiser-1] => (item=None) 
+skipping: [MichalKaiser-1] => (item=None) 
+skipping: [MichalKaiser-1] => (item=None) 
+skipping: [MichalKaiser-2] => (item=None) 
+skipping: [MichalKaiser-1] => (item=None) 
+skipping: [MichalKaiser-2] => (item=None) 
+skipping: [MichalKaiser-1] => (item=None) 
+skipping: [MichalKaiser-2] => (item=None) 
+skipping: [MichalKaiser-1] => (item=None) 
+skipping: [MichalKaiser-2] => (item=None) 
+skipping: [MichalKaiser-1] => (item=None) 
+skipping: [MichalKaiser-2] => (item=None) 
+skipping: [MichalKaiser-1] => (item=None) 
+skipping: [MichalKaiser-2] => (item=None) 
+skipping: [MichalKaiser-1] => (item=None) 
+skipping: [MichalKaiser-1] => (item=None) 
+skipping: [MichalKaiser-2] => (item=None) 
+skipping: [MichalKaiser-1] => (item=None) 
+skipping: [MichalKaiser-1] => (item=None) 
+skipping: [MichalKaiser-2] => (item=None) 
+skipping: [MichalKaiser-2] => (item=None) 
+skipping: [MichalKaiser-2] => (item=None) 
+skipping: [MichalKaiser-2] => (item=None) 
+skipping: [MichalKaiser-1]
+skipping: [MichalKaiser-2] => (item=None) 
+skipping: [MichalKaiser-2] => (item=None) 
+skipping: [MichalKaiser-2] => (item=None) 
+skipping: [MichalKaiser-2]
+changed: [MichalKaiser-3] => (item=None)
+changed: [MichalKaiser-3] => (item=None)
+changed: [MichalKaiser-3] => (item=None)
+changed: [MichalKaiser-3] => (item=None)
+changed: [MichalKaiser-3] => (item=None)
+changed: [MichalKaiser-3] => (item=None)
+changed: [MichalKaiser-3] => (item=None)
+changed: [MichalKaiser-3] => (item=None)
+changed: [MichalKaiser-3] => (item=None)
+changed: [MichalKaiser-3] => (item=None)
+changed: [MichalKaiser-3] => (item=None)
+changed: [MichalKaiser-3] => (item=None)
+changed: [MichalKaiser-3] => (item=None)
+changed: [MichalKaiser-3] => (item=None)
+changed: [MichalKaiser-3]
+
+PLAY [DNS resolver] ************************************************************
+
+TASK [Gathering Facts] *********************************************************
+ok: [MichalKaiser-2]
+ok: [MichalKaiser-1]
+ok: [MichalKaiser-3]
+
+TASK [dnsresolver : Stop systemd-resolved] *************************************
+changed: [MichalKaiser-1]
+changed: [MichalKaiser-3]
+changed: [MichalKaiser-2]
+
+TASK [dnsresolver : Copy file with owner and permission of resolv.conf] ********
+--- before: /etc/resolv.conf
++++ after: /Users/michalkaiser/.ansible/tmp/ansible-local-32748wr2_lv48/tmpqj68jgn6/resolv.conf.j2
+@@ -14,6 +14,6 @@
+ # See man:systemd-resolved.service(8) for details about the supported modes of
+ # operation for /etc/resolv.conf.
+ 
+-nameserver 127.0.0.53
+-options edns0 trust-ad
+-search openstacklocal
++nameserver 192.168.43.44
++nameserver 192.168.43.56
++search cybera.mk
+
+changed: [MichalKaiser-1]
+--- before: /etc/resolv.conf
++++ after: /Users/michalkaiser/.ansible/tmp/ansible-local-32748wr2_lv48/tmpykiza7mc/resolv.conf.j2
+@@ -14,6 +14,6 @@
+ # See man:systemd-resolved.service(8) for details about the supported modes of
+ # operation for /etc/resolv.conf.
+ 
+-nameserver 127.0.0.53
+-options edns0 trust-ad
+-search openstacklocal
++nameserver 192.168.43.44
++nameserver 192.168.43.56
++search cybera.mk
+
+changed: [MichalKaiser-2]
+--- before: /etc/resolv.conf
++++ after: /Users/michalkaiser/.ansible/tmp/ansible-local-32748wr2_lv48/tmpftcd0gif/resolv.conf.j2
+@@ -14,6 +14,6 @@
+ # See man:systemd-resolved.service(8) for details about the supported modes of
+ # operation for /etc/resolv.conf.
+ 
+-nameserver 127.0.0.53
+-options edns0 trust-ad
+-search openstacklocal
++nameserver 192.168.43.44
++nameserver 192.168.43.56
++search cybera.mk
+
+changed: [MichalKaiser-3]
+
+PLAY [Rsyslog] *****************************************************************
+
+TASK [Gathering Facts] *********************************************************
+ok: [MichalKaiser-2]
+ok: [MichalKaiser-3]
+ok: [MichalKaiser-1]
+
+TASK [rsyslog : Install rsyslog] ***********************************************
+Suggested packages:
+  rsyslog-mysql | rsyslog-pgsql rsyslog-mongodb rsyslog-doc rsyslog-openssl
+  | rsyslog-gnutls rsyslog-gssapi rsyslog-relp
+The following packages will be upgraded:
+  rsyslog
+1 upgraded, 0 newly installed, 0 to remove and 263 not upgraded.
+changed: [MichalKaiser-1]
+Suggested packages:
+  rsyslog-mysql | rsyslog-pgsql rsyslog-mongodb rsyslog-doc rsyslog-openssl
+  | rsyslog-gnutls rsyslog-gssapi rsyslog-relp
+The following packages will be upgraded:
+  rsyslog
+1 upgraded, 0 newly installed, 0 to remove and 263 not upgraded.
+changed: [MichalKaiser-2]
+Suggested packages:
+  rsyslog-mysql | rsyslog-pgsql rsyslog-mongodb rsyslog-doc rsyslog-openssl
+  | rsyslog-gnutls rsyslog-gssapi rsyslog-relp
+The following packages will be upgraded:
+  rsyslog
+1 upgraded, 0 newly installed, 0 to remove and 263 not upgraded.
+changed: [MichalKaiser-3]
+
+TASK [rsyslog : Start rsyslog] *************************************************
+ok: [MichalKaiser-2]
+ok: [MichalKaiser-3]
+ok: [MichalKaiser-1]
+
+TASK [rsyslog : Add file with a target address for logs] ***********************
+--- before
++++ after: /Users/michalkaiser/.ansible/tmp/ansible-local-32748wr2_lv48/tmpdwh8e95y/50-telegraf.conf.j2
+@@ -0,0 +1,8 @@
++$ActionQueueType LinkedList # use asynchronous processing
++$ActionQueueFileName srvrfwd # set file name, also enables disk mode
++$ActionResumeRetryCount -1 # infinite retries on insert failure
++$ActionQueueSaveOnShutdown on # save in-memory data if rsyslog shuts down
++
++
++# uncomment to use udp according to RFC 5424
++*.* @rsyslog:6514;RSYSLOG_SyslogProtocol23Format
+
+changed: [MichalKaiser-1]
+--- before
++++ after: /Users/michalkaiser/.ansible/tmp/ansible-local-32748wr2_lv48/tmp3c_gmn_h/50-telegraf.conf.j2
+@@ -0,0 +1,8 @@
++$ActionQueueType LinkedList # use asynchronous processing
++$ActionQueueFileName srvrfwd # set file name, also enables disk mode
++$ActionResumeRetryCount -1 # infinite retries on insert failure
++$ActionQueueSaveOnShutdown on # save in-memory data if rsyslog shuts down
++
++
++# uncomment to use udp according to RFC 5424
++*.* @rsyslog:6514;RSYSLOG_SyslogProtocol23Format
+
+changed: [MichalKaiser-2]
+--- before
++++ after: /Users/michalkaiser/.ansible/tmp/ansible-local-32748wr2_lv48/tmpbho1614a/50-telegraf.conf.j2
+@@ -0,0 +1,8 @@
++$ActionQueueType LinkedList # use asynchronous processing
++$ActionQueueFileName srvrfwd # set file name, also enables disk mode
++$ActionResumeRetryCount -1 # infinite retries on insert failure
++$ActionQueueSaveOnShutdown on # save in-memory data if rsyslog shuts down
++
++
++# uncomment to use udp according to RFC 5424
++*.* @rsyslog:6514;RSYSLOG_SyslogProtocol23Format
+
+changed: [MichalKaiser-3]
+
+RUNNING HANDLER [rsyslog : Restart rsyslog] ************************************
+changed: [MichalKaiser-2]
+changed: [MichalKaiser-3]
+changed: [MichalKaiser-1]
+
+PLAY [Docker servers] **********************************************************
+
+TASK [Gathering Facts] *********************************************************
+ok: [MichalKaiser-1]
+ok: [MichalKaiser-2]
+ok: [MichalKaiser-3]
+
+TASK [docker : ensure docker is installed] *************************************
+The following additional packages will be installed:
+  bridge-utils containerd dnsmasq-base libidn11 pigz python3-websocket runc
+  ubuntu-fan
+Suggested packages:
+  ifupdown aufs-tools cgroupfs-mount | cgroup-lite debootstrap docker-doc
+  rinse zfs-fuse | zfsutils
+The following NEW packages will be installed:
+  bridge-utils containerd dnsmasq-base docker.io libidn11 pigz python3-docker
+  python3-websocket runc ubuntu-fan
+0 upgraded, 10 newly installed, 0 to remove and 263 not upgraded.
+changed: [MichalKaiser-3]
+The following additional packages will be installed:
+  bridge-utils containerd dnsmasq-base libidn11 pigz python3-websocket runc
+  ubuntu-fan
+Suggested packages:
+  ifupdown aufs-tools cgroupfs-mount | cgroup-lite debootstrap docker-doc
+  rinse zfs-fuse | zfsutils
+The following NEW packages will be installed:
+  bridge-utils containerd dnsmasq-base docker.io libidn11 pigz python3-docker
+  python3-websocket runc ubuntu-fan
+0 upgraded, 10 newly installed, 0 to remove and 263 not upgraded.
+changed: [MichalKaiser-2]
+The following additional packages will be installed:
+  bridge-utils containerd dnsmasq-base libidn11 pigz python3-websocket runc
+  ubuntu-fan
+Suggested packages:
+  ifupdown aufs-tools cgroupfs-mount | cgroup-lite debootstrap docker-doc
+  rinse zfs-fuse | zfsutils
+The following NEW packages will be installed:
+  bridge-utils containerd dnsmasq-base docker.io libidn11 pigz python3-docker
+  python3-websocket runc ubuntu-fan
+0 upgraded, 10 newly installed, 0 to remove and 263 not upgraded.
+changed: [MichalKaiser-1]
+
+TASK [docker : docker enabled] *************************************************
+ok: [MichalKaiser-1]
+ok: [MichalKaiser-3]
+ok: [MichalKaiser-2]
+
+PLAY [Database server] *********************************************************
+
+TASK [Gathering Facts] *********************************************************
+ok: [MichalKaiser-1]
+ok: [MichalKaiser-2]
+
+TASK [mysql : Install the newest version of package "mysql-server"] ************
+The following additional packages will be installed:
+  libcgi-fast-perl libcgi-pm-perl libencode-locale-perl libevent-core-2.1-7
+  libevent-pthreads-2.1-7 libfcgi-perl libhtml-parser-perl libhtml-tagset-perl
+  libhtml-template-perl libhttp-date-perl libhttp-message-perl libio-html-perl
+  liblwp-mediatypes-perl libmecab2 liburi-perl mecab-ipadic mecab-ipadic-utf8
+  mecab-utils mysql-client-8.0 mysql-client-core-8.0 mysql-common
+  mysql-server-8.0 mysql-server-core-8.0
+Suggested packages:
+  libdata-dump-perl libipc-sharedcache-perl libwww-perl mailx tinyca
+The following NEW packages will be installed:
+  libcgi-fast-perl libcgi-pm-perl libencode-locale-perl libevent-core-2.1-7
+  libevent-pthreads-2.1-7 libfcgi-perl libhtml-parser-perl libhtml-tagset-perl
+  libhtml-template-perl libhttp-date-perl libhttp-message-perl libio-html-perl
+  liblwp-mediatypes-perl libmecab2 liburi-perl mecab-ipadic mecab-ipadic-utf8
+  mecab-utils mysql-client-8.0 mysql-client-core-8.0 mysql-common mysql-server
+  mysql-server-8.0 mysql-server-core-8.0
+0 upgraded, 24 newly installed, 0 to remove and 263 not upgraded.
+changed: [MichalKaiser-1]
+The following additional packages will be installed:
+  libcgi-fast-perl libcgi-pm-perl libencode-locale-perl libevent-core-2.1-7
+  libevent-pthreads-2.1-7 libfcgi-perl libhtml-parser-perl libhtml-tagset-perl
+  libhtml-template-perl libhttp-date-perl libhttp-message-perl libio-html-perl
+  liblwp-mediatypes-perl libmecab2 liburi-perl mecab-ipadic mecab-ipadic-utf8
+  mecab-utils mysql-client-8.0 mysql-client-core-8.0 mysql-common
+  mysql-server-8.0 mysql-server-core-8.0
+Suggested packages:
+  libdata-dump-perl libipc-sharedcache-perl libwww-perl mailx tinyca
+The following NEW packages will be installed:
+  libcgi-fast-perl libcgi-pm-perl libencode-locale-perl libevent-core-2.1-7
+  libevent-pthreads-2.1-7 libfcgi-perl libhtml-parser-perl libhtml-tagset-perl
+  libhtml-template-perl libhttp-date-perl libhttp-message-perl libio-html-perl
+  liblwp-mediatypes-perl libmecab2 liburi-perl mecab-ipadic mecab-ipadic-utf8
+  mecab-utils mysql-client-8.0 mysql-client-core-8.0 mysql-common mysql-server
+  mysql-server-8.0 mysql-server-core-8.0
+0 upgraded, 24 newly installed, 0 to remove and 263 not upgraded.
+changed: [MichalKaiser-2]
+
+TASK [mysql : start mysql service] *********************************************
+ok: [MichalKaiser-2]
+ok: [MichalKaiser-1]
+
+TASK [mysql : Copy file override.cnf to /etc/mysql/mysql.conf.d/override.cnf] ***
+changed: [MichalKaiser-1]
+changed: [MichalKaiser-2]
+
+TASK [mysql : Copy file my_mysql.cnf.j2 to /etc/mysql/my.cnf] ******************
+changed: [MichalKaiser-1]
+changed: [MichalKaiser-2]
+
+TASK [mysql : Install the newest version of package "python3-pymysql"] *********
+Suggested packages:
+  python-pymysql-doc
+The following NEW packages will be installed:
+  python3-pymysql
+0 upgraded, 1 newly installed, 0 to remove and 263 not upgraded.
+changed: [MichalKaiser-2]
+Suggested packages:
+  python-pymysql-doc
+The following NEW packages will be installed:
+  python3-pymysql
+0 upgraded, 1 newly installed, 0 to remove and 263 not upgraded.
+changed: [MichalKaiser-1]
+
+TASK [mysql : MySQL database] **************************************************
+changed: [MichalKaiser-2]
+changed: [MichalKaiser-1]
+
+TASK [mysql : MySQL user Agama] ************************************************
+changed: [MichalKaiser-1]
+changed: [MichalKaiser-2]
+
+TASK [mysql : MySql user for replication] **************************************
+changed: [MichalKaiser-1]
+changed: [MichalKaiser-2]
+
+TASK [mysql : replica server read_only] ****************************************
+changed: [MichalKaiser-2]
+changed: [MichalKaiser-1]
+
+TASK [mysql : Force all notified handlers to run at this point, not waiting for normal sync points] ***
+
+RUNNING HANDLER [mysql : Restart mysql] ****************************************
+changed: [MichalKaiser-1]
+changed: [MichalKaiser-2]
+
+RUNNING HANDLER [mysql : reset source] *****************************************
+skipping: [MichalKaiser-1] => (item=None) 
+skipping: [MichalKaiser-1] => (item=None) 
+skipping: [MichalKaiser-1]
+ok: [MichalKaiser-2] => (item=None)
+changed: [MichalKaiser-2] => (item=None)
+changed: [MichalKaiser-2]
+
+RUNNING HANDLER [mysql : reset replica] ****************************************
+skipping: [MichalKaiser-2] => (item=None) 
+skipping: [MichalKaiser-2] => (item=None) 
+skipping: [MichalKaiser-2] => (item=None) 
+skipping: [MichalKaiser-2] => (item=None) 
+skipping: [MichalKaiser-2]
+ok: [MichalKaiser-1] => (item=None)
+changed: [MichalKaiser-1] => (item=None)
+changed: [MichalKaiser-1] => (item=None)
+changed: [MichalKaiser-1] => (item=None)
+changed: [MichalKaiser-1]
+
+TASK [mysql : MySql user for backup] *******************************************
+changed: [MichalKaiser-1]
+changed: [MichalKaiser-2]
+
+TASK [mysql : mysql directory] *************************************************
+--- before
++++ after
+@@ -1,7 +1,7 @@
+ {
+-    "group": 0,
+-    "mode": "0755",
+-    "owner": 0,
++    "group": 34,
++    "mode": "0750",
++    "owner": 34,
+     "path": "/home/backup/mysql",
+-    "state": "absent"
++    "state": "directory"
+ }
+
+changed: [MichalKaiser-1]
+--- before
++++ after
+@@ -1,7 +1,7 @@
+ {
+-    "group": 0,
+-    "mode": "0755",
+-    "owner": 0,
++    "group": 34,
++    "mode": "0750",
++    "owner": 34,
+     "path": "/home/backup/mysql",
+-    "state": "absent"
++    "state": "directory"
+ }
+
+changed: [MichalKaiser-2]
+
+TASK [mysql : cp my_mysql_backup.cnf.j2 to /home/backup/.my.cnf] ***************
+changed: [MichalKaiser-1]
+changed: [MichalKaiser-2]
+
+TASK [mysql : Cronjob cp] ******************************************************
+changed: [MichalKaiser-1]
+changed: [MichalKaiser-2]
+
+TASK [mysql_exporter : Install MySQL Exporter] *********************************
+The following additional packages will be installed:
+  daemon
+The following NEW packages will be installed:
+  daemon prometheus-mysqld-exporter
+0 upgraded, 2 newly installed, 0 to remove and 263 not upgraded.
+changed: [MichalKaiser-2]
+The following additional packages will be installed:
+  daemon
+The following NEW packages will be installed:
+  daemon prometheus-mysqld-exporter
+0 upgraded, 2 newly installed, 0 to remove and 263 not upgraded.
+changed: [MichalKaiser-1]
+
+TASK [mysql_exporter : Create directory] ***************************************
+ok: [MichalKaiser-1]
+ok: [MichalKaiser-2]
+
+TASK [mysql_exporter : Copy .my.cnf template to /var/lib/prometheus/.my.cnf] ***
+changed: [MichalKaiser-1]
+changed: [MichalKaiser-2]
+
+TASK [mysql_exporter : Create MySQL Exporter user] *****************************
+changed: [MichalKaiser-2]
+changed: [MichalKaiser-1]
+
+TASK [mysql_exporter : Add prometheus-mysqld-exporter file to /etc/default/prometheus-mysqld-exporter] ***
+changed: [MichalKaiser-1]
+changed: [MichalKaiser-2]
+
+TASK [mysql_exporter : Force all notified handlers to run at this point, not waiting for normal sync points] ***
+
+RUNNING HANDLER [mysql : Restart mysql] ****************************************
+changed: [MichalKaiser-1]
+changed: [MichalKaiser-2]
+
+RUNNING HANDLER [mysql_exporter : Daemon reload] *******************************
+ok: [MichalKaiser-2]
+ok: [MichalKaiser-1]
+
+RUNNING HANDLER [mysql_exporter : Restart mysql-exporter] **********************
+changed: [MichalKaiser-1]
+changed: [MichalKaiser-2]
+
+TASK [mysql_exporter : Start MySQL exporter] ***********************************
+ok: [MichalKaiser-2]
+ok: [MichalKaiser-1]
+
+PLAY [Agama server] ************************************************************
+
+TASK [Gathering Facts] *********************************************************
+ok: [MichalKaiser-1]
+ok: [MichalKaiser-2]
+
+TASK [agama : Create directory in opt for agama installation] ******************
+--- before
++++ after
+@@ -1,4 +1,4 @@
+ {
+     "path": "/opt/agama",
+-    "state": "absent"
++    "state": "directory"
+ }
+
+changed: [MichalKaiser-1]
+--- before
++++ after
+@@ -1,4 +1,4 @@
+ {
+     "path": "/opt/agama",
+-    "state": "absent"
++    "state": "directory"
+ }
+
+changed: [MichalKaiser-2]
+
+TASK [agama : Download Dockerfile and agama.py files] **************************
+changed: [MichalKaiser-1] => (item=agama.py)
+changed: [MichalKaiser-2] => (item=agama.py)
+changed: [MichalKaiser-2] => (item=Dockerfile)
+changed: [MichalKaiser-1] => (item=Dockerfile)
+
+TASK [agama : Build Docker image] **********************************************
+changed: [MichalKaiser-2]
+changed: [MichalKaiser-1]
+
+TASK [agama : Install agama with a docker] *************************************
+changed: [MichalKaiser-2] => (item=None)
+changed: [MichalKaiser-1] => (item=None)
+changed: [MichalKaiser-2] => (item=None)
+changed: [MichalKaiser-1] => (item=None)
+changed: [MichalKaiser-2] => (item=None)
+changed: [MichalKaiser-2]
+changed: [MichalKaiser-1] => (item=None)
+changed: [MichalKaiser-1]
+
+PLAY [Web server] **************************************************************
+
+TASK [Gathering Facts] *********************************************************
+ok: [MichalKaiser-2]
+ok: [MichalKaiser-1]
+ok: [MichalKaiser-3]
+
+TASK [nginx_exporter : Install Prometheus Nginx Exporters] *********************
+The following NEW packages will be installed:
+  prometheus-nginx-exporter
+0 upgraded, 1 newly installed, 0 to remove and 263 not upgraded.
+changed: [MichalKaiser-3]
+The following NEW packages will be installed:
+  prometheus-nginx-exporter
+0 upgraded, 1 newly installed, 0 to remove and 263 not upgraded.
+changed: [MichalKaiser-2]
+The following NEW packages will be installed:
+  prometheus-nginx-exporter
+0 upgraded, 1 newly installed, 0 to remove and 263 not upgraded.
+changed: [MichalKaiser-1]
+
+TASK [nginx_exporter : start prometheus-nginx-exporter service] ****************
+changed: [MichalKaiser-3]
+changed: [MichalKaiser-2]
+changed: [MichalKaiser-1]
+
+TASK [nginx : Ensure Nginx is installed] ***************************************
+The following additional packages will be installed:
+  fontconfig-config fonts-dejavu-core libfontconfig1 libgd3 libjbig0
+  libjpeg-turbo8 libjpeg8 libnginx-mod-http-image-filter
+  libnginx-mod-http-xslt-filter libnginx-mod-mail libnginx-mod-stream libtiff5
+  libwebp6 libxpm4 nginx-common nginx-core
+Suggested packages:
+  libgd-tools fcgiwrap nginx-doc ssl-cert
+The following NEW packages will be installed:
+  fontconfig-config fonts-dejavu-core libfontconfig1 libgd3 libjbig0
+  libjpeg-turbo8 libjpeg8 libnginx-mod-http-image-filter
+  libnginx-mod-http-xslt-filter libnginx-mod-mail libnginx-mod-stream libtiff5
+  libwebp6 libxpm4 nginx nginx-common nginx-core
+0 upgraded, 17 newly installed, 0 to remove and 263 not upgraded.
+changed: [MichalKaiser-3]
+The following additional packages will be installed:
+  fontconfig-config fonts-dejavu-core libfontconfig1 libgd3 libjbig0
+  libjpeg-turbo8 libjpeg8 libnginx-mod-http-image-filter
+  libnginx-mod-http-xslt-filter libnginx-mod-mail libnginx-mod-stream libtiff5
+  libwebp6 libxpm4 nginx-common nginx-core
+Suggested packages:
+  libgd-tools fcgiwrap nginx-doc ssl-cert
+The following NEW packages will be installed:
+  fontconfig-config fonts-dejavu-core libfontconfig1 libgd3 libjbig0
+  libjpeg-turbo8 libjpeg8 libnginx-mod-http-image-filter
+  libnginx-mod-http-xslt-filter libnginx-mod-mail libnginx-mod-stream libtiff5
+  libwebp6 libxpm4 nginx nginx-common nginx-core
+0 upgraded, 17 newly installed, 0 to remove and 263 not upgraded.
+changed: [MichalKaiser-2]
+The following additional packages will be installed:
+  fontconfig-config fonts-dejavu-core libfontconfig1 libgd3 libjbig0
+  libjpeg-turbo8 libjpeg8 libnginx-mod-http-image-filter
+  libnginx-mod-http-xslt-filter libnginx-mod-mail libnginx-mod-stream libtiff5
+  libwebp6 libxpm4 nginx-common nginx-core
+Suggested packages:
+  libgd-tools fcgiwrap nginx-doc ssl-cert
+The following NEW packages will be installed:
+  fontconfig-config fonts-dejavu-core libfontconfig1 libgd3 libjbig0
+  libjpeg-turbo8 libjpeg8 libnginx-mod-http-image-filter
+  libnginx-mod-http-xslt-filter libnginx-mod-mail libnginx-mod-stream libtiff5
+  libwebp6 libxpm4 nginx nginx-common nginx-core
+0 upgraded, 17 newly installed, 0 to remove and 263 not upgraded.
+changed: [MichalKaiser-1]
+
+TASK [nginx : Copy template to server] *****************************************
+--- before: /etc/nginx/sites-enabled/default
++++ after: /Users/michalkaiser/.ansible/tmp/ansible-local-32748wr2_lv48/tmpjm9idg0v/default.j2
+@@ -1,91 +1,21 @@
+-##
+-# You should look at the following URL's in order to grasp a solid understanding
+-# of Nginx configuration files in order to fully unleash the power of Nginx.
+-# https://www.nginx.com/resources/wiki/start/
+-# https://www.nginx.com/resources/wiki/start/topics/tutorials/config_pitfalls/
+-# https://wiki.debian.org/Nginx/DirectoryStructure
+-#
+-# In most cases, administrators will remove this file from sites-enabled/ and
+-# leave it as reference inside of sites-available where it will continue to be
+-# updated by the nginx packaging team.
+-#
+-# This file will automatically load configuration files provided by other
+-# applications, such as Drupal or Wordpress. These applications will be made
+-# available underneath a path with that package name, such as /drupal8.
+-#
+-# Please see /usr/share/doc/nginx-doc/examples/ for more detailed examples.
+-##
+-
+-# Default server configuration
+-#
+ server {
+ 	listen 80 default_server;
+-	listen [::]:80 default_server;
+-
+-	# SSL configuration
+-	#
+-	# listen 443 ssl default_server;
+-	# listen [::]:443 ssl default_server;
+-	#
+-	# Note: You should disable gzip for SSL traffic.
+-	# See: https://bugs.debian.org/773332
+-	#
+-	# Read up on ssl_ciphers to ensure a secure configuration.
+-	# See: https://bugs.debian.org/765782
+-	#
+-	# Self signed certs generated by the ssl-cert package
+-	# Don't use them in a production server!
+-	#
+-	# include snippets/snakeoil.conf;
+-
+-	root /var/www/html;
+-
+-	# Add index.php to the list if you are using PHP
+-	index index.html index.htm index.nginx-debian.html;
+-
+ 	server_name _;
++        client_max_body_size 1000M;
+ 
+ 	location / {
+-		# First attempt to serve request as file, then
+-		# as directory, then fall back to displaying a 404.
+-		try_files $uri $uri/ =404;
+-	}
++                proxy_set_header Host $http_host;
++		proxy_pass http://localhost:8001;
++        }
+ 
+-	# pass PHP scripts to FastCGI server
+-	#
+-	#location ~ \.php$ {
+-	#	include snippets/fastcgi-php.conf;
+-	#
+-	#	# With php-fpm (or other unix sockets):
+-	#	fastcgi_pass unix:/var/run/php/php7.4-fpm.sock;
+-	#	# With php-cgi (or other tcp sockets):
+-	#	fastcgi_pass 127.0.0.1:9000;
+-	#}
+ 
+-	# deny access to .htaccess files, if Apache's document root
+-	# concurs with nginx's one
+-	#
+-	#location ~ /\.ht {
+-	#	deny all;
+-	#}
++
++
+ }
+ 
+-
+-# Virtual Host configuration for example.com
+-#
+-# You can move that to a different file under sites-available/ and symlink that
+-# to sites-enabled/ to enable it.
+-#
+-#server {
+-#	listen 80;
+-#	listen [::]:80;
+-#
+-#	server_name example.com;
+-#
+-#	root /var/www/example.com;
+-#	index index.html;
+-#
+-#	location / {
+-#		try_files $uri $uri/ =404;
+-#	}
+-#}
++server {
++    listen 8080 default_server;
++    location = /stub_status {
++        stub_status;
++    }
++}
+
+changed: [MichalKaiser-1]
+--- before: /etc/nginx/sites-enabled/default
++++ after: /Users/michalkaiser/.ansible/tmp/ansible-local-32748wr2_lv48/tmpee6bblg9/default.j2
+@@ -1,91 +1,21 @@
+-##
+-# You should look at the following URL's in order to grasp a solid understanding
+-# of Nginx configuration files in order to fully unleash the power of Nginx.
+-# https://www.nginx.com/resources/wiki/start/
+-# https://www.nginx.com/resources/wiki/start/topics/tutorials/config_pitfalls/
+-# https://wiki.debian.org/Nginx/DirectoryStructure
+-#
+-# In most cases, administrators will remove this file from sites-enabled/ and
+-# leave it as reference inside of sites-available where it will continue to be
+-# updated by the nginx packaging team.
+-#
+-# This file will automatically load configuration files provided by other
+-# applications, such as Drupal or Wordpress. These applications will be made
+-# available underneath a path with that package name, such as /drupal8.
+-#
+-# Please see /usr/share/doc/nginx-doc/examples/ for more detailed examples.
+-##
+-
+-# Default server configuration
+-#
+ server {
+ 	listen 80 default_server;
+-	listen [::]:80 default_server;
+-
+-	# SSL configuration
+-	#
+-	# listen 443 ssl default_server;
+-	# listen [::]:443 ssl default_server;
+-	#
+-	# Note: You should disable gzip for SSL traffic.
+-	# See: https://bugs.debian.org/773332
+-	#
+-	# Read up on ssl_ciphers to ensure a secure configuration.
+-	# See: https://bugs.debian.org/765782
+-	#
+-	# Self signed certs generated by the ssl-cert package
+-	# Don't use them in a production server!
+-	#
+-	# include snippets/snakeoil.conf;
+-
+-	root /var/www/html;
+-
+-	# Add index.php to the list if you are using PHP
+-	index index.html index.htm index.nginx-debian.html;
+-
+ 	server_name _;
++        client_max_body_size 1000M;
+ 
+ 	location / {
+-		# First attempt to serve request as file, then
+-		# as directory, then fall back to displaying a 404.
+-		try_files $uri $uri/ =404;
+-	}
++                proxy_set_header Host $http_host;
++		proxy_pass http://localhost:8001;
++        }
+ 
+-	# pass PHP scripts to FastCGI server
+-	#
+-	#location ~ \.php$ {
+-	#	include snippets/fastcgi-php.conf;
+-	#
+-	#	# With php-fpm (or other unix sockets):
+-	#	fastcgi_pass unix:/var/run/php/php7.4-fpm.sock;
+-	#	# With php-cgi (or other tcp sockets):
+-	#	fastcgi_pass 127.0.0.1:9000;
+-	#}
+ 
+-	# deny access to .htaccess files, if Apache's document root
+-	# concurs with nginx's one
+-	#
+-	#location ~ /\.ht {
+-	#	deny all;
+-	#}
++
++
+ }
+ 
+-
+-# Virtual Host configuration for example.com
+-#
+-# You can move that to a different file under sites-available/ and symlink that
+-# to sites-enabled/ to enable it.
+-#
+-#server {
+-#	listen 80;
+-#	listen [::]:80;
+-#
+-#	server_name example.com;
+-#
+-#	root /var/www/example.com;
+-#	index index.html;
+-#
+-#	location / {
+-#		try_files $uri $uri/ =404;
+-#	}
+-#}
++server {
++    listen 8080 default_server;
++    location = /stub_status {
++        stub_status;
++    }
++}
+
+changed: [MichalKaiser-2]
+--- before: /etc/nginx/sites-enabled/default
++++ after: /Users/michalkaiser/.ansible/tmp/ansible-local-32748wr2_lv48/tmpcg0ttc3_/default.j2
+@@ -1,91 +1,24 @@
+-##
+-# You should look at the following URL's in order to grasp a solid understanding
+-# of Nginx configuration files in order to fully unleash the power of Nginx.
+-# https://www.nginx.com/resources/wiki/start/
+-# https://www.nginx.com/resources/wiki/start/topics/tutorials/config_pitfalls/
+-# https://wiki.debian.org/Nginx/DirectoryStructure
+-#
+-# In most cases, administrators will remove this file from sites-enabled/ and
+-# leave it as reference inside of sites-available where it will continue to be
+-# updated by the nginx packaging team.
+-#
+-# This file will automatically load configuration files provided by other
+-# applications, such as Drupal or Wordpress. These applications will be made
+-# available underneath a path with that package name, such as /drupal8.
+-#
+-# Please see /usr/share/doc/nginx-doc/examples/ for more detailed examples.
+-##
+-
+-# Default server configuration
+-#
+ server {
+ 	listen 80 default_server;
+-	listen [::]:80 default_server;
++	server_name _;
++        client_max_body_size 1000M;
+ 
+-	# SSL configuration
+-	#
+-	# listen 443 ssl default_server;
+-	# listen [::]:443 ssl default_server;
+-	#
+-	# Note: You should disable gzip for SSL traffic.
+-	# See: https://bugs.debian.org/773332
+-	#
+-	# Read up on ssl_ciphers to ensure a secure configuration.
+-	# See: https://bugs.debian.org/765782
+-	#
+-	# Self signed certs generated by the ssl-cert package
+-	# Don't use them in a production server!
+-	#
+-	# include snippets/snakeoil.conf;
+ 
+-	root /var/www/html;
++        location /prometheus {
++                proxy_pass http://localhost:9090;               
++        }
+ 
+-	# Add index.php to the list if you are using PHP
+-	index index.html index.htm index.nginx-debian.html;
+ 
+-	server_name _;
++        location /grafana {
++                proxy_set_header Host $http_host;
++		proxy_pass http://localhost:3001;
++        }
+ 
+-	location / {
+-		# First attempt to serve request as file, then
+-		# as directory, then fall back to displaying a 404.
+-		try_files $uri $uri/ =404;
+-	}
+-
+-	# pass PHP scripts to FastCGI server
+-	#
+-	#location ~ \.php$ {
+-	#	include snippets/fastcgi-php.conf;
+-	#
+-	#	# With php-fpm (or other unix sockets):
+-	#	fastcgi_pass unix:/var/run/php/php7.4-fpm.sock;
+-	#	# With php-cgi (or other tcp sockets):
+-	#	fastcgi_pass 127.0.0.1:9000;
+-	#}
+-
+-	# deny access to .htaccess files, if Apache's document root
+-	# concurs with nginx's one
+-	#
+-	#location ~ /\.ht {
+-	#	deny all;
+-	#}
+ }
+ 
+-
+-# Virtual Host configuration for example.com
+-#
+-# You can move that to a different file under sites-available/ and symlink that
+-# to sites-enabled/ to enable it.
+-#
+-#server {
+-#	listen 80;
+-#	listen [::]:80;
+-#
+-#	server_name example.com;
+-#
+-#	root /var/www/example.com;
+-#	index index.html;
+-#
+-#	location / {
+-#		try_files $uri $uri/ =404;
+-#	}
+-#}
++server {
++    listen 8080 default_server;
++    location = /stub_status {
++        stub_status;
++    }
++}
+
+changed: [MichalKaiser-3]
+
+TASK [nginx : start nginx] *****************************************************
+ok: [MichalKaiser-1]
+ok: [MichalKaiser-3]
+ok: [MichalKaiser-2]
+
+RUNNING HANDLER [nginx : Restart nginx] ****************************************
+changed: [MichalKaiser-3]
+changed: [MichalKaiser-2]
+changed: [MichalKaiser-1]
+
+RUNNING HANDLER [nginx : Restart Nginx exporter] *******************************
+changed: [MichalKaiser-1]
+changed: [MichalKaiser-2]
+changed: [MichalKaiser-3]
+
+PLAY [Prometheus server] *******************************************************
+
+TASK [Gathering Facts] *********************************************************
+ok: [MichalKaiser-3]
+
+TASK [prometheus : install prometheus] *****************************************
+The following additional packages will be installed:
+  fonts-glyphicons-halflings javascript-common libc-ares2 libjs-bootstrap
+  libjs-bootstrap4 libjs-d3 libjs-eonasdan-bootstrap-datetimepicker
+  libjs-jquery libjs-jquery-hotkeys libjs-moment libjs-moment-timezone
+  libjs-mustache libjs-popper.js libjs-rickshaw libnode64 node-jquery nodejs
+  nodejs-doc
+Suggested packages:
+  npm
+The following NEW packages will be installed:
+  fonts-glyphicons-halflings javascript-common libc-ares2 libjs-bootstrap
+  libjs-bootstrap4 libjs-d3 libjs-eonasdan-bootstrap-datetimepicker
+  libjs-jquery libjs-jquery-hotkeys libjs-moment libjs-moment-timezone
+  libjs-mustache libjs-popper.js libjs-rickshaw libnode64 node-jquery nodejs
+  nodejs-doc prometheus
+0 upgraded, 19 newly installed, 0 to remove and 263 not upgraded.
+changed: [MichalKaiser-3]
+
+TASK [prometheus : start prometheus] *******************************************
+ok: [MichalKaiser-3]
+
+TASK [prometheus : copy confs] *************************************************
+--- before: /etc/prometheus/prometheus.yml
++++ after: /Users/michalkaiser/.ansible/tmp/ansible-local-32748wr2_lv48/tmpftmvjea_/prom.yml.j2
+@@ -1,44 +1,54 @@
+-# Sample config for Prometheus.
++global:
++  scrape_interval:     15s
++  evaluation_interval: 15s
+ 
+-global:
+-  scrape_interval:     15s # Set the scrape interval to every 15 seconds. Default is every 1 minute.
+-  evaluation_interval: 15s # Evaluate rules every 15 seconds. The default is every 1 minute.
+-  # scrape_timeout is set to the global default (10s).
++scrape_configs:
++  - job_name: prometheus
++    metrics_path: '/prometheus/metrics'
++    static_configs:
++      - targets: 
++           - 127.0.0.1:9090
+ 
+-  # Attach these labels to any time series or alerts when communicating with
+-  # external systems (federation, remote storage, Alertmanager).
+-  external_labels:
+-      monitor: 'example'
++  - job_name: linux
++    static_configs:
++      - targets:
++           - MichalKaiser-1:9100
++           - MichalKaiser-2:9100
++           - MichalKaiser-3:9100
++          
++  - job_name: nginx_exporters
++    static_configs:
++      - targets:
++           - web1:9113
++           - web2:9113
++           - web3:9113
+ 
+-# Alertmanager configuration
+-alerting:
+-  alertmanagers:
+-  - static_configs:
+-    - targets: ['localhost:9093']
++  - job_name: mysql_exporter
++    static_configs:
++      - targets:
++           - mysql1:9104
++           - mysql2:9104
+ 
+-# Load rules once and periodically evaluate them according to the global 'evaluation_interval'.
+-rule_files:
+-  # - "first_rules.yml"
+-  # - "second_rules.yml"
++  - job_name: bind_exporter
++    static_configs:
++      - targets:
++           - dns1:9119
++           - dns2:9119
++           - dns3:9119
+ 
+-# A scrape configuration containing exactly one endpoint to scrape:
+-# Here it's Prometheus itself.
+-scrape_configs:
+-  # The job name is added as a label `job=<job_name>` to any timeseries scraped from this config.
+-  - job_name: 'prometheus'
+-
+-    # Override the global default and scrape targets from this job every 5 seconds.
+-    scrape_interval: 5s
+-    scrape_timeout: 5s
+-
+-    # metrics_path defaults to '/metrics'
+-    # scheme defaults to 'http'.
+-
++  - job_name: influxdb
+     static_configs:
+-      - targets: ['localhost:9090']
+-
+-  - job_name: node
+-    # If prometheus-node-exporter is installed, grab stats about the local
+-    # machine by default.
++      - targets:
++           - influxdb:9424
++          
++  - job_name: haproxy
+     static_configs:
+-      - targets: ['localhost:9100']
++      - targets:
++           - haproxy1:9101
++           - haproxy2:9101
++          
++  - job_name: keepalived
++    static_configs:
++      - targets:
++           - haproxy1:9165
++           - haproxy2:9165
+
+changed: [MichalKaiser-3] => (item={'src': 'prom.yml.j2', 'dest': '/etc/prometheus/prometheus.yml'})
+--- before
++++ after: /Users/michalkaiser/.ansible/tmp/ansible-local-32748wr2_lv48/tmpf8r8vevc/prometheus.j2
+@@ -0,0 +1,66 @@
++[Unit]
++Description=Prometheus
++Wants=network-online.target
++After=network-online.target
++
++[Service]
++Type=simple
++ExecStart=/usr/bin/prometheus $ARGS --web.external-url=http://193.40.156.67:34080/prometheus
++
++[Install]
++WantedBy=multi-user.target
++	
++# Prometheus supports the following options:
++#  --config.file="/etc/prometheus/prometheus.yml"
++#                             Prometheus configuration file path.
++#  --web.listen-address="0.0.0.0:9090"
++#                             Address to listen on for UI, API, and telemetry.
++#  --web.read-timeout=5m      Maximum duration before timing out read of the
++#                             request, and closing idle connections.
++#  --web.max-connections=512  Maximum number of simultaneous connections.
++#  --web.external-url=<URL>   The URL under which Prometheus is externally
++#                             reachable (for example, if Prometheus is served
++#                             via a reverse proxy). Used for generating
++#                             relative and absolute links back to Prometheus
++#                             itself. If the URL has a path portion, it will
++#                             be used to prefix all HTTP endpoints served by
++#                             Prometheus. If omitted, relevant URL components
++#                             will be derived automatically.
++#  --web.route-prefix=<path>  Prefix for the internal routes of web endpoints.
++#                             Defaults to path of --web.external-url.
++#  --web.local-assets="/usr/share/prometheus/web/"
++#                             Path to static asset/templates directory.
++#  --web.user-assets=<path>   Path to static asset directory, available at
++#                             /user.
++#  --web.enable-lifecycle     Enable shutdown and reload via HTTP request.
++#  --web.enable-admin-api     Enables API endpoints for admin control actions.
++#  --web.console.templates="/etc/prometheus/consoles"
++#                             Path to the console template directory,
++#                             available at /consoles.
++#  --web.console.libraries="/etc/prometheus/console_libraries"
++#                             Path to the console library directory.
++#  --storage.tsdb.path="/var/lib/prometheus/metrics2/"
++#                             Base path for metrics storage.
++#  --storage.tsdb.min-block-duration=2h
++#                             Minimum duration of a data block before being
++#                             persisted.
++#  --storage.tsdb.max-block-duration=<duration>
++#                             Maximum duration compacted blocks may span.
++#                             (Defaults to 10% of the retention period)
++#  --storage.tsdb.retention=15d
++#                             How long to retain samples in the storage.
++#  --storage.tsdb.use-lockfile
++#                             Create a lockfile in data directory.
++#  --alertmanager.notification-queue-capacity=10000
++#                             The capacity of the queue for pending alert
++#                             manager notifications.
++#  --alertmanager.timeout=10s
++#                             Timeout for sending alerts to Alertmanager.
++#  --query.lookback-delta=5m  The delta difference allowed for retrieving
++#                             metrics during expression evaluations.
++#  --query.timeout=2m         Maximum time a query may take before being
++#                             aborted.
++#  --query.max-concurrency=20
++#                             Maximum number of queries executed concurrently.
++#  --log.level=info           Only log messages with the given severity or
++#                             above. One of: [debug, info, warn, error]
+
+changed: [MichalKaiser-3] => (item={'src': 'prometheus.j2', 'dest': '/etc/systemd/system/prometheus.service'})
+
+TASK [prometheus : execute handlers] *******************************************
+
+RUNNING HANDLER [prometheus : reload daemon] ***********************************
+changed: [MichalKaiser-3]
+
+RUNNING HANDLER [prometheus : restart prometheus] ******************************
+changed: [MichalKaiser-3]
+
+RUNNING HANDLER [prometheus : restart nginx] ***********************************
+changed: [MichalKaiser-3]
+
+PLAY [Grafana server] **********************************************************
+
+TASK [Gathering Facts] *********************************************************
+ok: [MichalKaiser-3]
+
+TASK [grafana : create dirs] ***************************************************
+--- before
++++ after
+@@ -1,4 +1,4 @@
+ {
+     "path": "/opt/grafana/provisioning/dashboards",
+-    "state": "absent"
++    "state": "directory"
+ }
+
+changed: [MichalKaiser-3] => (item=/opt/grafana/provisioning/dashboards)
+--- before
++++ after
+@@ -1,4 +1,4 @@
+ {
+     "path": "/opt/grafana/provisioning/datasources",
+-    "state": "absent"
++    "state": "directory"
+ }
+
+changed: [MichalKaiser-3] => (item=/opt/grafana/provisioning/datasources)
+
+TASK [grafana : copy confs] ****************************************************
+changed: [MichalKaiser-3] => (item=None)
+changed: [MichalKaiser-3] => (item=None)
+changed: [MichalKaiser-3] => (item=None)
+changed: [MichalKaiser-3]
+
+TASK [grafana : Copy jsons] ****************************************************
+changed: [MichalKaiser-3] => (item=None)
+changed: [MichalKaiser-3] => (item=None)
+changed: [MichalKaiser-3] => (item=None)
+changed: [MichalKaiser-3] => (item=None)
+changed: [MichalKaiser-3] => (item=None)
+changed: [MichalKaiser-3] => (item=None)
+changed: [MichalKaiser-3] => (item=None)
+changed: [MichalKaiser-3]
+
+TASK [grafana : run grafna in docker] ******************************************
+changed: [MichalKaiser-3]
+
+RUNNING HANDLER [grafana : restart grafana] ************************************
+--- before
++++ after
+@@ -1,4 +1,4 @@
+ {
+-    "restarted": false,
++    "restarted": true,
+     "running": true
+ }
+
+changed: [MichalKaiser-3]
+
+PLAY [InfluxDB server] *********************************************************
+
+TASK [Gathering Facts] *********************************************************
+ok: [MichalKaiser-3]
+
+TASK [influxdb : Download packages] ********************************************
+changed: [MichalKaiser-3] => (item={'url': 'https://dl.influxdata.com/influxdb/releases/influxdb_1.8.10_amd64.deb', 'dest': '/opt/influxdb_1.8.10_amd64.deb'})
+changed: [MichalKaiser-3] => (item={'url': 'https://dl.influxdata.com/telegraf/releases/telegraf_1.28.2-1_amd64.deb', 'dest': '/opt/telegraf_1.28.2-1_amd64.deb'})
+
+TASK [influxdb : Install packages] *********************************************
+Selecting previously unselected package influxdb.
+(Reading database ... 66377 files and directories currently installed.)
+Preparing to unpack /opt/influxdb_1.8.10_amd64.deb ...
+Unpacking influxdb (1.8.10-1) ...
+Setting up influxdb (1.8.10-1) ...
+Processing triggers for man-db (2.9.1-1) ...
+changed: [MichalKaiser-3] => (item={'deb': '/opt/influxdb_1.8.10_amd64.deb'})
+Selecting previously unselected package telegraf.
+(Reading database ... 66402 files and directories currently installed.)
+Preparing to unpack .../telegraf_1.28.2-1_amd64.deb ...
+Unpacking telegraf (1.28.2-1) ...
+Setting up telegraf (1.28.2-1) ...
+changed: [MichalKaiser-3] => (item={'deb': '/opt/telegraf_1.28.2-1_amd64.deb'})
+
+TASK [influxdb : Reconfigure telegraf & influxdb] ******************************
+changed: [MichalKaiser-3] => (item=None)
+changed: [MichalKaiser-3] => (item=None)
+changed: [MichalKaiser-3]
+
+TASK [influxdb : Start and enable services] ************************************
+changed: [MichalKaiser-3] => (item=influxdb)
+changed: [MichalKaiser-3] => (item=telegraf)
+
+TASK [influxdb : influxdb backup directory] ************************************
+--- before
++++ after
+@@ -1,7 +1,7 @@
+ {
+-    "group": 0,
+-    "mode": "0755",
+-    "owner": 0,
++    "group": 34,
++    "mode": "0750",
++    "owner": 34,
+     "path": "/home/backup/influxdb",
+-    "state": "absent"
++    "state": "directory"
+ }
+
+changed: [MichalKaiser-3]
+
+TASK [influxdb : influxdb backup cronjob] **************************************
+changed: [MichalKaiser-3]
+
+TASK [influxdb_exporter : Prometheus influxdb exporter] ************************
+changed: [MichalKaiser-3]
+
+TASK [influxdb_exporter : Copy service template] *******************************
+--- before
++++ after: /Users/michalkaiser/.ansible/tmp/ansible-local-32748wr2_lv48/tmpgnws1vfs/influxdb-stats-exporter.service.j2
+@@ -0,0 +1,10 @@
++[Unit]
++Description=Influxdb Stats Exporter
++Documentation=https://github.com/carlpett/influxdb_stats_exporter
++
++[Service]
++User=prometheus
++ExecStart=/usr/local/bin/influx_stats_exporter_linux_amd64
++
++[Install]
++WantedBy=multi-user.target
+
+changed: [MichalKaiser-3]
+
+TASK [influxdb_exporter : Influxdb Exporter] ***********************************
+changed: [MichalKaiser-3]
+
+RUNNING HANDLER [influxdb : restarted telegraf] ********************************
+changed: [MichalKaiser-3]
+
+RUNNING HANDLER [influxdb_exporter : reload daemon] ****************************
+changed: [MichalKaiser-3]
+
+RUNNING HANDLER [influxdb_exporter : restart influxdb exporter] ****************
+changed: [MichalKaiser-3]
+
+PLAY [Pinger server] ***********************************************************
+
+TASK [Gathering Facts] *********************************************************
+ok: [MichalKaiser-3]
+
+TASK [pinger : ensure fping installed] *****************************************
+The following NEW packages will be installed:
+  fping
+0 upgraded, 1 newly installed, 0 to remove and 263 not upgraded.
+changed: [MichalKaiser-3]
+
+TASK [pinger : Create user pinger] *********************************************
+changed: [MichalKaiser-3]
+
+TASK [pinger : Pinger config] **************************************************
+--- before
++++ after
+@@ -1,5 +1,5 @@
+ {
+-    "mode": "0755",
++    "mode": "0751",
+     "path": "/etc/pinger",
+-    "state": "absent"
++    "state": "directory"
+ }
+
+changed: [MichalKaiser-3]
+
+TASK [pinger : Copy pinger conf] ***********************************************
+--- before
++++ after: /Users/michalkaiser/.ansible/tmp/ansible-local-32748wr2_lv48/tmpd8zsqc49/pinger.conf.j2
+@@ -0,0 +1,4 @@
++database_url=http://influxdb:8086
++database_name=latency
++targets=google.com,cloudflare.com,ttu.ee,vutbr.cz
++
+
+changed: [MichalKaiser-3]
+
+TASK [pinger : Copy pinger script] *********************************************
+changed: [MichalKaiser-3]
+
+TASK [pinger : Copy pinger service] ********************************************
+--- before
++++ after: /Users/michalkaiser/.ansible/tmp/ansible-local-32748wr2_lv48/tmp1g_18m7p/pinger.service.j2
+@@ -0,0 +1,11 @@
++[Unit]
++Description=Pinger Service
++Documentation=https://github.com/romankuchin/ica0002-2022/blob/main/08-logging/08-files/pinger.service
++After=network-online.target
++
++[Service]
++User=pinger
++ExecStart=/usr/local/bin/pinger
++
++[Install]
++WantedBy=multi-user.target
+
+changed: [MichalKaiser-3]
+
+TASK [pinger : Start and enable pinger] ****************************************
+changed: [MichalKaiser-3]
+
+RUNNING HANDLER [pinger : reload systemd] **************************************
+changed: [MichalKaiser-3]
+
+RUNNING HANDLER [pinger : restart pinger] **************************************
+changed: [MichalKaiser-3]
+
+PLAY [Keepalived server] *******************************************************
+
+TASK [Gathering Facts] *********************************************************
+ok: [MichalKaiser-2]
+ok: [MichalKaiser-1]
+
+TASK [keepalived : add keepalived_script user] *********************************
+changed: [MichalKaiser-1]
+changed: [MichalKaiser-2]
+
+TASK [keepalived : Install Keepalived] *****************************************
+The following additional packages will be installed:
+  ipvsadm libmysqlclient21 libnl-3-200 libnl-genl-3-200 libsensors-config
+  libsensors5 libsnmp-base libsnmp35
+Suggested packages:
+  heartbeat ldirectord lm-sensors snmp-mibs-downloader
+The following NEW packages will be installed:
+  ipvsadm keepalived libmysqlclient21 libnl-3-200 libnl-genl-3-200
+  libsensors-config libsensors5 libsnmp-base libsnmp35
+0 upgraded, 9 newly installed, 0 to remove and 263 not upgraded.
+changed: [MichalKaiser-1]
+The following additional packages will be installed:
+  ipvsadm libmysqlclient21 libnl-3-200 libnl-genl-3-200 libsensors-config
+  libsensors5 libsnmp-base libsnmp35
+Suggested packages:
+  heartbeat ldirectord lm-sensors snmp-mibs-downloader
+The following NEW packages will be installed:
+  ipvsadm keepalived libmysqlclient21 libnl-3-200 libnl-genl-3-200
+  libsensors-config libsensors5 libsnmp-base libsnmp35
+0 upgraded, 9 newly installed, 0 to remove and 263 not upgraded.
+changed: [MichalKaiser-2]
+
+TASK [keepalived : Start keepalived] *******************************************
+changed: [MichalKaiser-1]
+changed: [MichalKaiser-2]
+
+TASK [keepalived : Copy keepalived script file] ********************************
+--- before
++++ after: /Users/michalkaiser/ica0002/ica0002/roles/keepalived/files/vrrp_script.sh
+@@ -0,0 +1,2 @@
++#!/bin/bash
++ss -ntl | grep -q ':88 '
+
+changed: [MichalKaiser-1]
+--- before
++++ after: /Users/michalkaiser/ica0002/ica0002/roles/keepalived/files/vrrp_script.sh
+@@ -0,0 +1,2 @@
++#!/bin/bash
++ss -ntl | grep -q ':88 '
+
+changed: [MichalKaiser-2]
+
+TASK [keepalived : copy confs] *************************************************
+--- before
++++ after: /Users/michalkaiser/.ansible/tmp/ansible-local-32748wr2_lv48/tmpt2dbj8k5/keepalived.conf.j2
+@@ -0,0 +1,27 @@
++global_defs {
++      enable_script_security
++      script_user keepalived_script
++}
++
++vrrp_script check_haproxy {                 
++    script "/home/keepalived_script/vrrp_script" 
++    weight 20       
++    interval 1               
++}
++
++
++vrrp_instance my_ha_frontend {
++    interface ens3
++    virtual_router_id 1
++        priority 100
++        advert_int 1
++    virtual_ipaddress {
++       		192.168.101.44/24
++	      }
++    unicast_peer {
++                              192.168.43.56 
++                }
++    track_script {
++      check_haproxy
++    }
++}
+
+changed: [MichalKaiser-1] => (item={'src': 'keepalived.conf.j2', 'dest': '/etc/keepalived/keepalived.conf'})
+--- before
++++ after: /Users/michalkaiser/.ansible/tmp/ansible-local-32748wr2_lv48/tmp21rhctm6/keepalived.conf.j2
+@@ -0,0 +1,27 @@
++global_defs {
++      enable_script_security
++      script_user keepalived_script
++}
++
++vrrp_script check_haproxy {                 
++    script "/home/keepalived_script/vrrp_script" 
++    weight 20       
++    interval 1               
++}
++
++
++vrrp_instance my_ha_frontend {
++    interface ens3
++    virtual_router_id 1
++        priority 99
++        advert_int 1
++    virtual_ipaddress {
++       		192.168.101.44/24
++	      }
++    unicast_peer {
++                  192.168.43.44 
++                            }
++    track_script {
++      check_haproxy
++    }
++}
+
+changed: [MichalKaiser-2] => (item={'src': 'keepalived.conf.j2', 'dest': '/etc/keepalived/keepalived.conf'})
+--- before
++++ after: /Users/michalkaiser/.ansible/tmp/ansible-local-32748wr2_lv48/tmppz7_w_13/keepalived_exporter.j2
+@@ -0,0 +1,11 @@
++[Unit]
++Description=Keepalived Exporter
++Documentation="https://github.com/cafebazaar/keepalived-exporter"
++After=network-online.target
++
++[Service]
++User=root
++ExecStart=/usr/local/bin/keepalived-exporter-1.2.0.linux-amd64/keepalived-exporter $ARGS
++
++[Install]
++WantedBy=multi-user.target
+
+--- before
++++ after: /Users/michalkaiser/.ansible/tmp/ansible-local-32748wr2_lv48/tmpta60q249/keepalived_exporter.j2
+@@ -0,0 +1,11 @@
++[Unit]
++Description=Keepalived Exporter
++Documentation="https://github.com/cafebazaar/keepalived-exporter"
++After=network-online.target
++
++[Service]
++User=root
++ExecStart=/usr/local/bin/keepalived-exporter-1.2.0.linux-amd64/keepalived-exporter $ARGS
++
++[Install]
++WantedBy=multi-user.target
+
+changed: [MichalKaiser-2] => (item={'src': 'keepalived_exporter.j2', 'dest': '/etc/systemd/system/keepalived_exporter.service'})
+changed: [MichalKaiser-1] => (item={'src': 'keepalived_exporter.j2', 'dest': '/etc/systemd/system/keepalived_exporter.service'})
+
+TASK [keepalived : Extract exporter into folder] *******************************
+changed: [MichalKaiser-2]
+changed: [MichalKaiser-1]
+
+TASK [keepalived : execute handlers] *******************************************
+
+RUNNING HANDLER [keepalived : restart daemon] **********************************
+ok: [MichalKaiser-1]
+ok: [MichalKaiser-2]
+
+RUNNING HANDLER [keepalived : restart keepalived] ******************************
+changed: [MichalKaiser-2]
+changed: [MichalKaiser-1]
+
+TASK [keepalived : Start keepalived-exporter] **********************************
+changed: [MichalKaiser-1]
+changed: [MichalKaiser-2]
+
+PLAY [HaProxy server] **********************************************************
+
+TASK [Gathering Facts] *********************************************************
+ok: [MichalKaiser-2]
+ok: [MichalKaiser-1]
+
+TASK [haproxy : Install haproxy and haproxy exporter] **************************
+The following additional packages will be installed:
+  liblua5.3-0
+Suggested packages:
+  vim-haproxy haproxy-doc
+The following NEW packages will be installed:
+  haproxy liblua5.3-0 prometheus-haproxy-exporter
+0 upgraded, 3 newly installed, 0 to remove and 263 not upgraded.
+changed: [MichalKaiser-1]
+The following additional packages will be installed:
+  liblua5.3-0
+Suggested packages:
+  vim-haproxy haproxy-doc
+The following NEW packages will be installed:
+  haproxy liblua5.3-0 prometheus-haproxy-exporter
+0 upgraded, 3 newly installed, 0 to remove and 263 not upgraded.
+changed: [MichalKaiser-2]
+
+TASK [haproxy : Copy HAproxy conf file] ****************************************
+--- before: /etc/haproxy/haproxy.cfg
++++ after: /Users/michalkaiser/.ansible/tmp/ansible-local-32748wr2_lv48/tmp1e70vx6k/haproxy.conf.j2
+@@ -7,15 +7,6 @@
+ 	user haproxy
+ 	group haproxy
+ 	daemon
+-
+-	# Default SSL material locations
+-	ca-base /etc/ssl/certs
+-	crt-base /etc/ssl/private
+-
+-	# See: https://ssl-config.mozilla.org/#server=haproxy&server-version=2.0.3&config=intermediate
+-        ssl-default-bind-ciphers ECDHE-ECDSA-AES128-GCM-SHA256:ECDHE-RSA-AES128-GCM-SHA256:ECDHE-ECDSA-AES256-GCM-SHA384:ECDHE-RSA-AES256-GCM-SHA384:ECDHE-ECDSA-CHACHA20-POLY1305:ECDHE-RSA-CHACHA20-POLY1305:DHE-RSA-AES128-GCM-SHA256:DHE-RSA-AES256-GCM-SHA384
+-        ssl-default-bind-ciphersuites TLS_AES_128_GCM_SHA256:TLS_AES_256_GCM_SHA384:TLS_CHACHA20_POLY1305_SHA256
+-        ssl-default-bind-options ssl-min-ver TLSv1.2 no-tls-tickets
+ 
+ defaults
+ 	log	global
+@@ -32,3 +23,19 @@
+ 	errorfile 502 /etc/haproxy/errors/502.http
+ 	errorfile 503 /etc/haproxy/errors/503.http
+ 	errorfile 504 /etc/haproxy/errors/504.http
++
++listen my_ha_frontend
++    bind *:88
++	stats enable
++    	stats uri /haproxy?stats
++	server MichalKaiser-1_1  MichalKaiser-1:8001 check
++	server MichalKaiser-2_1  MichalKaiser-2:8001 check
++	server MichalKaiser-1_2  MichalKaiser-1:8002 check
++	server MichalKaiser-2_2  MichalKaiser-2:8002 check
++	server MichalKaiser-1_3  MichalKaiser-1:8003 check
++	server MichalKaiser-2_3  MichalKaiser-2:8003 check
++	listen stats
++    bind *:9188
++    stats enable
++    stats uri /stats
++	stats refresh 5s
+
+--- before: /etc/haproxy/haproxy.cfg
++++ after: /Users/michalkaiser/.ansible/tmp/ansible-local-32748wr2_lv48/tmp0hg7zzxe/haproxy.conf.j2
+@@ -7,15 +7,6 @@
+ 	user haproxy
+ 	group haproxy
+ 	daemon
+-
+-	# Default SSL material locations
+-	ca-base /etc/ssl/certs
+-	crt-base /etc/ssl/private
+-
+-	# See: https://ssl-config.mozilla.org/#server=haproxy&server-version=2.0.3&config=intermediate
+-        ssl-default-bind-ciphers ECDHE-ECDSA-AES128-GCM-SHA256:ECDHE-RSA-AES128-GCM-SHA256:ECDHE-ECDSA-AES256-GCM-SHA384:ECDHE-RSA-AES256-GCM-SHA384:ECDHE-ECDSA-CHACHA20-POLY1305:ECDHE-RSA-CHACHA20-POLY1305:DHE-RSA-AES128-GCM-SHA256:DHE-RSA-AES256-GCM-SHA384
+-        ssl-default-bind-ciphersuites TLS_AES_128_GCM_SHA256:TLS_AES_256_GCM_SHA384:TLS_CHACHA20_POLY1305_SHA256
+-        ssl-default-bind-options ssl-min-ver TLSv1.2 no-tls-tickets
+ 
+ defaults
+ 	log	global
+@@ -32,3 +23,19 @@
+ 	errorfile 502 /etc/haproxy/errors/502.http
+ 	errorfile 503 /etc/haproxy/errors/503.http
+ 	errorfile 504 /etc/haproxy/errors/504.http
++
++listen my_ha_frontend
++    bind *:88
++	stats enable
++    	stats uri /haproxy?stats
++	server MichalKaiser-1_1  MichalKaiser-1:8001 check
++	server MichalKaiser-2_1  MichalKaiser-2:8001 check
++	server MichalKaiser-1_2  MichalKaiser-1:8002 check
++	server MichalKaiser-2_2  MichalKaiser-2:8002 check
++	server MichalKaiser-1_3  MichalKaiser-1:8003 check
++	server MichalKaiser-2_3  MichalKaiser-2:8003 check
++	listen stats
++    bind *:9188
++    stats enable
++    stats uri /stats
++	stats refresh 5s
+
+changed: [MichalKaiser-2] => (item={'src': 'haproxy.conf.j2', 'dest': '/etc/haproxy/haproxy.cfg'})
+changed: [MichalKaiser-1] => (item={'src': 'haproxy.conf.j2', 'dest': '/etc/haproxy/haproxy.cfg'})
+--- before: /etc/default/prometheus-haproxy-exporter
++++ after: /Users/michalkaiser/.ansible/tmp/ansible-local-32748wr2_lv48/tmp3ubf1hdn/haproxy.scrape-uri.j2
+@@ -1,35 +1 @@
+-# Set the command-line arguments to pass to the server.
+-# Due to shell scaping, to pass backslashes for regexes, you need to double
+-# them (\\d for \d). If running under systemd, you need to double them again
+-# (\\\\d to mean \d), and escape newlines too.
+-ARGS=""
+-
+-# Prometheus-haproxy-exporter supports the following options:
+-#
+-#  --web.listen-address=":9101"
+-#    Address to listen on for web interface and telemetry.
+-#  --web.telemetry-path="/metrics"
+-#    Path under which to expose metrics.
+-#  --haproxy.scrape-uri="http://localhost/;csv"
+-#    URI on which to scrape HAProxy.
+-#  --haproxy.ssl-verify
+-#    Flag that enables SSL certificate verification for the scrape URI
+-#  --haproxy.server-metric-fields="2,3,4,5,6,7,8,9,13,14,15,16,17,18,21,24,33,35,38,39,40,41,42,43,44"
+-#    Comma-separated list of exported server metrics. See
+-#    http://cbonte.github.io/haproxy-dconv/configuration-1.5.html#9.1
+-#  --haproxy.timeout=5s
+-#    Timeout for trying to get stats from HAProxy.
+-#  --haproxy.pid-file=""
+-#    Path to HAProxy pid file.
+-#
+-#    If provided, the standard process metrics get exported for the HAProxy
+-#    process, prefixed with 'haproxy_process_...'. The haproxy_process exporter
+-#    needs to have read access to files owned by the HAProxy process. Depends
+-#    on the availability of /proc.
+-#    https://prometheus.io/docs/instrumenting/writing_clientlibs/#process-metrics.
+-#  --log.level="info"
+-#    Only log messages with the given severity or above.
+-#    Valid levels: [debug, info, warn, error, fatal]
+-#  --log.format="logger:stderr"
+-#    Set the log target and format. Example:
+-#    "logger:syslog?appname=bob&local=7" or "logger:stdout?json=true"
++ARGS='--haproxy.scrape-uri="http://MichalKaiser-1.cybera.mk:88/haproxy?stats;csv"'
+
+changed: [MichalKaiser-1] => (item={'src': 'haproxy.scrape-uri.j2', 'dest': '/etc/default/prometheus-haproxy-exporter'})
+--- before: /etc/default/prometheus-haproxy-exporter
++++ after: /Users/michalkaiser/.ansible/tmp/ansible-local-32748wr2_lv48/tmp3zc7bg5i/haproxy.scrape-uri.j2
+@@ -1,35 +1 @@
+-# Set the command-line arguments to pass to the server.
+-# Due to shell scaping, to pass backslashes for regexes, you need to double
+-# them (\\d for \d). If running under systemd, you need to double them again
+-# (\\\\d to mean \d), and escape newlines too.
+-ARGS=""
+-
+-# Prometheus-haproxy-exporter supports the following options:
+-#
+-#  --web.listen-address=":9101"
+-#    Address to listen on for web interface and telemetry.
+-#  --web.telemetry-path="/metrics"
+-#    Path under which to expose metrics.
+-#  --haproxy.scrape-uri="http://localhost/;csv"
+-#    URI on which to scrape HAProxy.
+-#  --haproxy.ssl-verify
+-#    Flag that enables SSL certificate verification for the scrape URI
+-#  --haproxy.server-metric-fields="2,3,4,5,6,7,8,9,13,14,15,16,17,18,21,24,33,35,38,39,40,41,42,43,44"
+-#    Comma-separated list of exported server metrics. See
+-#    http://cbonte.github.io/haproxy-dconv/configuration-1.5.html#9.1
+-#  --haproxy.timeout=5s
+-#    Timeout for trying to get stats from HAProxy.
+-#  --haproxy.pid-file=""
+-#    Path to HAProxy pid file.
+-#
+-#    If provided, the standard process metrics get exported for the HAProxy
+-#    process, prefixed with 'haproxy_process_...'. The haproxy_process exporter
+-#    needs to have read access to files owned by the HAProxy process. Depends
+-#    on the availability of /proc.
+-#    https://prometheus.io/docs/instrumenting/writing_clientlibs/#process-metrics.
+-#  --log.level="info"
+-#    Only log messages with the given severity or above.
+-#    Valid levels: [debug, info, warn, error, fatal]
+-#  --log.format="logger:stderr"
+-#    Set the log target and format. Example:
+-#    "logger:syslog?appname=bob&local=7" or "logger:stdout?json=true"
++ARGS='--haproxy.scrape-uri="http://MichalKaiser-2.cybera.mk:88/haproxy?stats;csv"'
+
+changed: [MichalKaiser-2] => (item={'src': 'haproxy.scrape-uri.j2', 'dest': '/etc/default/prometheus-haproxy-exporter'})
+
+TASK [haproxy : Start HAproxy on boot] *****************************************
+ok: [MichalKaiser-2] => (item=haproxy)
+ok: [MichalKaiser-1] => (item=haproxy)
+ok: [MichalKaiser-2] => (item=prometheus-haproxy-exporter)
+ok: [MichalKaiser-1] => (item=prometheus-haproxy-exporter)
+
+RUNNING HANDLER [haproxy : restart haproxy] ************************************
+changed: [MichalKaiser-2]
+changed: [MichalKaiser-1]
+
+RUNNING HANDLER [haproxy : restart haproxy exporter] ***************************
+changed: [MichalKaiser-1]
+changed: [MichalKaiser-2]
+
+PLAY RECAP *********************************************************************
+MichalKaiser-1             : ok=82   changed=60   unreachable=0    failed=0    skipped=4    rescued=0    ignored=0   
+MichalKaiser-2             : ok=82   changed=60   unreachable=0    failed=0    skipped=4    rescued=0    ignored=0   
+MichalKaiser-3             : ok=75   changed=58   unreachable=0    failed=0    skipped=0    rescued=0    ignored=0   
+
++ ansible-playbook infra.yaml --diff
+
+PLAY [Initial setup] ***********************************************************
+
+TASK [Gathering Facts] *********************************************************
+ok: [MichalKaiser-2]
+ok: [MichalKaiser-1]
+ok: [MichalKaiser-3]
+
+TASK [init : Update APT cache] *************************************************
+ok: [MichalKaiser-3]
+ok: [MichalKaiser-2]
+ok: [MichalKaiser-1]
+
+TASK [init : Install ca-certificates] ******************************************
+ok: [MichalKaiser-3]
+ok: [MichalKaiser-2]
+ok: [MichalKaiser-1]
+
+TASK [init : Install Prometheus Node Exporters] ********************************
+ok: [MichalKaiser-1]
+ok: [MichalKaiser-2]
+ok: [MichalKaiser-3]
+
+TASK [init : start prometheus-node-exporter service] ***************************
+ok: [MichalKaiser-3]
+ok: [MichalKaiser-1]
+ok: [MichalKaiser-2]
+
+TASK [init : Create user Backup] ***********************************************
+ok: [MichalKaiser-3]
+ok: [MichalKaiser-1]
+ok: [MichalKaiser-2]
+
+TASK [init : Add backup server SSH key to the list of known hosts] *************
+ok: [MichalKaiser-3]
+ok: [MichalKaiser-1]
+ok: [MichalKaiser-2]
+
+TASK [init : Create /home/backup/restore directory] ****************************
+ok: [MichalKaiser-1]
+ok: [MichalKaiser-3]
+ok: [MichalKaiser-2]
+
+TASK [init : Install Duplicity] ************************************************
+ok: [MichalKaiser-3]
+ok: [MichalKaiser-1]
+ok: [MichalKaiser-2]
+
+PLAY [DNS server] **************************************************************
+
+TASK [Gathering Facts] *********************************************************
+ok: [MichalKaiser-1]
+ok: [MichalKaiser-2]
+ok: [MichalKaiser-3]
+
+TASK [bind_exporter : Install the newest version of prometheus-bind-exporter] ***
+ok: [MichalKaiser-3]
+ok: [MichalKaiser-1]
+ok: [MichalKaiser-2]
+
+TASK [bind_exporter : start prometheus-bind-exporter] **************************
+ok: [MichalKaiser-2]
+ok: [MichalKaiser-3]
+ok: [MichalKaiser-1]
+
+TASK [bind : Install bind and python3-dnspython] *******************************
+ok: [MichalKaiser-1]
+ok: [MichalKaiser-2]
+ok: [MichalKaiser-3]
+
+TASK [bind : Enable Bind9 service] *********************************************
+ok: [MichalKaiser-2]
+ok: [MichalKaiser-1]
+ok: [MichalKaiser-3]
+
+TASK [bind : copy configuration file] ******************************************
+ok: [MichalKaiser-1] => (item=None)
+ok: [MichalKaiser-3] => (item=None)
+ok: [MichalKaiser-2] => (item=None)
+ok: [MichalKaiser-1] => (item=None)
+ok: [MichalKaiser-3] => (item=None)
+ok: [MichalKaiser-2] => (item=None)
+ok: [MichalKaiser-1] => (item=None)
+ok: [MichalKaiser-2] => (item=None)
+ok: [MichalKaiser-1]
+ok: [MichalKaiser-2]
+ok: [MichalKaiser-3] => (item=None)
+ok: [MichalKaiser-3]
+
+TASK [bind : copy main zone and reverse zone in to the primary dns servers] ****
+skipping: [MichalKaiser-1] => (item=None) 
+skipping: [MichalKaiser-1] => (item=None) 
+skipping: [MichalKaiser-1]
+skipping: [MichalKaiser-2] => (item=None) 
+skipping: [MichalKaiser-2] => (item=None) 
+skipping: [MichalKaiser-2]
+ok: [MichalKaiser-3] => (item=None)
+ok: [MichalKaiser-3] => (item=None)
+ok: [MichalKaiser-3]
+
+TASK [bind : Execute handlers preemptively] ************************************
+
+TASK [bind : Set A records] ****************************************************
+skipping: [MichalKaiser-1] => (item=None) 
+skipping: [MichalKaiser-1]
+skipping: [MichalKaiser-2] => (item=None) 
+skipping: [MichalKaiser-2]
+ok: [MichalKaiser-3] => (item=None)
+ok: [MichalKaiser-3]
+
+TASK [bind : Set CNAME] ********************************************************
+skipping: [MichalKaiser-1] => (item=None) 
+skipping: [MichalKaiser-1] => (item=None) 
+skipping: [MichalKaiser-1] => (item=None) 
+skipping: [MichalKaiser-1] => (item=None) 
+skipping: [MichalKaiser-1] => (item=None) 
+skipping: [MichalKaiser-1] => (item=None) 
+skipping: [MichalKaiser-2] => (item=None) 
+skipping: [MichalKaiser-1] => (item=None) 
+skipping: [MichalKaiser-2] => (item=None) 
+skipping: [MichalKaiser-2] => (item=None) 
+skipping: [MichalKaiser-1] => (item=None) 
+skipping: [MichalKaiser-2] => (item=None) 
+skipping: [MichalKaiser-1] => (item=None) 
+skipping: [MichalKaiser-2] => (item=None) 
+skipping: [MichalKaiser-1] => (item=None) 
+skipping: [MichalKaiser-2] => (item=None) 
+skipping: [MichalKaiser-1] => (item=None) 
+skipping: [MichalKaiser-2] => (item=None) 
+skipping: [MichalKaiser-1] => (item=None) 
+skipping: [MichalKaiser-2] => (item=None) 
+skipping: [MichalKaiser-1] => (item=None) 
+skipping: [MichalKaiser-2] => (item=None) 
+skipping: [MichalKaiser-1] => (item=None) 
+skipping: [MichalKaiser-2] => (item=None) 
+skipping: [MichalKaiser-2] => (item=None) 
+skipping: [MichalKaiser-2] => (item=None) 
+skipping: [MichalKaiser-2] => (item=None) 
+skipping: [MichalKaiser-2] => (item=None) 
+skipping: [MichalKaiser-1]
+skipping: [MichalKaiser-2]
+ok: [MichalKaiser-3] => (item=None)
+ok: [MichalKaiser-3] => (item=None)
+ok: [MichalKaiser-3] => (item=None)
+ok: [MichalKaiser-3] => (item=None)
+ok: [MichalKaiser-3] => (item=None)
+ok: [MichalKaiser-3] => (item=None)
+ok: [MichalKaiser-3] => (item=None)
+ok: [MichalKaiser-3] => (item=None)
+ok: [MichalKaiser-3] => (item=None)
+ok: [MichalKaiser-3] => (item=None)
+ok: [MichalKaiser-3] => (item=None)
+ok: [MichalKaiser-3] => (item=None)
+ok: [MichalKaiser-3] => (item=None)
+ok: [MichalKaiser-3] => (item=None)
+ok: [MichalKaiser-3]
+
+PLAY [DNS resolver] ************************************************************
+
+TASK [Gathering Facts] *********************************************************
+ok: [MichalKaiser-3]
+ok: [MichalKaiser-1]
+ok: [MichalKaiser-2]
+
+TASK [dnsresolver : Stop systemd-resolved] *************************************
+ok: [MichalKaiser-2]
+ok: [MichalKaiser-1]
+ok: [MichalKaiser-3]
+
+TASK [dnsresolver : Copy file with owner and permission of resolv.conf] ********
+ok: [MichalKaiser-1]
+ok: [MichalKaiser-2]
+ok: [MichalKaiser-3]
+
+PLAY [Rsyslog] *****************************************************************
+
+TASK [Gathering Facts] *********************************************************
+ok: [MichalKaiser-1]
+ok: [MichalKaiser-2]
+ok: [MichalKaiser-3]
+
+TASK [rsyslog : Install rsyslog] ***********************************************
+ok: [MichalKaiser-2]
+ok: [MichalKaiser-1]
+ok: [MichalKaiser-3]
+
+TASK [rsyslog : Start rsyslog] *************************************************
+ok: [MichalKaiser-1]
+ok: [MichalKaiser-3]
+ok: [MichalKaiser-2]
+
+TASK [rsyslog : Add file with a target address for logs] ***********************
+ok: [MichalKaiser-3]
+ok: [MichalKaiser-1]
+ok: [MichalKaiser-2]
+
+PLAY [Docker servers] **********************************************************
+
+TASK [Gathering Facts] *********************************************************
+ok: [MichalKaiser-3]
+ok: [MichalKaiser-2]
+ok: [MichalKaiser-1]
+
+TASK [docker : ensure docker is installed] *************************************
+ok: [MichalKaiser-1]
+ok: [MichalKaiser-3]
+ok: [MichalKaiser-2]
+
+TASK [docker : docker enabled] *************************************************
+ok: [MichalKaiser-1]
+ok: [MichalKaiser-2]
+ok: [MichalKaiser-3]
+
+PLAY [Database server] *********************************************************
+
+TASK [Gathering Facts] *********************************************************
+ok: [MichalKaiser-2]
+ok: [MichalKaiser-1]
+
+TASK [mysql : Install the newest version of package "mysql-server"] ************
+ok: [MichalKaiser-2]
+ok: [MichalKaiser-1]
+
+TASK [mysql : start mysql service] *********************************************
+ok: [MichalKaiser-2]
+ok: [MichalKaiser-1]
+
+TASK [mysql : Copy file override.cnf to /etc/mysql/mysql.conf.d/override.cnf] ***
+ok: [MichalKaiser-1]
+ok: [MichalKaiser-2]
+
+TASK [mysql : Copy file my_mysql.cnf.j2 to /etc/mysql/my.cnf] ******************
+ok: [MichalKaiser-1]
+ok: [MichalKaiser-2]
+
+TASK [mysql : Install the newest version of package "python3-pymysql"] *********
+ok: [MichalKaiser-1]
+ok: [MichalKaiser-2]
+
+TASK [mysql : MySQL database] **************************************************
+ok: [MichalKaiser-1]
+ok: [MichalKaiser-2]
+
+TASK [mysql : MySQL user Agama] ************************************************
+ok: [MichalKaiser-1]
+ok: [MichalKaiser-2]
+
+TASK [mysql : MySql user for replication] **************************************
+ok: [MichalKaiser-1]
+ok: [MichalKaiser-2]
+
+TASK [mysql : replica server read_only] ****************************************
+ok: [MichalKaiser-2]
+ok: [MichalKaiser-1]
+
+TASK [mysql : Force all notified handlers to run at this point, not waiting for normal sync points] ***
+
+TASK [mysql : MySql user for backup] *******************************************
+ok: [MichalKaiser-2]
+ok: [MichalKaiser-1]
+
+TASK [mysql : mysql directory] *************************************************
+ok: [MichalKaiser-2]
+ok: [MichalKaiser-1]
+
+TASK [mysql : cp my_mysql_backup.cnf.j2 to /home/backup/.my.cnf] ***************
+ok: [MichalKaiser-1]
+ok: [MichalKaiser-2]
+
+TASK [mysql : Cronjob cp] ******************************************************
+ok: [MichalKaiser-1]
+ok: [MichalKaiser-2]
+
+TASK [mysql_exporter : Install MySQL Exporter] *********************************
+ok: [MichalKaiser-1]
+ok: [MichalKaiser-2]
+
+TASK [mysql_exporter : Create directory] ***************************************
+ok: [MichalKaiser-1]
+ok: [MichalKaiser-2]
+
+TASK [mysql_exporter : Copy .my.cnf template to /var/lib/prometheus/.my.cnf] ***
+ok: [MichalKaiser-2]
+ok: [MichalKaiser-1]
+
+TASK [mysql_exporter : Create MySQL Exporter user] *****************************
+ok: [MichalKaiser-2]
+ok: [MichalKaiser-1]
+
+TASK [mysql_exporter : Add prometheus-mysqld-exporter file to /etc/default/prometheus-mysqld-exporter] ***
+ok: [MichalKaiser-2]
+ok: [MichalKaiser-1]
+
+TASK [mysql_exporter : Force all notified handlers to run at this point, not waiting for normal sync points] ***
+
+TASK [mysql_exporter : Start MySQL exporter] ***********************************
+ok: [MichalKaiser-2]
+ok: [MichalKaiser-1]
+
+PLAY [Agama server] ************************************************************
+
+TASK [Gathering Facts] *********************************************************
+ok: [MichalKaiser-1]
+ok: [MichalKaiser-2]
+
+TASK [agama : Create directory in opt for agama installation] ******************
+ok: [MichalKaiser-1]
+ok: [MichalKaiser-2]
+
+TASK [agama : Download Dockerfile and agama.py files] **************************
+ok: [MichalKaiser-1] => (item=agama.py)
+ok: [MichalKaiser-2] => (item=agama.py)
+ok: [MichalKaiser-2] => (item=Dockerfile)
+ok: [MichalKaiser-1] => (item=Dockerfile)
+
+TASK [agama : Build Docker image] **********************************************
+ok: [MichalKaiser-1]
+ok: [MichalKaiser-2]
+
+TASK [agama : Install agama with a docker] *************************************
+ok: [MichalKaiser-2] => (item=None)
+ok: [MichalKaiser-1] => (item=None)
+ok: [MichalKaiser-1] => (item=None)
+ok: [MichalKaiser-2] => (item=None)
+ok: [MichalKaiser-1] => (item=None)
+ok: [MichalKaiser-2] => (item=None)
+ok: [MichalKaiser-1]
+ok: [MichalKaiser-2]
+
+PLAY [Web server] **************************************************************
+
+TASK [Gathering Facts] *********************************************************
+ok: [MichalKaiser-1]
+ok: [MichalKaiser-2]
+ok: [MichalKaiser-3]
+
+TASK [nginx_exporter : Install Prometheus Nginx Exporters] *********************
+ok: [MichalKaiser-1]
+ok: [MichalKaiser-3]
+ok: [MichalKaiser-2]
+
+TASK [nginx_exporter : start prometheus-nginx-exporter service] ****************
+ok: [MichalKaiser-1]
+ok: [MichalKaiser-2]
+ok: [MichalKaiser-3]
+
+TASK [nginx : Ensure Nginx is installed] ***************************************
+ok: [MichalKaiser-1]
+ok: [MichalKaiser-3]
+ok: [MichalKaiser-2]
+
+TASK [nginx : Copy template to server] *****************************************
+ok: [MichalKaiser-1]
+ok: [MichalKaiser-2]
+ok: [MichalKaiser-3]
+
+TASK [nginx : start nginx] *****************************************************
+ok: [MichalKaiser-1]
+ok: [MichalKaiser-2]
+ok: [MichalKaiser-3]
+
+PLAY [Prometheus server] *******************************************************
+
+TASK [Gathering Facts] *********************************************************
+ok: [MichalKaiser-3]
+
+TASK [prometheus : install prometheus] *****************************************
+ok: [MichalKaiser-3]
+
+TASK [prometheus : start prometheus] *******************************************
+ok: [MichalKaiser-3]
+
+TASK [prometheus : copy confs] *************************************************
+ok: [MichalKaiser-3] => (item={'src': 'prom.yml.j2', 'dest': '/etc/prometheus/prometheus.yml'})
+ok: [MichalKaiser-3] => (item={'src': 'prometheus.j2', 'dest': '/etc/systemd/system/prometheus.service'})
+
+TASK [prometheus : execute handlers] *******************************************
+
+PLAY [Grafana server] **********************************************************
+
+TASK [Gathering Facts] *********************************************************
+ok: [MichalKaiser-3]
+
+TASK [grafana : create dirs] ***************************************************
+ok: [MichalKaiser-3] => (item=/opt/grafana/provisioning/dashboards)
+ok: [MichalKaiser-3] => (item=/opt/grafana/provisioning/datasources)
+
+TASK [grafana : copy confs] ****************************************************
+ok: [MichalKaiser-3] => (item=None)
+ok: [MichalKaiser-3] => (item=None)
+ok: [MichalKaiser-3] => (item=None)
+ok: [MichalKaiser-3]
+
+TASK [grafana : Copy jsons] ****************************************************
+ok: [MichalKaiser-3] => (item=None)
+ok: [MichalKaiser-3] => (item=None)
+ok: [MichalKaiser-3] => (item=None)
+ok: [MichalKaiser-3] => (item=None)
+ok: [MichalKaiser-3] => (item=None)
+ok: [MichalKaiser-3] => (item=None)
+ok: [MichalKaiser-3] => (item=None)
+ok: [MichalKaiser-3]
+
+TASK [grafana : run grafna in docker] ******************************************
+ok: [MichalKaiser-3]
+
+PLAY [InfluxDB server] *********************************************************
+
+TASK [Gathering Facts] *********************************************************
+ok: [MichalKaiser-3]
+
+TASK [influxdb : Download packages] ********************************************
+ok: [MichalKaiser-3] => (item={'url': 'https://dl.influxdata.com/influxdb/releases/influxdb_1.8.10_amd64.deb', 'dest': '/opt/influxdb_1.8.10_amd64.deb'})
+ok: [MichalKaiser-3] => (item={'url': 'https://dl.influxdata.com/telegraf/releases/telegraf_1.28.2-1_amd64.deb', 'dest': '/opt/telegraf_1.28.2-1_amd64.deb'})
+
+TASK [influxdb : Install packages] *********************************************
+ok: [MichalKaiser-3] => (item={'deb': '/opt/influxdb_1.8.10_amd64.deb'})
+ok: [MichalKaiser-3] => (item={'deb': '/opt/telegraf_1.28.2-1_amd64.deb'})
+
+TASK [influxdb : Reconfigure telegraf & influxdb] ******************************
+ok: [MichalKaiser-3] => (item=None)
+ok: [MichalKaiser-3] => (item=None)
+ok: [MichalKaiser-3]
+
+TASK [influxdb : Start and enable services] ************************************
+ok: [MichalKaiser-3] => (item=influxdb)
+ok: [MichalKaiser-3] => (item=telegraf)
+
+TASK [influxdb : influxdb backup directory] ************************************
+ok: [MichalKaiser-3]
+
+TASK [influxdb : influxdb backup cronjob] **************************************
+ok: [MichalKaiser-3]
+
+TASK [influxdb_exporter : Prometheus influxdb exporter] ************************
+ok: [MichalKaiser-3]
+
+TASK [influxdb_exporter : Copy service template] *******************************
+ok: [MichalKaiser-3]
+
+TASK [influxdb_exporter : Influxdb Exporter] ***********************************
+ok: [MichalKaiser-3]
+
+PLAY [Pinger server] ***********************************************************
+
+TASK [Gathering Facts] *********************************************************
+ok: [MichalKaiser-3]
+
+TASK [pinger : ensure fping installed] *****************************************
+ok: [MichalKaiser-3]
+
+TASK [pinger : Create user pinger] *********************************************
+ok: [MichalKaiser-3]
+
+TASK [pinger : Pinger config] **************************************************
+ok: [MichalKaiser-3]
+
+TASK [pinger : Copy pinger conf] ***********************************************
+ok: [MichalKaiser-3]
+
+TASK [pinger : Copy pinger script] *********************************************
+ok: [MichalKaiser-3]
+
+TASK [pinger : Copy pinger service] ********************************************
+ok: [MichalKaiser-3]
+
+TASK [pinger : Start and enable pinger] ****************************************
+ok: [MichalKaiser-3]
+
+PLAY [Keepalived server] *******************************************************
+
+TASK [Gathering Facts] *********************************************************
+ok: [MichalKaiser-1]
+ok: [MichalKaiser-2]
+
+TASK [keepalived : add keepalived_script user] *********************************
+ok: [MichalKaiser-2]
+ok: [MichalKaiser-1]
+
+TASK [keepalived : Install Keepalived] *****************************************
+ok: [MichalKaiser-1]
+ok: [MichalKaiser-2]
+
+TASK [keepalived : Start keepalived] *******************************************
+ok: [MichalKaiser-1]
+ok: [MichalKaiser-2]
+
+TASK [keepalived : Copy keepalived script file] ********************************
+ok: [MichalKaiser-1]
+ok: [MichalKaiser-2]
+
+TASK [keepalived : copy confs] *************************************************
+ok: [MichalKaiser-2] => (item={'src': 'keepalived.conf.j2', 'dest': '/etc/keepalived/keepalived.conf'})
+ok: [MichalKaiser-1] => (item={'src': 'keepalived.conf.j2', 'dest': '/etc/keepalived/keepalived.conf'})
+ok: [MichalKaiser-2] => (item={'src': 'keepalived_exporter.j2', 'dest': '/etc/systemd/system/keepalived_exporter.service'})
+ok: [MichalKaiser-1] => (item={'src': 'keepalived_exporter.j2', 'dest': '/etc/systemd/system/keepalived_exporter.service'})
+
+TASK [keepalived : Extract exporter into folder] *******************************
+ok: [MichalKaiser-2]
+ok: [MichalKaiser-1]
+
+TASK [keepalived : execute handlers] *******************************************
+
+TASK [keepalived : Start keepalived-exporter] **********************************
+ok: [MichalKaiser-1]
+ok: [MichalKaiser-2]
+
+PLAY [HaProxy server] **********************************************************
+
+TASK [Gathering Facts] *********************************************************
+ok: [MichalKaiser-1]
+ok: [MichalKaiser-2]
+
+TASK [haproxy : Install haproxy and haproxy exporter] **************************
+ok: [MichalKaiser-2]
+ok: [MichalKaiser-1]
+
+TASK [haproxy : Copy HAproxy conf file] ****************************************
+ok: [MichalKaiser-2] => (item={'src': 'haproxy.conf.j2', 'dest': '/etc/haproxy/haproxy.cfg'})
+ok: [MichalKaiser-1] => (item={'src': 'haproxy.conf.j2', 'dest': '/etc/haproxy/haproxy.cfg'})
+ok: [MichalKaiser-2] => (item={'src': 'haproxy.scrape-uri.j2', 'dest': '/etc/default/prometheus-haproxy-exporter'})
+ok: [MichalKaiser-1] => (item={'src': 'haproxy.scrape-uri.j2', 'dest': '/etc/default/prometheus-haproxy-exporter'})
+
+TASK [haproxy : Start HAproxy on boot] *****************************************
+ok: [MichalKaiser-1] => (item=haproxy)
+ok: [MichalKaiser-2] => (item=haproxy)
+ok: [MichalKaiser-1] => (item=prometheus-haproxy-exporter)
+ok: [MichalKaiser-2] => (item=prometheus-haproxy-exporter)
+
+PLAY RECAP *********************************************************************
+MichalKaiser-1             : ok=68   changed=0    unreachable=0    failed=0    skipped=3    rescued=0    ignored=0   
+MichalKaiser-2             : ok=68   changed=0    unreachable=0    failed=0    skipped=3    rescued=0    ignored=0   
+MichalKaiser-3             : ok=61   changed=0    unreachable=0    failed=0    skipped=0    rescued=0    ignored=0   
+
++ ansible all -b -m reboot -a test_command=uptime
+MichalKaiser-3 | CHANGED => {
+    "changed": true,
+    "elapsed": 36,
+    "rebooted": true
+}
+MichalKaiser-1 | CHANGED => {
+    "changed": true,
+    "elapsed": 44,
+    "rebooted": true
+}
+MichalKaiser-2 | CHANGED => {
+    "changed": true,
+    "elapsed": 44,
+    "rebooted": true
+}
++ ansible-playbook infra.yaml --diff
+
+PLAY [Initial setup] ***********************************************************
+
+TASK [Gathering Facts] *********************************************************
+ok: [MichalKaiser-3]
+ok: [MichalKaiser-2]
+ok: [MichalKaiser-1]
+
+TASK [init : Update APT cache] *************************************************
+ok: [MichalKaiser-3]
+ok: [MichalKaiser-1]
+ok: [MichalKaiser-2]
+
+TASK [init : Install ca-certificates] ******************************************
+ok: [MichalKaiser-3]
+ok: [MichalKaiser-2]
+ok: [MichalKaiser-1]
+
+TASK [init : Install Prometheus Node Exporters] ********************************
+ok: [MichalKaiser-3]
+ok: [MichalKaiser-1]
+ok: [MichalKaiser-2]
+
+TASK [init : start prometheus-node-exporter service] ***************************
+ok: [MichalKaiser-1]
+ok: [MichalKaiser-2]
+ok: [MichalKaiser-3]
+
+TASK [init : Create user Backup] ***********************************************
+ok: [MichalKaiser-3]
+ok: [MichalKaiser-1]
+ok: [MichalKaiser-2]
+
+TASK [init : Add backup server SSH key to the list of known hosts] *************
+ok: [MichalKaiser-3]
+ok: [MichalKaiser-1]
+ok: [MichalKaiser-2]
+
+TASK [init : Create /home/backup/restore directory] ****************************
+ok: [MichalKaiser-3]
+ok: [MichalKaiser-1]
+ok: [MichalKaiser-2]
+
+TASK [init : Install Duplicity] ************************************************
+ok: [MichalKaiser-3]
+ok: [MichalKaiser-1]
+ok: [MichalKaiser-2]
+
+PLAY [DNS server] **************************************************************
+
+TASK [Gathering Facts] *********************************************************
+ok: [MichalKaiser-3]
+ok: [MichalKaiser-1]
+ok: [MichalKaiser-2]
+
+TASK [bind_exporter : Install the newest version of prometheus-bind-exporter] ***
+ok: [MichalKaiser-3]
+ok: [MichalKaiser-1]
+ok: [MichalKaiser-2]
+
+TASK [bind_exporter : start prometheus-bind-exporter] **************************
+ok: [MichalKaiser-1]
+ok: [MichalKaiser-3]
+ok: [MichalKaiser-2]
+
+TASK [bind : Install bind and python3-dnspython] *******************************
+ok: [MichalKaiser-3]
+ok: [MichalKaiser-1]
+ok: [MichalKaiser-2]
+
+TASK [bind : Enable Bind9 service] *********************************************
+ok: [MichalKaiser-3]
+ok: [MichalKaiser-2]
+ok: [MichalKaiser-1]
+
+TASK [bind : copy configuration file] ******************************************
+ok: [MichalKaiser-3] => (item=None)
+ok: [MichalKaiser-1] => (item=None)
+ok: [MichalKaiser-2] => (item=None)
+ok: [MichalKaiser-3] => (item=None)
+ok: [MichalKaiser-1] => (item=None)
+ok: [MichalKaiser-2] => (item=None)
+ok: [MichalKaiser-3] => (item=None)
+ok: [MichalKaiser-1] => (item=None)
+ok: [MichalKaiser-3]
+ok: [MichalKaiser-1]
+ok: [MichalKaiser-2] => (item=None)
+ok: [MichalKaiser-2]
+
+TASK [bind : copy main zone and reverse zone in to the primary dns servers] ****
+skipping: [MichalKaiser-1] => (item=None) 
+skipping: [MichalKaiser-1] => (item=None) 
+skipping: [MichalKaiser-1]
+skipping: [MichalKaiser-2] => (item=None) 
+skipping: [MichalKaiser-2] => (item=None) 
+skipping: [MichalKaiser-2]
+ok: [MichalKaiser-3] => (item=None)
+ok: [MichalKaiser-3] => (item=None)
+ok: [MichalKaiser-3]
+
+TASK [bind : Execute handlers preemptively] ************************************
+
+TASK [bind : Set A records] ****************************************************
+skipping: [MichalKaiser-1] => (item=None) 
+skipping: [MichalKaiser-1]
+skipping: [MichalKaiser-2] => (item=None) 
+skipping: [MichalKaiser-2]
+ok: [MichalKaiser-3] => (item=None)
+ok: [MichalKaiser-3]
+
+TASK [bind : Set CNAME] ********************************************************
+skipping: [MichalKaiser-2] => (item=None) 
+skipping: [MichalKaiser-2] => (item=None) 
+skipping: [MichalKaiser-2] => (item=None) 
+skipping: [MichalKaiser-1] => (item=None) 
+skipping: [MichalKaiser-2] => (item=None) 
+skipping: [MichalKaiser-2] => (item=None) 
+skipping: [MichalKaiser-2] => (item=None) 
+skipping: [MichalKaiser-2] => (item=None) 
+skipping: [MichalKaiser-2] => (item=None) 
+skipping: [MichalKaiser-2] => (item=None) 
+skipping: [MichalKaiser-1] => (item=None) 
+skipping: [MichalKaiser-1] => (item=None) 
+skipping: [MichalKaiser-1] => (item=None) 
+skipping: [MichalKaiser-1] => (item=None) 
+skipping: [MichalKaiser-1] => (item=None) 
+skipping: [MichalKaiser-1] => (item=None) 
+skipping: [MichalKaiser-2] => (item=None) 
+skipping: [MichalKaiser-2] => (item=None) 
+skipping: [MichalKaiser-2] => (item=None) 
+skipping: [MichalKaiser-2] => (item=None) 
+skipping: [MichalKaiser-2] => (item=None) 
+skipping: [MichalKaiser-2]
+skipping: [MichalKaiser-1] => (item=None) 
+skipping: [MichalKaiser-1] => (item=None) 
+skipping: [MichalKaiser-1] => (item=None) 
+skipping: [MichalKaiser-1] => (item=None) 
+skipping: [MichalKaiser-1] => (item=None) 
+skipping: [MichalKaiser-1] => (item=None) 
+skipping: [MichalKaiser-1] => (item=None) 
+skipping: [MichalKaiser-1]
+ok: [MichalKaiser-3] => (item=None)
+ok: [MichalKaiser-3] => (item=None)
+ok: [MichalKaiser-3] => (item=None)
+ok: [MichalKaiser-3] => (item=None)
+ok: [MichalKaiser-3] => (item=None)
+ok: [MichalKaiser-3] => (item=None)
+ok: [MichalKaiser-3] => (item=None)
+ok: [MichalKaiser-3] => (item=None)
+ok: [MichalKaiser-3] => (item=None)
+ok: [MichalKaiser-3] => (item=None)
+ok: [MichalKaiser-3] => (item=None)
+ok: [MichalKaiser-3] => (item=None)
+ok: [MichalKaiser-3] => (item=None)
+ok: [MichalKaiser-3] => (item=None)
+ok: [MichalKaiser-3]
+
+PLAY [DNS resolver] ************************************************************
+
+TASK [Gathering Facts] *********************************************************
+ok: [MichalKaiser-3]
+ok: [MichalKaiser-1]
+ok: [MichalKaiser-2]
+
+TASK [dnsresolver : Stop systemd-resolved] *************************************
+ok: [MichalKaiser-1]
+ok: [MichalKaiser-3]
+ok: [MichalKaiser-2]
+
+TASK [dnsresolver : Copy file with owner and permission of resolv.conf] ********
+ok: [MichalKaiser-3]
+ok: [MichalKaiser-1]
+ok: [MichalKaiser-2]
+
+PLAY [Rsyslog] *****************************************************************
+
+TASK [Gathering Facts] *********************************************************
+ok: [MichalKaiser-3]
+ok: [MichalKaiser-1]
+ok: [MichalKaiser-2]
+
+TASK [rsyslog : Install rsyslog] ***********************************************
+ok: [MichalKaiser-3]
+ok: [MichalKaiser-1]
+ok: [MichalKaiser-2]
+
+TASK [rsyslog : Start rsyslog] *************************************************
+ok: [MichalKaiser-1]
+ok: [MichalKaiser-3]
+ok: [MichalKaiser-2]
+
+TASK [rsyslog : Add file with a target address for logs] ***********************
+ok: [MichalKaiser-1]
+ok: [MichalKaiser-3]
+ok: [MichalKaiser-2]
+
+PLAY [Docker servers] **********************************************************
+
+TASK [Gathering Facts] *********************************************************
+ok: [MichalKaiser-3]
+ok: [MichalKaiser-1]
+ok: [MichalKaiser-2]
+
+TASK [docker : ensure docker is installed] *************************************
+ok: [MichalKaiser-1]
+ok: [MichalKaiser-3]
+ok: [MichalKaiser-2]
+
+TASK [docker : docker enabled] *************************************************
+ok: [MichalKaiser-3]
+ok: [MichalKaiser-1]
+ok: [MichalKaiser-2]
+
+PLAY [Database server] *********************************************************
+
+TASK [Gathering Facts] *********************************************************
+ok: [MichalKaiser-1]
+ok: [MichalKaiser-2]
+
+TASK [mysql : Install the newest version of package "mysql-server"] ************
+ok: [MichalKaiser-1]
+ok: [MichalKaiser-2]
+
+TASK [mysql : start mysql service] *********************************************
+ok: [MichalKaiser-1]
+ok: [MichalKaiser-2]
+
+TASK [mysql : Copy file override.cnf to /etc/mysql/mysql.conf.d/override.cnf] ***
+ok: [MichalKaiser-2]
+ok: [MichalKaiser-1]
+
+TASK [mysql : Copy file my_mysql.cnf.j2 to /etc/mysql/my.cnf] ******************
+ok: [MichalKaiser-1]
+ok: [MichalKaiser-2]
+
+TASK [mysql : Install the newest version of package "python3-pymysql"] *********
+ok: [MichalKaiser-2]
+ok: [MichalKaiser-1]
+
+TASK [mysql : MySQL database] **************************************************
+ok: [MichalKaiser-1]
+ok: [MichalKaiser-2]
+
+TASK [mysql : MySQL user Agama] ************************************************
+ok: [MichalKaiser-1]
+ok: [MichalKaiser-2]
+
+TASK [mysql : MySql user for replication] **************************************
+ok: [MichalKaiser-2]
+ok: [MichalKaiser-1]
+
+TASK [mysql : replica server read_only] ****************************************
+ok: [MichalKaiser-1]
+ok: [MichalKaiser-2]
+
+TASK [mysql : Force all notified handlers to run at this point, not waiting for normal sync points] ***
+
+TASK [mysql : MySql user for backup] *******************************************
+ok: [MichalKaiser-2]
+ok: [MichalKaiser-1]
+
+TASK [mysql : mysql directory] *************************************************
+ok: [MichalKaiser-2]
+ok: [MichalKaiser-1]
+
+TASK [mysql : cp my_mysql_backup.cnf.j2 to /home/backup/.my.cnf] ***************
+ok: [MichalKaiser-2]
+ok: [MichalKaiser-1]
+
+TASK [mysql : Cronjob cp] ******************************************************
+ok: [MichalKaiser-2]
+ok: [MichalKaiser-1]
+
+TASK [mysql_exporter : Install MySQL Exporter] *********************************
+ok: [MichalKaiser-2]
+ok: [MichalKaiser-1]
+
+TASK [mysql_exporter : Create directory] ***************************************
+ok: [MichalKaiser-1]
+ok: [MichalKaiser-2]
+
+TASK [mysql_exporter : Copy .my.cnf template to /var/lib/prometheus/.my.cnf] ***
+ok: [MichalKaiser-1]
+ok: [MichalKaiser-2]
+
+TASK [mysql_exporter : Create MySQL Exporter user] *****************************
+ok: [MichalKaiser-1]
+ok: [MichalKaiser-2]
+
+TASK [mysql_exporter : Add prometheus-mysqld-exporter file to /etc/default/prometheus-mysqld-exporter] ***
+ok: [MichalKaiser-2]
+ok: [MichalKaiser-1]
+
+TASK [mysql_exporter : Force all notified handlers to run at this point, not waiting for normal sync points] ***
+
+TASK [mysql_exporter : Start MySQL exporter] ***********************************
+ok: [MichalKaiser-2]
+ok: [MichalKaiser-1]
+
+PLAY [Agama server] ************************************************************
+
+TASK [Gathering Facts] *********************************************************
+ok: [MichalKaiser-2]
+ok: [MichalKaiser-1]
+
+TASK [agama : Create directory in opt for agama installation] ******************
+ok: [MichalKaiser-1]
+ok: [MichalKaiser-2]
+
+TASK [agama : Download Dockerfile and agama.py files] **************************
+ok: [MichalKaiser-1] => (item=agama.py)
+ok: [MichalKaiser-2] => (item=agama.py)
+ok: [MichalKaiser-2] => (item=Dockerfile)
+ok: [MichalKaiser-1] => (item=Dockerfile)
+
+TASK [agama : Build Docker image] **********************************************
+ok: [MichalKaiser-2]
+ok: [MichalKaiser-1]
+
+TASK [agama : Install agama with a docker] *************************************
+ok: [MichalKaiser-1] => (item=None)
+ok: [MichalKaiser-2] => (item=None)
+ok: [MichalKaiser-2] => (item=None)
+ok: [MichalKaiser-1] => (item=None)
+ok: [MichalKaiser-2] => (item=None)
+ok: [MichalKaiser-1] => (item=None)
+ok: [MichalKaiser-2]
+ok: [MichalKaiser-1]
+
+PLAY [Web server] **************************************************************
+
+TASK [Gathering Facts] *********************************************************
+ok: [MichalKaiser-3]
+ok: [MichalKaiser-2]
+ok: [MichalKaiser-1]
+
+TASK [nginx_exporter : Install Prometheus Nginx Exporters] *********************
+ok: [MichalKaiser-1]
+ok: [MichalKaiser-2]
+ok: [MichalKaiser-3]
+
+TASK [nginx_exporter : start prometheus-nginx-exporter service] ****************
+ok: [MichalKaiser-1]
+ok: [MichalKaiser-2]
+ok: [MichalKaiser-3]
+
+TASK [nginx : Ensure Nginx is installed] ***************************************
+ok: [MichalKaiser-1]
+ok: [MichalKaiser-3]
+ok: [MichalKaiser-2]
+
+TASK [nginx : Copy template to server] *****************************************
+ok: [MichalKaiser-3]
+ok: [MichalKaiser-1]
+ok: [MichalKaiser-2]
+
+TASK [nginx : start nginx] *****************************************************
+ok: [MichalKaiser-1]
+ok: [MichalKaiser-2]
+ok: [MichalKaiser-3]
+
+PLAY [Prometheus server] *******************************************************
+
+TASK [Gathering Facts] *********************************************************
+ok: [MichalKaiser-3]
+
+TASK [prometheus : install prometheus] *****************************************
+ok: [MichalKaiser-3]
+
+TASK [prometheus : start prometheus] *******************************************
+ok: [MichalKaiser-3]
+
+TASK [prometheus : copy confs] *************************************************
+ok: [MichalKaiser-3] => (item={'src': 'prom.yml.j2', 'dest': '/etc/prometheus/prometheus.yml'})
+ok: [MichalKaiser-3] => (item={'src': 'prometheus.j2', 'dest': '/etc/systemd/system/prometheus.service'})
+
+TASK [prometheus : execute handlers] *******************************************
+
+PLAY [Grafana server] **********************************************************
+
+TASK [Gathering Facts] *********************************************************
+ok: [MichalKaiser-3]
+
+TASK [grafana : create dirs] ***************************************************
+ok: [MichalKaiser-3] => (item=/opt/grafana/provisioning/dashboards)
+ok: [MichalKaiser-3] => (item=/opt/grafana/provisioning/datasources)
+
+TASK [grafana : copy confs] ****************************************************
+ok: [MichalKaiser-3] => (item=None)
+ok: [MichalKaiser-3] => (item=None)
+ok: [MichalKaiser-3] => (item=None)
+ok: [MichalKaiser-3]
+
+TASK [grafana : Copy jsons] ****************************************************
+ok: [MichalKaiser-3] => (item=None)
+ok: [MichalKaiser-3] => (item=None)
+ok: [MichalKaiser-3] => (item=None)
+ok: [MichalKaiser-3] => (item=None)
+ok: [MichalKaiser-3] => (item=None)
+ok: [MichalKaiser-3] => (item=None)
+ok: [MichalKaiser-3] => (item=None)
+ok: [MichalKaiser-3]
+
+TASK [grafana : run grafna in docker] ******************************************
+ok: [MichalKaiser-3]
+
+PLAY [InfluxDB server] *********************************************************
+
+TASK [Gathering Facts] *********************************************************
+ok: [MichalKaiser-3]
+
+TASK [influxdb : Download packages] ********************************************
+ok: [MichalKaiser-3] => (item={'url': 'https://dl.influxdata.com/influxdb/releases/influxdb_1.8.10_amd64.deb', 'dest': '/opt/influxdb_1.8.10_amd64.deb'})
+ok: [MichalKaiser-3] => (item={'url': 'https://dl.influxdata.com/telegraf/releases/telegraf_1.28.2-1_amd64.deb', 'dest': '/opt/telegraf_1.28.2-1_amd64.deb'})
+
+TASK [influxdb : Install packages] *********************************************
+ok: [MichalKaiser-3] => (item={'deb': '/opt/influxdb_1.8.10_amd64.deb'})
+ok: [MichalKaiser-3] => (item={'deb': '/opt/telegraf_1.28.2-1_amd64.deb'})
+
+TASK [influxdb : Reconfigure telegraf & influxdb] ******************************
+ok: [MichalKaiser-3] => (item=None)
+ok: [MichalKaiser-3] => (item=None)
+ok: [MichalKaiser-3]
+
+TASK [influxdb : Start and enable services] ************************************
+ok: [MichalKaiser-3] => (item=influxdb)
+ok: [MichalKaiser-3] => (item=telegraf)
+
+TASK [influxdb : influxdb backup directory] ************************************
+ok: [MichalKaiser-3]
+
+TASK [influxdb : influxdb backup cronjob] **************************************
+ok: [MichalKaiser-3]
+
+TASK [influxdb_exporter : Prometheus influxdb exporter] ************************
+ok: [MichalKaiser-3]
+
+TASK [influxdb_exporter : Copy service template] *******************************
+ok: [MichalKaiser-3]
+
+TASK [influxdb_exporter : Influxdb Exporter] ***********************************
+ok: [MichalKaiser-3]
+
+PLAY [Pinger server] ***********************************************************
+
+TASK [Gathering Facts] *********************************************************
+ok: [MichalKaiser-3]
+
+TASK [pinger : ensure fping installed] *****************************************
+ok: [MichalKaiser-3]
+
+TASK [pinger : Create user pinger] *********************************************
+ok: [MichalKaiser-3]
+
+TASK [pinger : Pinger config] **************************************************
+ok: [MichalKaiser-3]
+
+TASK [pinger : Copy pinger conf] ***********************************************
+ok: [MichalKaiser-3]
+
+TASK [pinger : Copy pinger script] *********************************************
+ok: [MichalKaiser-3]
+
+TASK [pinger : Copy pinger service] ********************************************
+ok: [MichalKaiser-3]
+
+TASK [pinger : Start and enable pinger] ****************************************
+ok: [MichalKaiser-3]
+
+PLAY [Keepalived server] *******************************************************
+
+TASK [Gathering Facts] *********************************************************
+ok: [MichalKaiser-1]
+ok: [MichalKaiser-2]
+
+TASK [keepalived : add keepalived_script user] *********************************
+ok: [MichalKaiser-2]
+ok: [MichalKaiser-1]
+
+TASK [keepalived : Install Keepalived] *****************************************
+ok: [MichalKaiser-1]
+ok: [MichalKaiser-2]
+
+TASK [keepalived : Start keepalived] *******************************************
+ok: [MichalKaiser-1]
+ok: [MichalKaiser-2]
+
+TASK [keepalived : Copy keepalived script file] ********************************
+ok: [MichalKaiser-1]
+ok: [MichalKaiser-2]
+
+TASK [keepalived : copy confs] *************************************************
+ok: [MichalKaiser-2] => (item={'src': 'keepalived.conf.j2', 'dest': '/etc/keepalived/keepalived.conf'})
+ok: [MichalKaiser-1] => (item={'src': 'keepalived.conf.j2', 'dest': '/etc/keepalived/keepalived.conf'})
+ok: [MichalKaiser-2] => (item={'src': 'keepalived_exporter.j2', 'dest': '/etc/systemd/system/keepalived_exporter.service'})
+ok: [MichalKaiser-1] => (item={'src': 'keepalived_exporter.j2', 'dest': '/etc/systemd/system/keepalived_exporter.service'})
+
+TASK [keepalived : Extract exporter into folder] *******************************
+ok: [MichalKaiser-1]
+ok: [MichalKaiser-2]
+
+TASK [keepalived : execute handlers] *******************************************
+
+TASK [keepalived : Start keepalived-exporter] **********************************
+ok: [MichalKaiser-1]
+ok: [MichalKaiser-2]
+
+PLAY [HaProxy server] **********************************************************
+
+TASK [Gathering Facts] *********************************************************
+ok: [MichalKaiser-1]
+ok: [MichalKaiser-2]
+
+TASK [haproxy : Install haproxy and haproxy exporter] **************************
+ok: [MichalKaiser-1]
+ok: [MichalKaiser-2]
+
+TASK [haproxy : Copy HAproxy conf file] ****************************************
+ok: [MichalKaiser-2] => (item={'src': 'haproxy.conf.j2', 'dest': '/etc/haproxy/haproxy.cfg'})
+ok: [MichalKaiser-1] => (item={'src': 'haproxy.conf.j2', 'dest': '/etc/haproxy/haproxy.cfg'})
+ok: [MichalKaiser-1] => (item={'src': 'haproxy.scrape-uri.j2', 'dest': '/etc/default/prometheus-haproxy-exporter'})
+ok: [MichalKaiser-2] => (item={'src': 'haproxy.scrape-uri.j2', 'dest': '/etc/default/prometheus-haproxy-exporter'})
+
+TASK [haproxy : Start HAproxy on boot] *****************************************
+ok: [MichalKaiser-1] => (item=haproxy)
+ok: [MichalKaiser-2] => (item=haproxy)
+ok: [MichalKaiser-1] => (item=prometheus-haproxy-exporter)
+ok: [MichalKaiser-2] => (item=prometheus-haproxy-exporter)
+
+PLAY RECAP *********************************************************************
+MichalKaiser-1             : ok=68   changed=0    unreachable=0    failed=0    skipped=3    rescued=0    ignored=0   
+MichalKaiser-2             : ok=68   changed=0    unreachable=0    failed=0    skipped=3    rescued=0    ignored=0   
+MichalKaiser-3             : ok=61   changed=0    unreachable=0    failed=0    skipped=0    rescued=0    ignored=0   
+
++ date
+Thu Jan 18 16:44:27 EET 2024
