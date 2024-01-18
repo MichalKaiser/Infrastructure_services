@@ -11,17 +11,18 @@
   ansible.builtin.template:
     src: "{{ item.src }}"
     dest: "{{ item.dest }}"
+  no_log: true
   loop:
     - { src: "grafana.ini.j2", dest: "/opt/grafana/grafana.ini" }
     - { src: "datasources.yaml.j2", dest: "/opt/grafana/provisioning/datasources/default.yaml" }
     - { src: "dashboard.yaml.j2", dest: "/opt/grafana/provisioning/dashboards/default.yaml" }
-  no_log: true
   notify: restart grafana
   
 - name: Copy jsons
   ansible.builtin.copy:
     src: "{{ item }}"
     dest: "/opt/grafana/provisioning/dashboards/{{ item }}"
+  no_log: true
   loop:
     - main.json
     - mysql.json
@@ -30,7 +31,6 @@
     - nginx.json
     - status.json
     - basic_system.json
-  no_log:true
 
 - name: run grafna in docker
   community.docker.docker_container:

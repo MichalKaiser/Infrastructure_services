@@ -1,0 +1,360 @@
+Thu Jan 18 11:56:24 EET 2024
++ hostname
+Michals-MacBook-Pro.local
++ ansible-playbook infra.yaml --diff
+
+PLAY [Initial setup] ***********************************************************
+
+TASK [Gathering Facts] *********************************************************
+ok: [MichalKaiser-3]
+ok: [MichalKaiser-2]
+ok: [MichalKaiser-1]
+
+TASK [init : Update APT cache] *************************************************
+ok: [MichalKaiser-2]
+ok: [MichalKaiser-1]
+ok: [MichalKaiser-3]
+
+TASK [init : Install ca-certificates] ******************************************
+ok: [MichalKaiser-3]
+ok: [MichalKaiser-2]
+ok: [MichalKaiser-1]
+
+TASK [init : Install Prometheus Node Exporters] ********************************
+ok: [MichalKaiser-3]
+ok: [MichalKaiser-2]
+ok: [MichalKaiser-1]
+
+TASK [init : start prometheus-node-exporter service] ***************************
+ok: [MichalKaiser-2]
+ok: [MichalKaiser-1]
+ok: [MichalKaiser-3]
+
+TASK [init : Create user Backup] ***********************************************
+ok: [MichalKaiser-3]
+ok: [MichalKaiser-1]
+ok: [MichalKaiser-2]
+
+TASK [init : Add backup server SSH key to the list of known hosts] *************
+ok: [MichalKaiser-2]
+ok: [MichalKaiser-3]
+ok: [MichalKaiser-1]
+
+TASK [init : Create /home/backup/restore directory] ****************************
+ok: [MichalKaiser-3]
+ok: [MichalKaiser-1]
+ok: [MichalKaiser-2]
+
+TASK [init : Install Duplicity] ************************************************
+ok: [MichalKaiser-1]
+ok: [MichalKaiser-2]
+ok: [MichalKaiser-3]
+
+PLAY [DNS server] **************************************************************
+
+TASK [Gathering Facts] *********************************************************
+ok: [MichalKaiser-3]
+ok: [MichalKaiser-1]
+ok: [MichalKaiser-2]
+
+TASK [bind_exporter : Install the newest version of prometheus-bind-exporter] ***
+ok: [MichalKaiser-3]
+ok: [MichalKaiser-2]
+ok: [MichalKaiser-1]
+
+TASK [bind_exporter : start prometheus-bind-exporter] **************************
+ok: [MichalKaiser-2]
+ok: [MichalKaiser-1]
+ok: [MichalKaiser-3]
+
+TASK [bind : Install bind and python3-dnspython] *******************************
+ok: [MichalKaiser-3]
+ok: [MichalKaiser-2]
+ok: [MichalKaiser-1]
+
+TASK [bind : Enable Bind9 service] *********************************************
+ok: [MichalKaiser-2]
+ok: [MichalKaiser-1]
+ok: [MichalKaiser-3]
+
+TASK [bind : copy configuration file] ******************************************
+ok: [MichalKaiser-3] => (item=None)
+ok: [MichalKaiser-1] => (item=None)
+ok: [MichalKaiser-2] => (item=None)
+ok: [MichalKaiser-3] => (item=None)
+ok: [MichalKaiser-1] => (item=None)
+ok: [MichalKaiser-2] => (item=None)
+ok: [MichalKaiser-3] => (item=None)
+ok: [MichalKaiser-3]
+ok: [MichalKaiser-2] => (item=None)
+ok: [MichalKaiser-2]
+ok: [MichalKaiser-1] => (item=None)
+ok: [MichalKaiser-1]
+
+TASK [bind : copy main zone and reverse zone in to the primary dns servers] ****
+skipping: [MichalKaiser-1] => (item=None) 
+skipping: [MichalKaiser-1] => (item=None) 
+skipping: [MichalKaiser-1]
+skipping: [MichalKaiser-2] => (item=None) 
+skipping: [MichalKaiser-2] => (item=None) 
+skipping: [MichalKaiser-2]
+ok: [MichalKaiser-3] => (item=None)
+ok: [MichalKaiser-3] => (item=None)
+ok: [MichalKaiser-3]
+
+TASK [bind : Execute handlers preemptively] ************************************
+
+TASK [bind : Set A records] ****************************************************
+skipping: [MichalKaiser-1] => (item=None) 
+skipping: [MichalKaiser-1]
+skipping: [MichalKaiser-2] => (item=None) 
+skipping: [MichalKaiser-2]
+ok: [MichalKaiser-3] => (item=None)
+ok: [MichalKaiser-3]
+
+TASK [bind : Set CNAME] ********************************************************
+fatal: [MichalKaiser-3]: FAILED! => {"censored": "the output has been hidden due to the fact that 'no_log: true' was specified for this result"}
+skipping: [MichalKaiser-1]
+skipping: [MichalKaiser-2]
+
+PLAY [DNS resolver] ************************************************************
+
+TASK [Gathering Facts] *********************************************************
+ok: [MichalKaiser-2]
+ok: [MichalKaiser-1]
+
+TASK [dnsresolver : Stop systemd-resolved] *************************************
+ok: [MichalKaiser-2]
+ok: [MichalKaiser-1]
+
+TASK [dnsresolver : Copy file with owner and permission of resolv.conf] ********
+ok: [MichalKaiser-1]
+ok: [MichalKaiser-2]
+
+PLAY [Rsyslog] *****************************************************************
+
+TASK [Gathering Facts] *********************************************************
+ok: [MichalKaiser-2]
+ok: [MichalKaiser-1]
+
+TASK [rsyslog : Install rsyslog] ***********************************************
+ok: [MichalKaiser-1]
+ok: [MichalKaiser-2]
+
+TASK [rsyslog : Start rsyslog] *************************************************
+ok: [MichalKaiser-2]
+ok: [MichalKaiser-1]
+
+TASK [rsyslog : Add file with a target address for logs] ***********************
+ok: [MichalKaiser-2]
+ok: [MichalKaiser-1]
+
+PLAY [Docker servers] **********************************************************
+
+TASK [Gathering Facts] *********************************************************
+ok: [MichalKaiser-2]
+ok: [MichalKaiser-1]
+
+TASK [docker : ensure docker is installed] *************************************
+ok: [MichalKaiser-2]
+ok: [MichalKaiser-1]
+
+TASK [docker : docker enabled] *************************************************
+ok: [MichalKaiser-2]
+ok: [MichalKaiser-1]
+
+PLAY [Database server] *********************************************************
+
+TASK [Gathering Facts] *********************************************************
+ok: [MichalKaiser-1]
+ok: [MichalKaiser-2]
+
+TASK [mysql : Install the newest version of package "mysql-server"] ************
+ok: [MichalKaiser-2]
+ok: [MichalKaiser-1]
+
+TASK [mysql : start mysql service] *********************************************
+ok: [MichalKaiser-2]
+ok: [MichalKaiser-1]
+
+TASK [mysql : Copy file override.cnf to /etc/mysql/mysql.conf.d/override.cnf] ***
+ok: [MichalKaiser-2]
+ok: [MichalKaiser-1]
+
+TASK [mysql : Copy file my_mysql.cnf.j2 to /etc/mysql/my.cnf] ******************
+ok: [MichalKaiser-1]
+ok: [MichalKaiser-2]
+
+TASK [mysql : Install the newest version of package "python3-pymysql"] *********
+ok: [MichalKaiser-1]
+ok: [MichalKaiser-2]
+
+TASK [mysql : MySQL database] **************************************************
+ok: [MichalKaiser-1]
+ok: [MichalKaiser-2]
+
+TASK [mysql : MySQL user Agama] ************************************************
+ok: [MichalKaiser-1]
+ok: [MichalKaiser-2]
+
+TASK [mysql : MySql user for replication] **************************************
+ok: [MichalKaiser-1]
+ok: [MichalKaiser-2]
+
+TASK [mysql : replica server read_only] ****************************************
+ok: [MichalKaiser-1]
+ok: [MichalKaiser-2]
+
+TASK [mysql : Force all notified handlers to run at this point, not waiting for normal sync points] ***
+
+TASK [mysql : MySql user for backup] *******************************************
+ok: [MichalKaiser-1]
+ok: [MichalKaiser-2]
+
+TASK [mysql : mysql directory] *************************************************
+ok: [MichalKaiser-2]
+ok: [MichalKaiser-1]
+
+TASK [mysql : cp my_mysql_backup.cnf.j2 to /home/backup/.my.cnf] ***************
+ok: [MichalKaiser-2]
+ok: [MichalKaiser-1]
+
+TASK [mysql : Cronjob cp] ******************************************************
+ok: [MichalKaiser-2]
+ok: [MichalKaiser-1]
+
+TASK [mysql_exporter : Install MySQL Exporter] *********************************
+ok: [MichalKaiser-2]
+ok: [MichalKaiser-1]
+
+TASK [mysql_exporter : Create directory] ***************************************
+ok: [MichalKaiser-2]
+ok: [MichalKaiser-1]
+
+TASK [mysql_exporter : Copy .my.cnf template to /var/lib/prometheus/.my.cnf] ***
+ok: [MichalKaiser-2]
+ok: [MichalKaiser-1]
+
+TASK [mysql_exporter : Create MySQL Exporter user] *****************************
+ok: [MichalKaiser-2]
+ok: [MichalKaiser-1]
+
+TASK [mysql_exporter : Add prometheus-mysqld-exporter file to /etc/default/prometheus-mysqld-exporter] ***
+ok: [MichalKaiser-2]
+ok: [MichalKaiser-1]
+
+TASK [mysql_exporter : Force all notified handlers to run at this point, not waiting for normal sync points] ***
+
+TASK [mysql_exporter : Start MySQL exporter] ***********************************
+ok: [MichalKaiser-2]
+ok: [MichalKaiser-1]
+
+PLAY [Agama server] ************************************************************
+
+TASK [Gathering Facts] *********************************************************
+ok: [MichalKaiser-1]
+ok: [MichalKaiser-2]
+
+TASK [agama : Create directory in opt for agama installation] ******************
+ok: [MichalKaiser-1]
+ok: [MichalKaiser-2]
+
+TASK [agama : Download Dockerfile and agama.py files] **************************
+ok: [MichalKaiser-2] => (item=agama.py)
+ok: [MichalKaiser-1] => (item=agama.py)
+ok: [MichalKaiser-2] => (item=Dockerfile)
+ok: [MichalKaiser-1] => (item=Dockerfile)
+
+TASK [agama : Build Docker image] **********************************************
+ok: [MichalKaiser-1]
+ok: [MichalKaiser-2]
+
+TASK [agama : Install agama with a docker] *************************************
+ok: [MichalKaiser-2] => (item=None)
+ok: [MichalKaiser-1] => (item=None)
+ok: [MichalKaiser-2] => (item=None)
+ok: [MichalKaiser-1] => (item=None)
+ok: [MichalKaiser-2] => (item=None)
+ok: [MichalKaiser-1] => (item=None)
+ok: [MichalKaiser-2]
+ok: [MichalKaiser-1]
+
+PLAY [Web server] **************************************************************
+
+PLAY [Prometheus server] *******************************************************
+
+PLAY [Grafana server] **********************************************************
+
+PLAY [InfluxDB server] *********************************************************
+
+PLAY [Pinger server] ***********************************************************
+
+PLAY [Keepalived server] *******************************************************
+
+TASK [Gathering Facts] *********************************************************
+ok: [MichalKaiser-2]
+ok: [MichalKaiser-1]
+
+TASK [keepalived : add keepalived_script user] *********************************
+ok: [MichalKaiser-2]
+ok: [MichalKaiser-1]
+
+TASK [keepalived : Install Keepalived] *****************************************
+ok: [MichalKaiser-2]
+ok: [MichalKaiser-1]
+
+TASK [keepalived : Start keepalived] *******************************************
+ok: [MichalKaiser-1]
+ok: [MichalKaiser-2]
+
+TASK [keepalived : Copy keepalived script file] ********************************
+ok: [MichalKaiser-1]
+ok: [MichalKaiser-2]
+
+TASK [keepalived : copy confs] *************************************************
+ok: [MichalKaiser-2] => (item=None)
+ok: [MichalKaiser-1] => (item=None)
+ok: [MichalKaiser-2] => (item=None)
+ok: [MichalKaiser-1] => (item=None)
+ok: [MichalKaiser-2]
+ok: [MichalKaiser-1]
+
+TASK [keepalived : Extract exporter into folder] *******************************
+ok: [MichalKaiser-2]
+ok: [MichalKaiser-1]
+
+TASK [keepalived : execute handlers] *******************************************
+
+TASK [keepalived : Start keepalived-exporter] **********************************
+ok: [MichalKaiser-2]
+ok: [MichalKaiser-1]
+
+PLAY [HaProxy server] **********************************************************
+
+TASK [Gathering Facts] *********************************************************
+ok: [MichalKaiser-1]
+ok: [MichalKaiser-2]
+
+TASK [haproxy : Install haproxy and haproxy exporter] **************************
+ok: [MichalKaiser-2]
+ok: [MichalKaiser-1]
+
+TASK [haproxy : Copy HAproxy conf file] ****************************************
+ok: [MichalKaiser-1] => (item=None)
+ok: [MichalKaiser-2] => (item=None)
+ok: [MichalKaiser-1] => (item=None)
+ok: [MichalKaiser-1]
+ok: [MichalKaiser-2] => (item=None)
+ok: [MichalKaiser-2]
+
+TASK [haproxy : Start HAproxy on boot] *****************************************
+ok: [MichalKaiser-1] => (item=haproxy)
+ok: [MichalKaiser-2] => (item=haproxy)
+ok: [MichalKaiser-2] => (item=prometheus-haproxy-exporter)
+ok: [MichalKaiser-1] => (item=prometheus-haproxy-exporter)
+
+PLAY RECAP *********************************************************************
+MichalKaiser-1             : ok=62   changed=0    unreachable=0    failed=0    skipped=3    rescued=0    ignored=0   
+MichalKaiser-2             : ok=62   changed=0    unreachable=0    failed=0    skipped=3    rescued=0    ignored=0   
+MichalKaiser-3             : ok=17   changed=0    unreachable=0    failed=1    skipped=0    rescued=0    ignored=0   
+

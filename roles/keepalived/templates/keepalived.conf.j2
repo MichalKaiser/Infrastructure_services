@@ -19,7 +19,6 @@ vrrp_instance my_ha_frontend {
     priority 99
     {% endif%}
     advert_int 1
-   # preempt
     virtual_ipaddress {
        {% if MK1_ip_add.startswith('192.168.42.') %}
 		192.168.100.{{ MK1_ip_add.split('.')[-1] }}/24
