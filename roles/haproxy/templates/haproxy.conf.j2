@@ -27,7 +27,7 @@ defaults
 listen my_ha_frontend
     bind *:{{haproxy_port}}
 	stats enable
-    stats uri /haproxy?stats
+    	stats uri /haproxy?stats
 	{% set port = 8000 %}
 	{%- for item in range(1,agama_containers_per_host+1) -%}
 	{% for vm in groups['agama_servers'] -%}
